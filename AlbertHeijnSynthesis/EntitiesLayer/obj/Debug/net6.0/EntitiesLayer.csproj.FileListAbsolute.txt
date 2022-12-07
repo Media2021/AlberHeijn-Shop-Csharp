@@ -1,0 +1,12 @@
+C:\Users\delsh\OneDrive\Desktop\Semester2Fontys\AlbertHeijnSynthesis\EntitiesLayer\bin\Debug\net6.0\EntitiesLayer.deps.json
+C:\Users\delsh\OneDrive\Desktop\Semester2Fontys\AlbertHeijnSynthesis\EntitiesLayer\bin\Debug\net6.0\EntitiesLayer.dll
+C:\Users\delsh\OneDrive\Desktop\Semester2Fontys\AlbertHeijnSynthesis\EntitiesLayer\bin\Debug\net6.0\EntitiesLayer.pdb
+C:\Users\delsh\OneDrive\Desktop\Semester2Fontys\AlbertHeijnSynthesis\EntitiesLayer\obj\Debug\net6.0\EntitiesLayer.csproj.AssemblyReference.cache
+C:\Users\delsh\OneDrive\Desktop\Semester2Fontys\AlbertHeijnSynthesis\EntitiesLayer\obj\Debug\net6.0\EntitiesLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\delsh\OneDrive\Desktop\Semester2Fontys\AlbertHeijnSynthesis\EntitiesLayer\obj\Debug\net6.0\EntitiesLayer.AssemblyInfoInputs.cache
+C:\Users\delsh\OneDrive\Desktop\Semester2Fontys\AlbertHeijnSynthesis\EntitiesLayer\obj\Debug\net6.0\EntitiesLayer.AssemblyInfo.cs
+C:\Users\delsh\OneDrive\Desktop\Semester2Fontys\AlbertHeijnSynthesis\EntitiesLayer\obj\Debug\net6.0\EntitiesLayer.csproj.CoreCompileInputs.cache
+C:\Users\delsh\OneDrive\Desktop\Semester2Fontys\AlbertHeijnSynthesis\EntitiesLayer\obj\Debug\net6.0\EntitiesLayer.dll
+C:\Users\delsh\OneDrive\Desktop\Semester2Fontys\AlbertHeijnSynthesis\EntitiesLayer\obj\Debug\net6.0\refint\EntitiesLayer.dll
+C:\Users\delsh\OneDrive\Desktop\Semester2Fontys\AlbertHeijnSynthesis\EntitiesLayer\obj\Debug\net6.0\EntitiesLayer.pdb
+C:\Users\delsh\OneDrive\Desktop\Semester2Fontys\AlbertHeijnSynthesis\EntitiesLayer\obj\Debug\net6.0\ref\EntitiesLayer.dll

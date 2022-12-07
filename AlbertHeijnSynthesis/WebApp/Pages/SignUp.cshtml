@@ -1,0 +1,94 @@
+﻿@page
+@model WebAppSynthesis.Pages.SignUpModel
+@{
+    ViewData["Title"] = "Sign Up  page";
+
+}
+@*
+  <div class="new-container1">
+            <form  method="POST"id="my-form1">
+                <h1>Sign Up</h1>             
+
+                <div>                 
+                    <input asp-for="userDTO.Name"  type="text" id="name" placeholder="Name">
+            <span asp-validation-for="userDTO.Name"></span>
+                </div>
+        <div>
+            <input asp-for="userDTO.Surname" type="text" id="name" placeholder="Surname">
+            <span asp-validation-for="userDTO.Surname"></span>
+        </div>
+        <div>
+            <input asp-for="userDTO.Username" type="text" id="name" placeholder="Username">
+            <span asp-validation-for="userDTO.Username"></span>
+        </div>
+                <div>
+            <input asp-for="userDTO.Password" type="text" id="Password" placeholder="Password">
+            <span asp-validation-for="userDTO.Password"></span>
+            </div>  
+
+
+
+                <input class="btn1" type="submit" value="Submit">
+            </form>
+                <p> @ViewData["Message"]</p>
+    @section Scripts {
+                    <partial name="_ValidationScriptsPartial" />
+}
+        </div>*@
+
+
+
+    <form class="form-horizontal" method="POST">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="name">Name:</label>
+            <div class="col-sm-10">
+                <input asp-for="userDTO.Name " type="text" class="form-control" id="name" placeholder="Enter your name">
+                <span asp-validation-for="userDTO.Name"></span>
+
+            </div>
+
+        </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="surname">Surname:</label>
+        <div class="col-sm-10">
+            <input asp-for="userDTO.Surname " type="text" class="form-control" id="surname" placeholder="Enter your surname">
+            <span asp-validation-for="userDTO.Surname"></span>
+
+        </div>
+
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="username">Username:</label>
+        <div class="col-sm-10">
+            <input asp-for="userDTO.Username " type="text" class="form-control" id="username" placeholder="Enter username">
+            <span asp-validation-for="userDTO.Username"></span>
+
+        </div>
+
+    </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">Password:</label>
+            <div class="col-sm-10">
+                <input asp-for="userDTO.Password" type="password" class="form-control" id="pwd" placeholder="Enter your password">
+                <span asp-validation-for="userDTO.Password"></span>
+
+            </div>
+        </div>
+    @*    <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label><input type="checkbox"> Remember me</label>
+                </div>
+            </div>
+        </div>*@
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+        </div>
+    </form>
+
+@section Scripts {
+            <partial name="_ValidationScriptsPartial" />
+    }
