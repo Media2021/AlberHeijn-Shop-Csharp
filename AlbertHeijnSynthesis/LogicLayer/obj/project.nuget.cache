@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UWMCoeZapdJtMHG/67AfSbMYHC0OxILYTSVMLD7fOVubc9A/91jIWTBt3k2HSOWBYEiI5suECrUY2yi5PSNBTQ==",
+  "dgSpecHash": "zQ/rqxfAwTn0Mg3yMoqCrHF1PDzvtWx567amOvsMkDvVK+T1uWh9v6Y99kVk6MoXeEYCBxNVYMjwS/zfODul4g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\delsh\\OneDrive\\Desktop\\Semester2Fontys\\AlbertHeijnSynthesis\\LogicLayer\\LogicLayer.csproj",
+  "projectFilePath": "C:\\Users\\delsh\\albertheijnshop\\AlbertHeijnSynthesis\\LogicLayer\\LogicLayer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\delsh\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\delsh\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

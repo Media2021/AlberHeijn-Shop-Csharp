@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "irc/OOprFI34ut4kJl8gSzCTimfFOVBfhXtXkKfjWwWJ1MwCJ3ejSrQrwgPssv4WgVTp8jldrvU/6iEGm4ufHw==",
+  "dgSpecHash": "YDCyrnl48gl5dZJClN62uBtohSABHX7ObrPRJ6MKJVXeX1V+w8Q2dYApzo9WT6RmSA4lKlHOMSb74n8ToenJ0A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\delsh\\OneDrive\\Desktop\\Semester2Fontys\\AlbertHeijnSynthesis\\AlbertHeijnSynthesis\\AlbertHeijnSynthesis.csproj",
+  "projectFilePath": "C:\\Users\\delsh\\albertheijnshop\\AlbertHeijnSynthesis\\AlbertHeijnSynthesis\\AlbertHeijnSynthesis.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\delsh\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\delsh\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

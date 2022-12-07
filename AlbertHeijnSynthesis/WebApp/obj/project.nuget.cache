@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fU5LhKMhnZC3eI00FujGIveMTkJOmQEuE0Fj0OcfmS/zJc2kGyVbjHjp+3oa7Okg1oslhqgDqSKdgGeMO/dGmQ==",
+  "dgSpecHash": "XImMDqpzdLE5/h45PpQTuzMvyhQCo/K6akh8W8AT6GJULTl9qKyVoFFl/4MIJWV7n7eQQFqmNds+QGB1qe2X/w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\delsh\\OneDrive\\Desktop\\Semester2Fontys\\AlbertHeijnSynthesis\\WebApp\\WebApp.csproj",
+  "projectFilePath": "C:\\Users\\delsh\\albertheijnshop\\AlbertHeijnSynthesis\\WebApp\\WebApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\delsh\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\delsh\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
