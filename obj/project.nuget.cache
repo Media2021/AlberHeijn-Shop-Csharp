@@ -1,18 +1,36 @@
 {
   "version": 2,
-  "dgSpecHash": "9fvD12ewNsNtzOV32khaKcmzDV6VVPDs2Dk1MlmBiUixStb3rRtenWFUhmPX6MxdkPWZQm0Uwdr40cfrYywqgQ==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\delsh\\OneDrive\\Desktop\\Semester2Fontys\\Synthesis\\PresentationLayer.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\delsh\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
-    "C:\\Users\\delsh\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
-    "C:\\Users\\delsh\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
-    "C:\\Users\\delsh\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
-    "C:\\Users\\delsh\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
-    "C:\\Users\\delsh\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
-    "C:\\Users\\delsh\\.nuget\\packages\\system.data.sqlclient\\4.8.5\\system.data.sqlclient.4.8.5.nupkg.sha512",
-    "C:\\Users\\delsh\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
-    "C:\\Users\\delsh\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
-  ],
-  "logs": []
+  "dgSpecHash": "2aDlgqejaBbWcUvHadt4vyrJ1xAHy9vn7PWa4KHoVFFUpm+LJ9EarqMUisiOIdgikNQsaOD8lOsLrPoJvPhFaQ==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\delsh\\albertheijnshop\\PresentationLayer.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'C:\\Users\\delsh\\DBlayer\\DBlayer.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "C:\\Users\\delsh\\DBlayer\\DBlayer.csproj",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+    },
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'C:\\Users\\delsh\\BusinessLayer\\BusinessLayer.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "C:\\Users\\delsh\\BusinessLayer\\BusinessLayer.csproj",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+    },
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'C:\\Users\\delsh\\LogicLayer\\EntitiesLayer.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "C:\\Users\\delsh\\LogicLayer\\EntitiesLayer.csproj",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+    }
+  ]
 }
