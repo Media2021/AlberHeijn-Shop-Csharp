@@ -60,9 +60,9 @@ namespace DBlayer
 
         public void CreateOrder(Order order)
         {
-            string sql = "insert into Order (OrderId,,userId,totalPrice,date,deliveryId) values (@OrderId,@userId,@totalPrice,@date,@deliveryId);";
+            string sql = "insert into Order (userId,totalPrice,date,deliveryId) values (@userId,@totalPrice,@date,@deliveryId);";
             SqlCommand cmd = new SqlCommand(sql, this.conn);
-            cmd.Parameters.AddWithValue("@OrderId", order.Id);
+
             cmd.Parameters.AddWithValue("@userId", order.User.Id);
             cmd.Parameters.AddWithValue("@totalPrice", order.TotalPrice);
             cmd.Parameters.AddWithValue("@date", order.DateOfOrder);
@@ -70,8 +70,43 @@ namespace DBlayer
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();
+            int id = findLastId();
+            createOrderProducts(id, order);
+
+
 
         }
+
+        private int findLastId()
+        {
+            string sql = "SELECT id FROM  Order ORDER BY id DESC LIMIT 1 ;";
+            SqlCommand cmd = new SqlCommand(sql, this.conn);
+
+
+
+            conn.Open();
+            int id = (int)cmd.ExecuteScalar();
+            conn.Close();
+            return id;
+        }
+
+        private void createOrderProducts(int id, Order order)
+        {
+            foreach (var item in order.Products)
+            {
+                string sql = "insert into OrderProducts (productId,orderId) values (@productId,@orderId);";
+                SqlCommand cmd = new SqlCommand(sql, this.conn);
+                cmd.Parameters.AddWithValue("@productId", item.Id);
+                cmd.Parameters.AddWithValue("@orderId", id);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+
+            }
+
+        }
+
         public void DeleteOrder(Order order)
         {
             string sql = "DELETE FROM Order WHERE OrderId = @id;";
@@ -90,6 +125,41 @@ namespace DBlayer
             cmd.Parameters.AddWithValue("@id", order.Id);
             //I need my products list here.
             //cmd.Parameters.AddWithValue("@addReview", reviewDAL.AddReview);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public void createHomeDelivery(HomeDelivery homeDelivery)
+        {
+            string sql = "insert into Delivery (Id,type,date,hour,minutes,address) values (@Id,@type,@date,@hour,@minutes,@address);";
+            SqlCommand cmd = new SqlCommand(sql, this.conn);
+
+            cmd.Parameters.AddWithValue("@address", homeDelivery.Address);
+            cmd.Parameters.AddWithValue("@type", "homeDelivery");
+            cmd.Parameters.AddWithValue("@Id", homeDelivery.Id);
+
+            cmd.Parameters.AddWithValue("@date", homeDelivery.DateOfDelivery);
+            cmd.Parameters.AddWithValue("@hour", homeDelivery.Hour);
+            cmd.Parameters.AddWithValue("@minutes", homeDelivery.Minutes);
+
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+        public void createLocationDelivery(PickupDelivery pickup)
+        {
+            string sql = "insert into Delivery (Id,type,date,hour,minutes,pickupLocation) values (@Id,@type,@date,@hour,@minutes,@pickupLocation);";
+            SqlCommand cmd = new SqlCommand(sql, this.conn);
+
+            cmd.Parameters.AddWithValue("@pickupLocation", pickup.PickupLocation);
+            cmd.Parameters.AddWithValue("@type", "pickupLocation");
+            cmd.Parameters.AddWithValue("@Id", pickup.Id);
+
+            cmd.Parameters.AddWithValue("@date", pickup.DateOfDelivery);
+            cmd.Parameters.AddWithValue("@hour", pickup.Hour);
+            cmd.Parameters.AddWithValue("@minutes", pickup.Minutes);
+
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();

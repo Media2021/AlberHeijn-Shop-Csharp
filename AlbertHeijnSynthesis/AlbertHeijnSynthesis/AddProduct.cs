@@ -18,10 +18,14 @@ namespace PresentationLayer
         ProductManager productManager = new ProductManager();
         ProductDB productDB = new ProductDB();
         List<Product> lisOProduct = new List<Product>();
+        CategoryManager categoryManager = new CategoryManager();
+
         public AddProduct()
         {
             InitializeComponent();
             AddToDGV();
+            updatecats();
+
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -29,23 +33,32 @@ namespace PresentationLayer
 
         }
 
-       
+        private void updatecats()
+        {
+            comboBox1.Items.Clear();
+            foreach (var item in categoryManager.GetCategories())
+            {
+                comboBox1.Items.Add(item.Name);
+            }
+
+        }
         private void btn_addProduct_Click(object sender, EventArgs e)
         {
 
-            if (tb_iPname.Text != "" && tb_Punit.Text != "" && tb_Pamount.Text !="" && tb_Pprice.Text != "" && tb_categoryId.Text != "")
+            if (tb_iPname.Text != "" && tb_Punit.Text != "" && tb_Pamount.Text != "" && tb_Pprice.Text != "" && comboBox1.SelectedIndex != -1)
             {
 
                 string name = tb_iPname.Text;
                 string unit = tb_Punit.Text;
                 decimal amount = Convert.ToDecimal(tb_Pamount.Text);
                 decimal price = Convert.ToDecimal(tb_Pprice.Text);
-           //Category categoryId =  Convert.ToInt32(tb_categoryId.Text);
+                Category cat = categoryManager.GetCategories().Find(x => x.Name == comboBox1.Text);
 
 
-                //Product newproduct = new Product(name,unit, amount, price/*,categoryId*/);
-                //productDB.CreateProduct(newproduct);
-               
+
+                Product newproduct = new Product(name, unit, amount, price, cat);
+                productDB.CreateProduct(newproduct);
+
                 AddToDGV();
 
 
@@ -54,7 +67,7 @@ namespace PresentationLayer
                 tb_iPname.Clear();
                 tb_Punit.Clear();
                 tb_Pprice.Clear();
-                tb_categoryId.Clear();
+
 
             }
         }
@@ -104,6 +117,11 @@ namespace PresentationLayer
             //productManager.UpdateProduct(product);
            
             //AddToDGV();
+
+        }
+
+        private void tabAddProduct_Click(object sender, EventArgs e)
+        {
 
         }
     }

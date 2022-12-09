@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\AlbertHeijnSynthesis",
-    "\\EntitiesLayer"
+    "\\EntitiesLayer",
+    "\\LogicLayer"
   ],
-  "SelectedNode": "\\AlbertHeijnSynthesis\\Home1.cs",
+  "SelectedNode": "\\LogicLayer\\OrderManager.cs",
   "PreviewInSolutionExplorer": false
 }

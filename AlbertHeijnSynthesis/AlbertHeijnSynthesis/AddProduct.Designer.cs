@@ -52,6 +52,7 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabAddProduct.SuspendLayout();
             this.tabAddCategory.SuspendLayout();
@@ -73,6 +74,7 @@
             // 
             // tabAddProduct
             // 
+            this.tabAddProduct.Controls.Add(this.comboBox1);
             this.tabAddProduct.Controls.Add(this.tb_Pamount);
             this.tabAddProduct.Controls.Add(this.btn_addProduct);
             this.tabAddProduct.Controls.Add(this.tb_Pprice);
@@ -86,6 +88,7 @@
             this.tabAddProduct.TabIndex = 0;
             this.tabAddProduct.Text = "Add Product";
             this.tabAddProduct.UseVisualStyleBackColor = true;
+            this.tabAddProduct.Click += new System.EventHandler(this.tabAddProduct_Click);
             // 
             // tb_Pamount
             // 
@@ -117,7 +120,7 @@
             // 
             // tb_categoryId
             // 
-            this.tb_categoryId.Location = new System.Drawing.Point(1221, 559);
+            this.tb_categoryId.Location = new System.Drawing.Point(130, 590);
             this.tb_categoryId.Name = "tb_categoryId";
             this.tb_categoryId.PlaceholderText = "category id";
             this.tb_categoryId.Size = new System.Drawing.Size(300, 55);
@@ -299,6 +302,14 @@
             this.Column5.Name = "Column5";
             this.Column5.Width = 300;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(1191, 566);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(363, 56);
+            this.comboBox1.TabIndex = 9;
+            // 
             // AddProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(20F, 48F);
@@ -344,5 +355,6 @@
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn Column5;
+        private ComboBox comboBox1;
     }
 }

@@ -17,7 +17,8 @@ namespace AlbertHeijnSynthesis
     public partial class Home1 : Form
     {
         PeopleManager peopleManager = new PeopleManager();
-        PersonDB personDB = new PersonDB();
+        OrderDB or = new OrderDB();
+
         public Home1()
         {
             InitializeComponent();
