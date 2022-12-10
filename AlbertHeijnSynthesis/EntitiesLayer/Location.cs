@@ -18,6 +18,12 @@ namespace EntitiesLayer
             this.name = name;
             this.address = address;
         }
+        public Location( string name, string address)
+        {
+          
+            this.name = name;
+            this.address = address;
+        }
 
         public int getId() { return id; }
         public string getName() { return name; }

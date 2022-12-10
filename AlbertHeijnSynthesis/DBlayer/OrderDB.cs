@@ -152,7 +152,7 @@ namespace DBlayer
             string sql = "insert into Delivery (Id,type,date,hour,minutes,pickupLocation) values (@Id,@type,@date,@hour,@minutes,@pickupLocation);";
             SqlCommand cmd = new SqlCommand(sql, this.conn);
 
-            cmd.Parameters.AddWithValue("@pickupLocation", pickup.PickupLocation);
+            cmd.Parameters.AddWithValue("@pickupLocation", pickup.Location);
             cmd.Parameters.AddWithValue("@type", "pickupLocation");
             cmd.Parameters.AddWithValue("@Id", pickup.Id);
 

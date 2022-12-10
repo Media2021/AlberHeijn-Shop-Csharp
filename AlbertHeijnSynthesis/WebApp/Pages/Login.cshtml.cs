@@ -13,9 +13,9 @@ namespace WebAppSynthesis.Pages
     public class LoginModel : PageModel
     {
         PeopleManager peopleManager = new PeopleManager();
-        PersonDB personDB = new PersonDB();
+      
         public User user  { get; set; }
-        public Employee employee{ get; set; }
+      
 
         [BindProperty]
 
@@ -25,40 +25,40 @@ namespace WebAppSynthesis.Pages
         }
         public IActionResult OnPost()
         {
-            //    bool result = peopleManager.LoginEMP(userDTO.Username, userDTO.Password);
+            bool result = peopleManager.LoginUser(userDTO.Username, userDTO.Password);
 
-            //    if (result )
-            //    {
-            //        employee = peopleManager.GetLoggedInEMP(userDTO.Password);
-            //        List<Claim> claims = new List<Claim>();
-            //        claims.Add(new Claim(ClaimTypes.Actor, userDTO.Password));
-            //        claims.Add(new Claim("id", "" + employee.Id));
-
-
-
-
-            //        if (employee is Employee)
-            //        {
-            //            claims.Add(new Claim(ClaimTypes.Role, "Admin"));
-            //        }
-            //        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            //        HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
-            //        if (employee.Role == "Admin")
-            //        {
-
-            //            return new RedirectToPageResult("/OnlyAdmin");
-            //        }
-
-
-            //    }
-            //    else
-            //    {
+            if (result)
+            {
+                user = peopleManager.GetLoggedInUser(userDTO.Password);
+                List<Claim> claims = new List<Claim>();
+                claims.Add(new Claim(ClaimTypes.Actor, userDTO.Password));
+                claims.Add(new Claim("id", "" + user.Id));
 
 
 
-            //        return new RedirectToPageResult($"/PersonalPage");
 
-            //    }
+                if (user != null)
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, "Customer"));
+                }
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
+                if (user.UserRole.ToString() == "Customer")
+                {
+
+                    return new RedirectToPageResult("/PersonalPage");
+                }
+
+
+            }
+            else
+            {
+
+
+
+                return new RedirectToPageResult($"/OnlyAdmin");
+
+            }
             return Page();
 
         }

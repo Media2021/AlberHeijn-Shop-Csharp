@@ -17,7 +17,7 @@ namespace AlbertHeijnSynthesis
     public partial class Home1 : Form
     {
         PeopleManager peopleManager = new PeopleManager();
-        OrderDB or = new OrderDB();
+      
 
         public Home1()
         {
@@ -29,30 +29,30 @@ namespace AlbertHeijnSynthesis
             string username = textBox1.Text;
             string password = textBox2.Text;
 
-            //bool result = peopleManager.LoginUsers(username, password);
+            bool result = peopleManager.LoginUser(username, password);
 
-            //User user = new User();
-            //if (result)
-            //{
-            //    User user = peopleManager.GetLoggedInUser(password);
-            //    if (user != null)
-            //    {
+           
+            if (result)
+            {
+                User user = peopleManager.GetLoggedInUser(password);
+                if (user != null)
+                {
 
-            //        if (user.UserRole == "Admin")
-            //        {
-            //            this.Hide();
-            //            AddProduct addProduct = new AddProduct();
-            //            addProduct.Show();
+                    if (user.UserRole.ToString() == "Admin")
+                    {
+                        this.Hide();
+                        AddProduct addProduct = new AddProduct();
+                        addProduct.Show();
 
 
-            //        }
+                    }
 
-            //    }
-            ////}
-            //else
-            //{
-            //    MessageBox.Show("you are not the admin");
-            //}
-        }
+                }
+            }
+            else
+                {
+                    MessageBox.Show("you are not the admin");
+                }
+            }
     }
 }

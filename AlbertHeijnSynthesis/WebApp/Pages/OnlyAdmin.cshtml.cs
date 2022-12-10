@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebAppSynthesis.Pages
 {
-    [Authorize(Policy = "OnlyAdminAccess")]
+   
 
     public class OnlyAdminModel : PageModel
     {

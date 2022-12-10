@@ -6,67 +6,43 @@ namespace BusinessLayer
     public class PeopleManager
     {
         PersonDB personDB = new PersonDB();
-        List<Employee> employees = new List<Employee>();
+       
         List<User> users = new List<User>();
 
         public PeopleManager()
         {
-            employees.Clear();
+           
             users.Clear();
-            //UpdateEMPList();
+        
             UpdateUserList();
 
 
 
         }
 
-        //public List<Employee> ReadEMP()
-        //{
-        //    return employees;
-        //}
-
-        //public void UpdateEMPList()
-        //{
-        //    employees.Clear();
-        //    List<Employee> AllEMP = personDB.ReadEMP();
-
-        //    foreach (var person in AllEMP)
-        //    {
-        //        employees.Add(person);
-        //    }
-        //}
-
-
-        //public void AddEMP(Employee person)
-        //{
-        //    employees.Add(person);
-        //    personDB.CreateEMP(person);
-        //}
-
-        //public void DeleteEMP(Employee person)
-        //{
-        //    employees.Remove(person);
-        //    personDB.CreateEMP(person);
-        //}
-        //public bool LoginEMP(string username, string password)
-        //{
-        //    bool isTrue = employees.Exists(x => x.Username == username);
-
-        //    if (isTrue)
-        //    {
-        //        Employee loggedEMP = employees.Find(x => x.Username == username);
-
-
-        //        return loggedEMP.Login(password);
 
 
 
 
-        //    }
+        public bool LoginUser(string username, string password)
+        {
+            bool isTrue = users.Exists(x => x.Username == username);
 
-        //    return false;
+            if (isTrue)
+            {
+               User LoggedUser = users.Find(x => x.Username == username);
 
-        //}
+
+                return LoggedUser.Login(password);
+
+
+
+
+            }
+
+            return false;
+
+        }
         public User GetLoggedInUser(string password)
         {
             User  loggedUser = users.Find(x => x.Password == password);
