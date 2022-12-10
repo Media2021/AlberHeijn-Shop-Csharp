@@ -25,40 +25,40 @@ namespace WebAppSynthesis.Pages
         }
         public IActionResult OnPost()
         {
-            bool result = peopleManager.LoginEMP(userDTO.Username, userDTO.Password);
-         
-            if (result )
-            {
-                employee = peopleManager.GetLoggedInEMP(userDTO.Password);
-                List<Claim> claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.Actor, userDTO.Password));
-                claims.Add(new Claim("id", "" + employee.Id));
+            //    bool result = peopleManager.LoginEMP(userDTO.Username, userDTO.Password);
+
+            //    if (result )
+            //    {
+            //        employee = peopleManager.GetLoggedInEMP(userDTO.Password);
+            //        List<Claim> claims = new List<Claim>();
+            //        claims.Add(new Claim(ClaimTypes.Actor, userDTO.Password));
+            //        claims.Add(new Claim("id", "" + employee.Id));
 
 
 
 
-                if (employee is Employee)
-                {
-                    claims.Add(new Claim(ClaimTypes.Role, "Admin"));
-                }
-                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
-                if (employee.Role == "Admin")
-                {
+            //        if (employee is Employee)
+            //        {
+            //            claims.Add(new Claim(ClaimTypes.Role, "Admin"));
+            //        }
+            //        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            //        HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
+            //        if (employee.Role == "Admin")
+            //        {
 
-                    return new RedirectToPageResult("/OnlyAdmin");
-                }
-
-             
-            }
-            else
-            {
+            //            return new RedirectToPageResult("/OnlyAdmin");
+            //        }
 
 
+            //    }
+            //    else
+            //    {
 
-                return new RedirectToPageResult($"/PersonalPage");
 
-            }
+
+            //        return new RedirectToPageResult($"/PersonalPage");
+
+            //    }
             return Page();
 
         }

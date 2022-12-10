@@ -8,15 +8,15 @@ namespace EntitiesLayer
 {
     public class PickupDelivery : Delivery
     {
-        private string pickupLocation;
-        public PickupDelivery(int id, DateOnly dateOfDelivery, int hour, string minutes, string pickupLocation) : base(id, dateOfDelivery, hour, minutes)
+        Location location;
+        public PickupDelivery(int id, DateOnly dateOfDelivery, int hour, string minutes, Location location) : base(id, dateOfDelivery, hour, minutes)
         {
-            this.pickupLocation = pickupLocation;
+            this.location = location;
         }
-        public PickupDelivery( DateOnly dateOfDelivery, int hour, string minutes, string pickupLocation) : base( dateOfDelivery, hour, minutes)
+        public PickupDelivery( DateOnly dateOfDelivery, int hour, string minutes, Location location) : base( dateOfDelivery, hour, minutes)
         {
-            this.pickupLocation = pickupLocation;
+            this.location = location;
         }
-        public string PickupLocation { get => pickupLocation; set => pickupLocation = value; }
+        public Location Location { get => location; set => location = value; }
     }
 }

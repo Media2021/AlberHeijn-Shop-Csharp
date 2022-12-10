@@ -25,21 +25,35 @@ namespace LogicLayer
             this.dateOfOrder = dateOfOrder;
             this.delivery = delivery;
         }
-        public Order( User user, List<Product> products, decimal totalPrice, Delivery delivery)
+        public Order( User user, decimal totalPrice, Delivery delivery)
         {
            
             this.user = user;
-            this.products = products;
+            this.products = new List<Product>();
             this.totalPrice = totalPrice;
             this.dateOfOrder = DateTime.Now;
             this.delivery = delivery;
         }
 
-        public int Id { get => id; set => id = value; }
-        public User User { get => user; set => user = value; }
-        public List<Product> Products { get => products; set => products = value; }
-        public decimal TotalPrice { get => totalPrice; set => totalPrice = value; }
-        public DateTime DateOfOrder { get => dateOfOrder; set => dateOfOrder = value; }
-        public Delivery Delivery { get => delivery; set => delivery = value; }
+        public int Id { get => id; }
+        public User User { get => user; }
+        public List<Product> Products { get => products;  }
+        public decimal TotalPrice { get => totalPrice;  }
+        public DateTime DateOfOrder { get => dateOfOrder;  }
+        public Delivery Delivery { get => delivery;  }
+
+        public void AddProduct(Product product)
+        {
+            products.Add(product);
+            totalPrice += product.Price;
+
+        }
+        public void RemoveProduct(Product product)
+        {
+            products.Remove(product);
+            totalPrice -= product.Price;
+        }
+
+      
     }
 }

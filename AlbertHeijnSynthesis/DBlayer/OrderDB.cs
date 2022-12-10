@@ -20,43 +20,43 @@ namespace DBlayer
             return orders;
         }
 
-        public List<Order> ReadOrders()
-        {
-            string sql = "SELECT * FROM Order as or inner join Customer as cu on or.userId = cu.id";
+        //public List<Order> ReadOrders()
+        //{
+        //    //string sql = "SELECT * FROM Order as or inner join Customer as cu on or.userId = cu.id";
 
-            SqlCommand cmd = new SqlCommand(sql, this.conn);
+        //    //SqlCommand cmd = new SqlCommand(sql, this.conn);
 
-            conn.Open();
-            SqlDataReader dr = cmd.ExecuteReader();
+        //    //conn.Open();
+        //    //SqlDataReader dr = cmd.ExecuteReader();
 
-            List<Order> order = new List<Order>();
-
-          
-           
-
-            while (dr.Read())
-            {
+        //    //List<Order> order = new List<Order>();
 
 
-                int id = Convert.ToInt32(dr[0]);
-                int userId = Convert.ToInt32(dr[1]);
-                decimal totalPrice = Convert.ToDecimal(dr[2]);
-                DateTime date = Convert.ToDateTime(dr[3]);
-                int deliveryId = Convert.ToInt32(dr[4]);
-
-                string name = Convert.ToString(dr[5]);
-                string surname = Convert.ToString(dr[6]);
-                string userName = Convert.ToString(dr[7]);
-                string password = Convert.ToString(dr[8]);
 
 
-                User user = new User(userId, name, surname, userName, password);
-                // I need delivery object!
-                //order.Add(new Order(id, user,totalPrice,date,delivery));
-            }
-            conn.Close();
-            return order;
-        }
+        //    //while (dr.Read())
+        //    //{
+
+
+        //    //    int id = Convert.ToInt32(dr[0]);
+        //    //    int userId = Convert.ToInt32(dr[1]);
+        //    //    decimal totalPrice = Convert.ToDecimal(dr[2]);
+        //    //    DateTime date = Convert.ToDateTime(dr[3]);
+        //    //    int deliveryId = Convert.ToInt32(dr[4]);
+
+        //    //    string name = Convert.ToString(dr[5]);
+        //    //    string surname = Convert.ToString(dr[6]);
+        //    //    string userName = Convert.ToString(dr[7]);
+        //    //    string password = Convert.ToString(dr[8]);
+
+
+        //    //    User user = new User(userId, name, surname, userName, password);
+        //    //    // I need delivery object!
+        //    //    //order.Add(new Order(id, user,totalPrice,date,delivery));
+        //    //}
+        //    //conn.Close();
+        //    return order;
+        //}
 
         public void CreateOrder(Order order)
         {

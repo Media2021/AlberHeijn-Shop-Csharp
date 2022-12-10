@@ -29,30 +29,30 @@ namespace AlbertHeijnSynthesis
             string username = textBox1.Text;
             string password = textBox2.Text;
 
-            bool result = peopleManager.LoginEMP(username, password);
+            //bool result = peopleManager.LoginUsers(username, password);
 
-            Employee person = new Employee();
-            if (result)
-            {
-                Employee loggedEMP = peopleManager.GetLoggedInEMP(password);
-                if (loggedEMP != null)
-                {
+            //User user = new User();
+            //if (result)
+            //{
+            //    User user = peopleManager.GetLoggedInUser(password);
+            //    if (user != null)
+            //    {
 
-                    if (loggedEMP.Role == "Admin")
-                    {
-                        this.Hide();
-                        AddProduct addProduct = new AddProduct();
-                        addProduct.Show();
+            //        if (user.UserRole == "Admin")
+            //        {
+            //            this.Hide();
+            //            AddProduct addProduct = new AddProduct();
+            //            addProduct.Show();
 
 
-                    }
+            //        }
 
-                }
-            }
-            else
-            {
-                MessageBox.Show("you are not the admin");
-            }
+            //    }
+            ////}
+            //else
+            //{
+            //    MessageBox.Show("you are not the admin");
+            //}
         }
     }
 }

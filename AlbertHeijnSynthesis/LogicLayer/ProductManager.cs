@@ -45,7 +45,6 @@ namespace BusinessLayer
         }
         public void UpdateProduct(Product product)
         {
-           products.Clear();
            productDB.UpdateProduct(product);
 
 

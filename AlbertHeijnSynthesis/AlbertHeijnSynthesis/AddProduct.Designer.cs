@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabAddProduct = new System.Windows.Forms.TabPage();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tb_Pamount = new System.Windows.Forms.TextBox();
             this.btn_addProduct = new System.Windows.Forms.Button();
             this.tb_Pprice = new System.Windows.Forms.TextBox();
@@ -52,7 +53,10 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabAddProduct.SuspendLayout();
             this.tabAddCategory.SuspendLayout();
@@ -89,6 +93,14 @@
             this.tabAddProduct.Text = "Add Product";
             this.tabAddProduct.UseVisualStyleBackColor = true;
             this.tabAddProduct.Click += new System.EventHandler(this.tabAddProduct_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(1191, 566);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(363, 56);
+            this.comboBox1.TabIndex = 9;
             // 
             // tb_Pamount
             // 
@@ -211,6 +223,10 @@
             // 
             // tabViewAllProducts
             // 
+            this.tabViewAllProducts.Controls.Add(this.textBox4);
+            this.tabViewAllProducts.Controls.Add(this.textBox3);
+            this.tabViewAllProducts.Controls.Add(this.textBox2);
+            this.tabViewAllProducts.Controls.Add(this.textBox1);
             this.tabViewAllProducts.Controls.Add(this.btn_updateItem);
             this.tabViewAllProducts.Controls.Add(this.btn_deleteItem);
             this.tabViewAllProducts.Controls.Add(this.dgvProducts);
@@ -225,7 +241,7 @@
             // 
             // btn_updateItem
             // 
-            this.btn_updateItem.Location = new System.Drawing.Point(1373, 810);
+            this.btn_updateItem.Location = new System.Drawing.Point(2164, 617);
             this.btn_updateItem.Name = "btn_updateItem";
             this.btn_updateItem.Size = new System.Drawing.Size(225, 69);
             this.btn_updateItem.TabIndex = 2;
@@ -253,12 +269,13 @@
             this.Column3,
             this.Column4,
             this.Column5});
-            this.dgvProducts.Location = new System.Drawing.Point(218, 104);
+            this.dgvProducts.Location = new System.Drawing.Point(19, 21);
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.RowHeadersWidth = 123;
             this.dgvProducts.RowTemplate.Height = 57;
             this.dgvProducts.Size = new System.Drawing.Size(1923, 584);
             this.dgvProducts.TabIndex = 0;
+            this.dgvProducts.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvProducts_CellMouseClick);
             // 
             // id
             // 
@@ -302,13 +319,33 @@
             this.Column5.Name = "Column5";
             this.Column5.Width = 300;
             // 
-            // comboBox1
+            // textBox1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(1191, 566);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(363, 56);
-            this.comboBox1.TabIndex = 9;
+            this.textBox1.Location = new System.Drawing.Point(2129, 79);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(300, 55);
+            this.textBox1.TabIndex = 3;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(2129, 204);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(300, 55);
+            this.textBox2.TabIndex = 4;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(2129, 324);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(300, 55);
+            this.textBox3.TabIndex = 5;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(2129, 458);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(300, 55);
+            this.textBox4.TabIndex = 6;
             // 
             // AddProduct
             // 
@@ -324,6 +361,7 @@
             this.tabAddCategory.ResumeLayout(false);
             this.tabAddCategory.PerformLayout();
             this.tabViewAllProducts.ResumeLayout(false);
+            this.tabViewAllProducts.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
             this.ResumeLayout(false);
 
@@ -356,5 +394,9 @@
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn Column5;
         private ComboBox comboBox1;
+        private TextBox textBox4;
+        private TextBox textBox3;
+        private TextBox textBox2;
+        private TextBox textBox1;
     }
 }

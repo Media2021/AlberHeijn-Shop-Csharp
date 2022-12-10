@@ -16,7 +16,7 @@ namespace PresentationLayer
     public partial class AddProduct : Form
     {
         ProductManager productManager = new ProductManager();
-        ProductDB productDB = new ProductDB();
+        //ProductDB productDB = new ProductDB();
         List<Product> lisOProduct = new List<Product>();
         CategoryManager categoryManager = new CategoryManager();
 
@@ -25,6 +25,8 @@ namespace PresentationLayer
             InitializeComponent();
             AddToDGV();
             updatecats();
+            updateProduct();
+
 
         }
 
@@ -57,7 +59,7 @@ namespace PresentationLayer
 
 
                 Product newproduct = new Product(name, unit, amount, price, cat);
-                productDB.CreateProduct(newproduct);
+                productManager.AddProduct(newproduct);
 
                 AddToDGV();
 
@@ -111,18 +113,33 @@ namespace PresentationLayer
 
         private void btn_updateItem_Click(object sender, EventArgs e)
         {
-            //int index = dgvProducts.CurrentCell.ColumnIndex;
-            //var product = lisOProduct[index];
+            int index = dgvProducts.CurrentCell.RowIndex;
+            var product = lisOProduct[index];
 
-            //productManager.UpdateProduct(product);
-           
-            //AddToDGV();
+            product.Item = textBox1.Text;
+            product.Unit = textBox2.Text;
+            product.Amount = Convert.ToDecimal(textBox3.Text);
+            product.Price = Convert.ToDecimal(textBox4.Text);
+            productManager.UpdateProduct(product);
+            updateProduct();
+            AddToDGV();
 
         }
 
         private void tabAddProduct_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgvProducts_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int index = dgvProducts.CurrentCell.RowIndex;
+            var product = lisOProduct[index];
+
+            textBox1.Text = product.Item;
+            textBox2.Text = product.Unit ;
+            textBox3.Text = product.Amount.ToString() ;
+            textBox4.Text= product.Price.ToString() ;
         }
     }
 }

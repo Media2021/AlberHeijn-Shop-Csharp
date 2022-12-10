@@ -13,64 +13,64 @@ namespace BusinessLayer
         {
             employees.Clear();
             users.Clear();
-            UpdateEMPList();
+            //UpdateEMPList();
             UpdateUserList();
 
 
 
         }
 
-        public List<Employee> ReadEMP()
+        //public List<Employee> ReadEMP()
+        //{
+        //    return employees;
+        //}
+
+        //public void UpdateEMPList()
+        //{
+        //    employees.Clear();
+        //    List<Employee> AllEMP = personDB.ReadEMP();
+
+        //    foreach (var person in AllEMP)
+        //    {
+        //        employees.Add(person);
+        //    }
+        //}
+
+
+        //public void AddEMP(Employee person)
+        //{
+        //    employees.Add(person);
+        //    personDB.CreateEMP(person);
+        //}
+
+        //public void DeleteEMP(Employee person)
+        //{
+        //    employees.Remove(person);
+        //    personDB.CreateEMP(person);
+        //}
+        //public bool LoginEMP(string username, string password)
+        //{
+        //    bool isTrue = employees.Exists(x => x.Username == username);
+
+        //    if (isTrue)
+        //    {
+        //        Employee loggedEMP = employees.Find(x => x.Username == username);
+
+
+        //        return loggedEMP.Login(password);
+
+
+
+
+        //    }
+
+        //    return false;
+
+        //}
+        public User GetLoggedInUser(string password)
         {
-            return employees;
-        }
-
-        public void UpdateEMPList()
-        {
-            employees.Clear();
-            List<Employee> AllEMP = personDB.ReadEMP();
-
-            foreach (var person in AllEMP)
-            {
-                employees.Add(person);
-            }
-        }
-
-
-        public void AddEMP(Employee person)
-        {
-            employees.Add(person);
-            personDB.CreateEMP(person);
-        }
-     
-        public void DeleteEMP(Employee person)
-        {
-            employees.Remove(person);
-            personDB.CreateEMP(person);
-        }
-        public bool LoginEMP(string username, string password)
-        {
-            bool isTrue = employees.Exists(x => x.Username == username);
-
-            if (isTrue)
-            {
-                Employee loggedEMP = employees.Find(x => x.Username == username);
-
-
-                return loggedEMP.Login(password);
-
-                
-
-
-            }
-            
-            return false;
-
-        }
-        public Employee GetLoggedInEMP(string password)
-        {
-            Employee loggedEMP = employees.Find(x => x.Password == password);
-            return loggedEMP;
+            User  loggedUser = users.Find(x => x.Password == password);
+            return loggedUser;
         }
 
         /// <summary>

@@ -26,8 +26,8 @@ namespace BusinessLayer
 
         public void UpdateOrderList()
         {
-            orders.Clear();
-            orders.AddRange(orderDB.ReadOrders());
+            //orders.Clear();
+            //orders.AddRange(orderDB.ReadOrders());
 
         }
 

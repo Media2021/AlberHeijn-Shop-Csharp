@@ -21,11 +21,11 @@ namespace WebAppSynthesis.Pages
         }
         public IActionResult OnPost()
         {
-
+            //User user = new User();
 
             if (ModelState.IsValid == true)
             {
-                User  savedUser = new User(userDTO.Name, userDTO.Surname, userDTO.Username, userDTO.Password);
+                User  savedUser = new User(userDTO.Name, userDTO.Surname, userDTO.Username, userDTO.Password,EntitiesLayer.UserRole.Customer);
 
                 peopleManager.AddUser(savedUser);
 
