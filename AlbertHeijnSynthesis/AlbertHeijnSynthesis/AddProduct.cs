@@ -1,5 +1,6 @@
 ﻿using BusinessLayer;
 using DBlayer;
+using EntitiesLayer;
 using LogicLayer;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,9 +18,11 @@ namespace PresentationLayer
     public partial class AddProduct : Form
     {
         ProductManager productManager = new ProductManager();
-        //ProductDB productDB = new ProductDB();
+        
         List<Product> lisOProduct = new List<Product>();
         CategoryManager categoryManager = new CategoryManager();
+        LocationManager locationManager = new LocationManager();
+        List<Location> locationList = new List<Location>();
 
         public AddProduct()
         {
@@ -26,6 +30,8 @@ namespace PresentationLayer
             AddToDGV();
             updatecats();
             updateProduct();
+            updateLocation();
+            AddLocationToDGV();
 
 
         }
@@ -73,22 +79,18 @@ namespace PresentationLayer
 
             }
         }
-        private void btn_AddCategory_Click(object sender, EventArgs e)
-        {
-
-        }
         public void AddToDGV()
         {
             dgvProducts.Rows.Clear();
             foreach (var item in productManager.GetProducts())
             {
-                dgvProducts.Rows.Add(item.Id,item.Item,item.Unit,item.Amount,item.Price,item.Category.Id);
+                dgvProducts.Rows.Add(item.Id,item.Item,item.Unit,item.Amount,item.Price,item.Category.Name);
             }
         }
         private void tabViewAllProducts_Click(object sender, EventArgs e)
         {
-            ProductManager productManager = new ProductManager();
-            AddToDGV();
+            //ProductManager productManager = new ProductManager();
+            //AddToDGV();
 
         }
 
@@ -140,6 +142,82 @@ namespace PresentationLayer
             textBox2.Text = product.Unit ;
             textBox3.Text = product.Amount.ToString() ;
             textBox4.Text= product.Price.ToString() ;
+        }
+
+        private void btn_AddLocation_Click(object sender, EventArgs e)
+        {
+            if (cb_CityName.Text != " " && tb_address.Text !="")
+            {
+                string city = cb_CityName.Text;
+                string address = tb_address.Text;   
+
+                Location newLocation = new Location( city, address);
+
+                locationManager.AddLocation(newLocation);
+
+
+
+                AddLocationToDGV();
+
+
+                MessageBox.Show(" new location has been saved");
+
+              tb_address.Clear();
+
+            }
+
+            
+        }
+                
+        public void AddLocationToDGV()
+        {
+            dgv_location.Rows.Clear();
+            foreach (var item in locationManager.GetLocations())
+            {
+                dgv_location.Rows.Add(item.Name,item.Address);
+            }
+        }
+
+        private void updateLocation()
+        {
+            locationList.Clear();
+            foreach (var location in locationManager.GetLocations())
+            {
+                locationList.Add(location);
+
+            }
+        }
+
+        private void btn_deletLocation_Click(object sender, EventArgs e)
+        {
+
+            int index = dgv_location.CurrentCell.RowIndex;
+            var location = locationList[index];
+            locationManager.DeleteLocation(location);
+            updateLocation();
+            AddLocationToDGV();
+        }
+
+        private void btn_EditLocation_Click(object sender, EventArgs e)
+        {
+            int index = dgv_location.CurrentCell.RowIndex;
+            var location = locationList[index];
+
+            location.Name= tb_EditCity.Text; 
+            location.Address = tb_editAddress.Text; 
+            locationManager.UpdateLocation(location);
+            updateLocation();
+            AddLocationToDGV();
+        }
+
+        private void dgv_location_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+            int index = dgv_location.CurrentCell.RowIndex;
+            var location = locationList[index];
+             
+            tb_EditCity.Text = location.Name;
+            tb_editAddress.Text = location.Address;
         }
     }
 }

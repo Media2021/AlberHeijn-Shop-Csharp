@@ -34,16 +34,22 @@
             this.tb_Pamount = new System.Windows.Forms.TextBox();
             this.btn_addProduct = new System.Windows.Forms.Button();
             this.tb_Pprice = new System.Windows.Forms.TextBox();
-            this.tb_categoryId = new System.Windows.Forms.TextBox();
             this.tb_Punit = new System.Windows.Forms.TextBox();
             this.tb_iPname = new System.Windows.Forms.TextBox();
-            this.tabAddCategory = new System.Windows.Forms.TabPage();
-            this.cb_subCatName = new System.Windows.Forms.ComboBox();
-            this.cb_catName = new System.Windows.Forms.ComboBox();
-            this.btn_AddCategory = new System.Windows.Forms.Button();
-            this.tb_subCategory = new System.Windows.Forms.TextBox();
-            this.tb_Ca_name = new System.Windows.Forms.TextBox();
+            this.tabAddLocation = new System.Windows.Forms.TabPage();
+            this.btn_deletLocation = new System.Windows.Forms.Button();
+            this.tb_EditCity = new System.Windows.Forms.TextBox();
+            this.btn_EditLocation = new System.Windows.Forms.Button();
+            this.tb_editAddress = new System.Windows.Forms.TextBox();
+            this.dgv_location = new System.Windows.Forms.DataGridView();
+            this.cb_CityName = new System.Windows.Forms.ComboBox();
+            this.btn_AddLocation = new System.Windows.Forms.Button();
+            this.tb_address = new System.Windows.Forms.TextBox();
             this.tabViewAllProducts = new System.Windows.Forms.TabPage();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.btn_updateItem = new System.Windows.Forms.Button();
             this.btn_deleteItem = new System.Windows.Forms.Button();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
@@ -53,13 +59,13 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabAddProduct.SuspendLayout();
-            this.tabAddCategory.SuspendLayout();
+            this.tabAddLocation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_location)).BeginInit();
             this.tabViewAllProducts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
@@ -67,7 +73,7 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabAddProduct);
-            this.tabControl1.Controls.Add(this.tabAddCategory);
+            this.tabControl1.Controls.Add(this.tabAddLocation);
             this.tabControl1.Controls.Add(this.tabViewAllProducts);
             this.tabControl1.Location = new System.Drawing.Point(12, 23);
             this.tabControl1.Name = "tabControl1";
@@ -82,7 +88,6 @@
             this.tabAddProduct.Controls.Add(this.tb_Pamount);
             this.tabAddProduct.Controls.Add(this.btn_addProduct);
             this.tabAddProduct.Controls.Add(this.tb_Pprice);
-            this.tabAddProduct.Controls.Add(this.tb_categoryId);
             this.tabAddProduct.Controls.Add(this.tb_Punit);
             this.tabAddProduct.Controls.Add(this.tb_iPname);
             this.tabAddProduct.Location = new System.Drawing.Point(12, 69);
@@ -130,15 +135,6 @@
             this.tb_Pprice.TabIndex = 4;
             this.tb_Pprice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // tb_categoryId
-            // 
-            this.tb_categoryId.Location = new System.Drawing.Point(130, 590);
-            this.tb_categoryId.Name = "tb_categoryId";
-            this.tb_categoryId.PlaceholderText = "category id";
-            this.tb_categoryId.Size = new System.Drawing.Size(300, 55);
-            this.tb_categoryId.TabIndex = 3;
-            this.tb_categoryId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // tb_Punit
             // 
             this.tb_Punit.Location = new System.Drawing.Point(1221, 248);
@@ -157,69 +153,110 @@
             this.tb_iPname.TabIndex = 0;
             this.tb_iPname.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // tabAddCategory
+            // tabAddLocation
             // 
-            this.tabAddCategory.Controls.Add(this.cb_subCatName);
-            this.tabAddCategory.Controls.Add(this.cb_catName);
-            this.tabAddCategory.Controls.Add(this.btn_AddCategory);
-            this.tabAddCategory.Controls.Add(this.tb_subCategory);
-            this.tabAddCategory.Controls.Add(this.tb_Ca_name);
-            this.tabAddCategory.Location = new System.Drawing.Point(12, 69);
-            this.tabAddCategory.Name = "tabAddCategory";
-            this.tabAddCategory.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAddCategory.Size = new System.Drawing.Size(2650, 928);
-            this.tabAddCategory.TabIndex = 1;
-            this.tabAddCategory.Text = "Add Category";
-            this.tabAddCategory.UseVisualStyleBackColor = true;
+            this.tabAddLocation.Controls.Add(this.btn_deletLocation);
+            this.tabAddLocation.Controls.Add(this.tb_EditCity);
+            this.tabAddLocation.Controls.Add(this.btn_EditLocation);
+            this.tabAddLocation.Controls.Add(this.tb_editAddress);
+            this.tabAddLocation.Controls.Add(this.dgv_location);
+            this.tabAddLocation.Controls.Add(this.cb_CityName);
+            this.tabAddLocation.Controls.Add(this.btn_AddLocation);
+            this.tabAddLocation.Controls.Add(this.tb_address);
+            this.tabAddLocation.Location = new System.Drawing.Point(12, 69);
+            this.tabAddLocation.Name = "tabAddLocation";
+            this.tabAddLocation.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAddLocation.Size = new System.Drawing.Size(2650, 928);
+            this.tabAddLocation.TabIndex = 1;
+            this.tabAddLocation.Text = "Add Locations";
+            this.tabAddLocation.UseVisualStyleBackColor = true;
             // 
-            // cb_subCatName
+            // btn_deletLocation
             // 
-            this.cb_subCatName.FormattingEnabled = true;
-            this.cb_subCatName.Location = new System.Drawing.Point(1150, 389);
-            this.cb_subCatName.Name = "cb_subCatName";
-            this.cb_subCatName.Size = new System.Drawing.Size(363, 56);
-            this.cb_subCatName.TabIndex = 13;
+            this.btn_deletLocation.Location = new System.Drawing.Point(162, 669);
+            this.btn_deletLocation.Name = "btn_deletLocation";
+            this.btn_deletLocation.Size = new System.Drawing.Size(375, 69);
+            this.btn_deletLocation.TabIndex = 17;
+            this.btn_deletLocation.Text = "Delete Location";
+            this.btn_deletLocation.UseVisualStyleBackColor = true;
+            this.btn_deletLocation.Click += new System.EventHandler(this.btn_deletLocation_Click);
             // 
-            // cb_catName
+            // tb_EditCity
             // 
-            this.cb_catName.FormattingEnabled = true;
-            this.cb_catName.Items.AddRange(new object[] {
-            "Meat",
-            "Vegetables",
-            "Fruit",
-            "Grains"});
-            this.cb_catName.Location = new System.Drawing.Point(1150, 286);
-            this.cb_catName.Name = "cb_catName";
-            this.cb_catName.Size = new System.Drawing.Size(363, 56);
-            this.cb_catName.TabIndex = 12;
+            this.tb_EditCity.Location = new System.Drawing.Point(1981, 270);
+            this.tb_EditCity.Name = "tb_EditCity";
+            this.tb_EditCity.PlaceholderText = "city";
+            this.tb_EditCity.Size = new System.Drawing.Size(300, 55);
+            this.tb_EditCity.TabIndex = 16;
+            this.tb_EditCity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // btn_AddCategory
+            // btn_EditLocation
             // 
-            this.btn_AddCategory.Location = new System.Drawing.Point(1138, 516);
-            this.btn_AddCategory.Name = "btn_AddCategory";
-            this.btn_AddCategory.Size = new System.Drawing.Size(375, 69);
-            this.btn_AddCategory.TabIndex = 11;
-            this.btn_AddCategory.Text = "Add Category";
-            this.btn_AddCategory.UseVisualStyleBackColor = true;
-            this.btn_AddCategory.Click += new System.EventHandler(this.btn_AddCategory_Click);
+            this.btn_EditLocation.Location = new System.Drawing.Point(1940, 499);
+            this.btn_EditLocation.Name = "btn_EditLocation";
+            this.btn_EditLocation.Size = new System.Drawing.Size(375, 69);
+            this.btn_EditLocation.TabIndex = 15;
+            this.btn_EditLocation.Text = "Edit Location";
+            this.btn_EditLocation.UseVisualStyleBackColor = true;
+            this.btn_EditLocation.Click += new System.EventHandler(this.btn_EditLocation_Click);
             // 
-            // tb_subCategory
+            // tb_editAddress
             // 
-            this.tb_subCategory.Location = new System.Drawing.Point(596, 390);
-            this.tb_subCategory.Name = "tb_subCategory";
-            this.tb_subCategory.PlaceholderText = " sub-category";
-            this.tb_subCategory.Size = new System.Drawing.Size(300, 55);
-            this.tb_subCategory.TabIndex = 9;
-            this.tb_subCategory.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tb_editAddress.Location = new System.Drawing.Point(1981, 373);
+            this.tb_editAddress.Name = "tb_editAddress";
+            this.tb_editAddress.PlaceholderText = "address";
+            this.tb_editAddress.Size = new System.Drawing.Size(300, 55);
+            this.tb_editAddress.TabIndex = 14;
+            this.tb_editAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // tb_Ca_name
+            // dgv_location
             // 
-            this.tb_Ca_name.Location = new System.Drawing.Point(596, 287);
-            this.tb_Ca_name.Name = "tb_Ca_name";
-            this.tb_Ca_name.PlaceholderText = "category name";
-            this.tb_Ca_name.Size = new System.Drawing.Size(300, 55);
-            this.tb_Ca_name.TabIndex = 7;
-            this.tb_Ca_name.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.dgv_location.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_location.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column6,
+            this.Column7,
+            this.Column8});
+            this.dgv_location.Location = new System.Drawing.Point(865, 200);
+            this.dgv_location.Name = "dgv_location";
+            this.dgv_location.RowHeadersWidth = 123;
+            this.dgv_location.RowTemplate.Height = 57;
+            this.dgv_location.Size = new System.Drawing.Size(1021, 450);
+            this.dgv_location.TabIndex = 13;
+            this.dgv_location.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_location_CellMouseClick);
+            // 
+            // cb_CityName
+            // 
+            this.cb_CityName.FormattingEnabled = true;
+            this.cb_CityName.Items.AddRange(new object[] {
+            "Rotterdam",
+            "Amsterdam",
+            "Eindhoven",
+            "Utrecht",
+            "Den Hag",
+            "Groeningen"});
+            this.cb_CityName.Location = new System.Drawing.Point(162, 269);
+            this.cb_CityName.Name = "cb_CityName";
+            this.cb_CityName.Size = new System.Drawing.Size(375, 56);
+            this.cb_CityName.TabIndex = 12;
+            // 
+            // btn_AddLocation
+            // 
+            this.btn_AddLocation.Location = new System.Drawing.Point(162, 499);
+            this.btn_AddLocation.Name = "btn_AddLocation";
+            this.btn_AddLocation.Size = new System.Drawing.Size(375, 69);
+            this.btn_AddLocation.TabIndex = 11;
+            this.btn_AddLocation.Text = "Add Location";
+            this.btn_AddLocation.UseVisualStyleBackColor = true;
+            this.btn_AddLocation.Click += new System.EventHandler(this.btn_AddLocation_Click);
+            // 
+            // tb_address
+            // 
+            this.tb_address.Location = new System.Drawing.Point(162, 373);
+            this.tb_address.Name = "tb_address";
+            this.tb_address.PlaceholderText = "address";
+            this.tb_address.Size = new System.Drawing.Size(375, 55);
+            this.tb_address.TabIndex = 9;
+            this.tb_address.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tabViewAllProducts
             // 
@@ -238,6 +275,34 @@
             this.tabViewAllProducts.Text = "Products INFO";
             this.tabViewAllProducts.UseVisualStyleBackColor = true;
             this.tabViewAllProducts.Click += new System.EventHandler(this.tabViewAllProducts_Click);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(2129, 458);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(300, 55);
+            this.textBox4.TabIndex = 6;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(2129, 324);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(300, 55);
+            this.textBox3.TabIndex = 5;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(2129, 204);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(300, 55);
+            this.textBox2.TabIndex = 4;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(2129, 79);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(300, 55);
+            this.textBox1.TabIndex = 3;
             // 
             // btn_updateItem
             // 
@@ -319,33 +384,26 @@
             this.Column5.Name = "Column5";
             this.Column5.Width = 300;
             // 
-            // textBox1
+            // Column6
             // 
-            this.textBox1.Location = new System.Drawing.Point(2129, 79);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(300, 55);
-            this.textBox1.TabIndex = 3;
+            this.Column6.HeaderText = "id";
+            this.Column6.MinimumWidth = 15;
+            this.Column6.Name = "Column6";
+            this.Column6.Width = 300;
             // 
-            // textBox2
+            // Column7
             // 
-            this.textBox2.Location = new System.Drawing.Point(2129, 204);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(300, 55);
-            this.textBox2.TabIndex = 4;
+            this.Column7.HeaderText = "name";
+            this.Column7.MinimumWidth = 15;
+            this.Column7.Name = "Column7";
+            this.Column7.Width = 300;
             // 
-            // textBox3
+            // Column8
             // 
-            this.textBox3.Location = new System.Drawing.Point(2129, 324);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(300, 55);
-            this.textBox3.TabIndex = 5;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(2129, 458);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(300, 55);
-            this.textBox4.TabIndex = 6;
+            this.Column8.HeaderText = "address";
+            this.Column8.MinimumWidth = 15;
+            this.Column8.Name = "Column8";
+            this.Column8.Width = 300;
             // 
             // AddProduct
             // 
@@ -358,8 +416,9 @@
             this.tabControl1.ResumeLayout(false);
             this.tabAddProduct.ResumeLayout(false);
             this.tabAddProduct.PerformLayout();
-            this.tabAddCategory.ResumeLayout(false);
-            this.tabAddCategory.PerformLayout();
+            this.tabAddLocation.ResumeLayout(false);
+            this.tabAddLocation.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_location)).EndInit();
             this.tabViewAllProducts.ResumeLayout(false);
             this.tabViewAllProducts.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
@@ -371,22 +430,19 @@
 
         private TabControl tabControl1;
         private TabPage tabAddProduct;
-        private TabPage tabAddCategory;
+        private TabPage tabAddLocation;
         private Button btn_addProduct;
         private TextBox tb_Pprice;
-        private TextBox tb_categoryId;
         private TextBox tb_Punit;
         private TextBox tb_iPname;
-        private Button btn_AddCategory;
-        private TextBox tb_subCategory;
-        private TextBox tb_Ca_name;
+        private Button btn_AddLocation;
+        private TextBox tb_address;
         private TabPage tabViewAllProducts;
         private Button btn_updateItem;
         private Button btn_deleteItem;
         private DataGridView dgvProducts;
         private TextBox tb_Pamount;
-        private ComboBox cb_subCatName;
-        private ComboBox cb_catName;
+        private ComboBox cb_CityName;
         private DataGridViewTextBoxColumn id;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
@@ -398,5 +454,13 @@
         private TextBox textBox3;
         private TextBox textBox2;
         private TextBox textBox1;
+        private TextBox tb_EditCity;
+        private Button btn_EditLocation;
+        private TextBox tb_editAddress;
+        private DataGridView dgv_location;
+        private Button btn_deletLocation;
+        private DataGridViewTextBoxColumn Column6;
+        private DataGridViewTextBoxColumn Column7;
+        private DataGridViewTextBoxColumn Column8;
     }
 }

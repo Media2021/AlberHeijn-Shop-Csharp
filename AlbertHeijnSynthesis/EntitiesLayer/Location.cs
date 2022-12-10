@@ -12,6 +12,8 @@ namespace EntitiesLayer
         private string name;
         private string address;
 
+     
+
         public Location(int id, string name, string address)
         {
             this.id = id;
@@ -24,9 +26,9 @@ namespace EntitiesLayer
             this.name = name;
             this.address = address;
         }
-
-        public int getId() { return id; }
-        public string getName() { return name; }
-        public string getAddress() { return address; }
+        public int Id { get => id;  }
+        public string Name { get => name; set => name = value; }
+        public string Address { get => address; set => address = value; }
+      
     }
 }
