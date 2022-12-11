@@ -89,9 +89,6 @@ namespace PresentationLayer
         }
         private void tabViewAllProducts_Click(object sender, EventArgs e)
         {
-            //ProductManager productManager = new ProductManager();
-            //AddToDGV();
-
         }
 
         private void btn_deleteItem_Click(object sender, EventArgs e)
@@ -174,7 +171,7 @@ namespace PresentationLayer
             dgv_location.Rows.Clear();
             foreach (var item in locationManager.GetLocations())
             {
-                dgv_location.Rows.Add(item.Name,item.Address);
+                dgv_location.Rows.Add(item.Id,item.Name,item.Address);
             }
         }
 
@@ -218,6 +215,31 @@ namespace PresentationLayer
              
             tb_EditCity.Text = location.Name;
             tb_editAddress.Text = location.Address;
+        }
+
+        private void tab_status_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rb_delivered_CheckedChanged(object sender, EventArgs e)
+        {
+            tb_status.Text = rb_delivered.Text.ToString();
+        }
+
+        private void rb_progress_CheckedChanged(object sender, EventArgs e)
+        {
+            tb_status.Text = rb_progress.Text.ToString();    
+        }
+
+        private void rb_onway_CheckedChanged(object sender, EventArgs e)
+        {
+            tb_status.Text = rb_onway.Text.ToString();
+        }
+
+        private void rb_readyPickup_CheckedChanged(object sender, EventArgs e)
+        {
+            tb_status.Text = rb_readyPickup.Text.ToString();    
         }
     }
 }

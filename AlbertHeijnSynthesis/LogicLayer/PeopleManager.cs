@@ -1,5 +1,7 @@
 ﻿using DBlayer;
 using LogicLayer;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace BusinessLayer
 {
@@ -21,7 +23,21 @@ namespace BusinessLayer
         }
 
 
+        private static string HashPassword(string password)
+        {
 
+            using var sha = SHA256.Create();
+            var asByte = Encoding.Default.GetBytes(password);
+            var hashed = sha.ComputeHash(asByte);
+            return Convert.ToBase64String(hashed);
+        }
+        private static int GenerateSalt(string password)
+        {
+
+            Random random = new();
+            int salt = random.Next(100000, 1000000);
+            return salt;
+        }
 
 
         public bool LoginUser(string username, string password)
@@ -43,16 +59,13 @@ namespace BusinessLayer
             return false;
 
         }
-        public User GetLoggedInUser(string password)
+        public User GetLoggedInUser(string username)
         {
-            User  loggedUser = users.Find(x => x.Password == password);
+            User  loggedUser = users.Find(x => x.Username== username);
             return loggedUser;
         }
 
-        /// <summary>
-        /// /////////////
-        /// </summary>
-        /// <param name="user"></param>
+     
         public void AddUser(User user )
         {
             users.Add(user);
@@ -64,11 +77,7 @@ namespace BusinessLayer
             personDB.DeleteUser(user);
         }
 
-        //public User GetLoggedInUser(string password)
-        //{
-        //    User loggedUser = users.Find(x => x.Password == password);
-        //    return loggedUser;
-        //}
+    
 
         public void UpdateUserList()
         {

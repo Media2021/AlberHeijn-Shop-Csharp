@@ -4,3 +4,67 @@
 }
 
 <h1>Personal page </h1>
+
+
+
+<p> Your name is @User.Identity.Name</p>
+<form method="post">
+<div class="countainer">
+    <table method="GET" class="table">
+        <tr>
+            <th>Product id</th>
+            <th>Product name</th>
+            <th>Product unit</th>
+            <th>Product price</th>
+            <th>Category name </th>
+          
+
+          
+
+
+
+        </tr>
+
+        @{
+
+            foreach (var item in @Model.products)
+            {
+                <tr>
+
+
+                    <td> <input href="/MyOrders" type="checkbox" id="@item.Id" checked="@item.Id" value="@item.Id"></td>
+                    <td>@item.Item</td>
+                    <td>@item.Unit</td>
+                    <td>@item.Price</td>
+                    <td>@item.Category.Name</td>
+                   
+
+
+                </tr>
+            }
+        }
+        @*
+
+
+
+        *@
+
+    </table>
+</div>
+    <input href="/MyOrders" type="submit" value="Submit" asp-page-handler="Submit" />
+    </form>
+
+
+@*<button onclick="myFunction()">Try it</button>*@
+
+@*<p id="demo"></p>
+
+<script>
+    function myFunction() {
+      var x = document.getElementById("myCheck").value;
+      document.getElementById("demo").innerHTML = x;
+    }
+</script>*@
+
+
+
