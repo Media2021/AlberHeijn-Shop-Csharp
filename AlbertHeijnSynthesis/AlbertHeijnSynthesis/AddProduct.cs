@@ -241,5 +241,26 @@ namespace PresentationLayer
         {
             tb_status.Text = rb_readyPickup.Text.ToString();    
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Category b = new Category(2, "Meat");
+            Product a = new Product(2, "apple", "kilo", 2, 3, b);
+            Product d= new Product(4, "apple", "kilo", 2, 3, b);
+            Product c = new Product(5, "apple", "kilo", 2, 3, b);
+            User user = new User(3,"media","hannan","mido","123",UserRole.Customer);
+            Order order = new Order(user,new List<Product>{ a, d, c },20,DateTime.Now,new HomeDelivery(DateTime.Now, 5,"15","rotterdam location1"));
+            OrderDB orderDB = new OrderDB();    
+           orderDB.CreateOrder(order);
+            //MessageBox.Show(i.ToString());
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        { 
+            OrderDB orderDB = new OrderDB();
+            List<Order> orders = orderDB.ReadOrders();
+           
+
+        }
     }
 }

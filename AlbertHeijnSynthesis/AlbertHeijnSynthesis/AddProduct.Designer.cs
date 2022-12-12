@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabAddProduct = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tb_Pamount = new System.Windows.Forms.TextBox();
             this.btn_addProduct = new System.Windows.Forms.Button();
@@ -63,6 +64,7 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tab_status = new System.Windows.Forms.TabPage();
+            this.rb_readyPickup = new System.Windows.Forms.RadioButton();
             this.rb_onway = new System.Windows.Forms.RadioButton();
             this.rb_progress = new System.Windows.Forms.RadioButton();
             this.rb_delivered = new System.Windows.Forms.RadioButton();
@@ -74,7 +76,7 @@
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rb_readyPickup = new System.Windows.Forms.RadioButton();
+            this.button2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabAddProduct.SuspendLayout();
             this.tabAddLocation.SuspendLayout();
@@ -100,6 +102,8 @@
             // 
             // tabAddProduct
             // 
+            this.tabAddProduct.Controls.Add(this.button2);
+            this.tabAddProduct.Controls.Add(this.button1);
             this.tabAddProduct.Controls.Add(this.comboBox1);
             this.tabAddProduct.Controls.Add(this.tb_Pamount);
             this.tabAddProduct.Controls.Add(this.btn_addProduct);
@@ -114,6 +118,16 @@
             this.tabAddProduct.Text = "Add Product";
             this.tabAddProduct.UseVisualStyleBackColor = true;
             this.tabAddProduct.Click += new System.EventHandler(this.tabAddProduct_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1904, 205);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(225, 69);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // comboBox1
             // 
@@ -439,6 +453,18 @@
             this.tab_status.UseVisualStyleBackColor = true;
             this.tab_status.Click += new System.EventHandler(this.tab_status_Click);
             // 
+            // rb_readyPickup
+            // 
+            this.rb_readyPickup.AutoSize = true;
+            this.rb_readyPickup.Location = new System.Drawing.Point(2271, 218);
+            this.rb_readyPickup.Name = "rb_readyPickup";
+            this.rb_readyPickup.Size = new System.Drawing.Size(319, 52);
+            this.rb_readyPickup.TabIndex = 6;
+            this.rb_readyPickup.TabStop = true;
+            this.rb_readyPickup.Text = "Ready to pickup";
+            this.rb_readyPickup.UseVisualStyleBackColor = true;
+            this.rb_readyPickup.CheckedChanged += new System.EventHandler(this.rb_readyPickup_CheckedChanged);
+            // 
             // rb_onway
             // 
             this.rb_onway.AutoSize = true;
@@ -544,17 +570,15 @@
             this.Column13.Name = "Column13";
             this.Column13.Width = 300;
             // 
-            // rb_readyPickup
+            // button2
             // 
-            this.rb_readyPickup.AutoSize = true;
-            this.rb_readyPickup.Location = new System.Drawing.Point(2271, 218);
-            this.rb_readyPickup.Name = "rb_readyPickup";
-            this.rb_readyPickup.Size = new System.Drawing.Size(319, 52);
-            this.rb_readyPickup.TabIndex = 6;
-            this.rb_readyPickup.TabStop = true;
-            this.rb_readyPickup.Text = "Ready to pickup";
-            this.rb_readyPickup.UseVisualStyleBackColor = true;
-            this.rb_readyPickup.CheckedChanged += new System.EventHandler(this.rb_readyPickup_CheckedChanged);
+            this.button2.Location = new System.Drawing.Point(1770, 447);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(225, 69);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // AddProduct
             // 
@@ -629,5 +653,7 @@
         private DataGridViewTextBoxColumn Column13;
         private RadioButton rb_onway;
         private RadioButton rb_readyPickup;
+        private Button button1;
+        private Button button2;
     }
 }

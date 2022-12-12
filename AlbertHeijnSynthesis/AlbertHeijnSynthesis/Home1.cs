@@ -34,7 +34,7 @@ namespace AlbertHeijnSynthesis
            
             if (result)
             {
-                User user = peopleManager.GetLoggedInUser(password);
+                User user = peopleManager.GetLoggedInUser(username);
                 if (user != null)
                 {
 

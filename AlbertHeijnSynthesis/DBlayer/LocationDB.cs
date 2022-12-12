@@ -23,7 +23,7 @@ namespace DBlayer
         }
         public List<Location> ReadLocations()
         {
-            string sql = "SELECT * FROM Location ;";
+            string sql = "SELECT * FROM pickupLocation ;";
             SqlCommand cmd = new SqlCommand(sql, this.conn);
 
             conn.Open();
@@ -46,7 +46,7 @@ namespace DBlayer
 
         public void CreateLocation(Location location)
         {
-            string sql = "insert into Location (name,address) values (@name,@address);";
+            string sql = "insert into pickupLocation (name,address) values (@name,@address);";
 
             SqlCommand cmd = new SqlCommand(sql, this.conn);
 
@@ -63,7 +63,7 @@ namespace DBlayer
 
         public void DeleteLocation(Location location)
         {
-            string sql = "DELETE FROM  Location WHERE id = @id ;";
+            string sql = "DELETE FROM pickupLocation WHERE id = @id ;";
 
             SqlCommand cmd = new SqlCommand(sql, this.conn);
             cmd.Parameters.AddWithValue("@id", location.Id);
@@ -74,7 +74,7 @@ namespace DBlayer
 
         public void UpdateLocation(Location location)
         {
-            string sql = "UPDATE Location SET name = @name , address = @address WHERE Id = @id;";
+            string sql = "UPDATE pickupLocation SET name = @name , address = @address WHERE Id = @id;";
 
             SqlCommand cmd = new SqlCommand(sql, this.conn);
 

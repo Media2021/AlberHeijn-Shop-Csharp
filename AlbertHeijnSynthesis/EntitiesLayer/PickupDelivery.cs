@@ -9,11 +9,11 @@ namespace EntitiesLayer
     public class PickupDelivery : Delivery
     {
         Location location;
-        public PickupDelivery(int id, DateOnly dateOfDelivery, int hour, string minutes, Location location) : base(id, dateOfDelivery, hour, minutes)
+        public PickupDelivery(int id, DateTime dateOfDelivery, int hour, string minutes, Location location) : base(id, dateOfDelivery, hour, minutes)
         {
             this.location = location;
         }
-        public PickupDelivery( DateOnly dateOfDelivery, int hour, string minutes, Location location) : base( dateOfDelivery, hour, minutes)
+        public PickupDelivery(DateTime dateOfDelivery, int hour, string minutes, Location location) : base( dateOfDelivery, hour, minutes)
         {
             this.location = location;
         }

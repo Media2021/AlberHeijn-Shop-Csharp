@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace DBlayer
 {
@@ -21,38 +23,108 @@ namespace DBlayer
             return orders;
         }
 
-        //public List<Order> ReadOrders()
-        //{
-        //    string sql = "SELECT * FROM Order as or inner join OrderProducts as op on as.id = op.orderId ";
+        public List<Order> ReadOrders()
+        {
+            string sql = "SELECT * FROM [dbi499087].[dbo].[Order] as o inner join OrderProducts as op on o.id = op.orderId inner join Product as pr on pr.id = op.productId inner join MyUsers1 as us on us.id = o.userId inner join Category as ca on ca.id = pr.categoryId inner join Delivery as de on de.id = o.deliveryId ";
 
-        //    SqlCommand cmd = new SqlCommand(sql, this.conn);
+            SqlCommand cmd = new SqlCommand(sql, this.conn);
 
-        //    conn.Open();
-        //    SqlDataReader dr = cmd.ExecuteReader();
+            conn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
 
-        //    List<Order> ReadOrder = new List<Order>();
-
-
+            List<Order> ReadOrder = new List<Order>();
 
 
-        //    while (dr.Read())
-        //    {
-        //        List<Delivery> AllDelivery = GetAllDeliveries();
-        //        List<User> users= personDB.ReadUser();
-               
+
+
+            while (dr.Read())
+            {
+                //List<Delivery> AllDelivery = GetAllDeliveries();
+                //List<User> users = personDB.ReadUser();
+
+                if (ReadOrder.Exists(x=>x.Id== Convert.ToInt32(dr[0])))
+                {
+                    ReadOrder.Find(x => x.Id == Convert.ToInt32(dr[0])).AddProduct(new Product(Convert.ToInt32(dr[8]), Convert.ToString(dr[9]), Convert.ToString(dr[10]), Convert.ToDecimal(dr[11]), Convert.ToDecimal(dr[12]),new Category( Convert.ToInt32(dr[13]), Convert.ToString(dr[21]))));
+                }
+                else
+                {
+                    User user =  new  User(Convert.ToInt32(dr[14]), Convert.ToString(dr[15]), Convert.ToString(dr[16]), Convert.ToString(dr[17]), Convert.ToString(dr[18]), (UserRole)Convert.ToInt32(dr[19]));
+                   Product product =  new Product(Convert.ToInt32(dr[8]), Convert.ToString(dr[9]), Convert.ToString(dr[10]), Convert.ToDecimal(dr[11]), Convert.ToDecimal(dr[12]), new Category(Convert.ToInt32(dr[13]), Convert.ToString(dr[21])));
+                    if (Convert.ToString(dr[23])== "homeDelivery")
+                    {
+                      
+                        HomeDelivery homeDelivery = new HomeDelivery(Convert.ToInt32(dr[22]), (Convert.ToDateTime(dr[24])), Convert.ToInt32(dr[25]), Convert.ToString(dr[26]), Convert.ToString(dr[27]));
+                    ReadOrder.Add(new Order(Convert.ToInt32(dr[0]), user, new List<Product>{ product } , Convert.ToDecimal(dr[2]), Convert.ToDateTime(dr[3]), homeDelivery));
+                    }
+                    //else
+                    //{
+                    //    Location location = new Location(Convert.ToInt32(dr[29]), Convert.ToString(dr[30]), Convert.ToString(dr[31]));
+                    //   PickupDelivery pickupDelivery = new  PickupDelivery(Convert.ToInt32(dr[22]), (Convert.ToDateTime(dr[24])), Convert.ToInt32(dr[25]), Convert.ToString(dr[26]), location);
+                    //    ReadOrder.Add(new Order(Convert.ToInt32(dr[0]), user, new List<Product> { product }, Convert.ToDecimal(dr[3]), Convert.ToDateTime(dr[4]), pickupDelivery));
+
+                    //}
+
+;
+                }
+
               
+            }
+            conn.Close();
+            return ReadOrder;
+        }
 
-        //        ReadOrder.Add(new Order(Convert.ToInt32(dr[0]), users.Find(y => y.Id == Convert.ToInt32(dr[1])), Convert.ToString(dr[2]), Convert.ToDecimal(dr[3]), Convert.ToDateTime(dr[4]), AllDelivery.Find(x => x.Id == Convert.ToInt32(dr[5]))));
-        //    }
-        //    conn.Close();
-        //    return ReadOrder;
-        //}
+        public List<Order> ReadPickupOrders()
+        {
+            string sql = "SELECT * FROM [dbi499087].[dbo].[Order] as o inner join OrderProducts as op on o.id = op.orderId inner join Product as pr on pr.id = op.productId inner join MyUsers1 as us on us.id = o.userId inner join Category as ca on ca.id = pr.categoryId inner join Delivery as de on de.id = o.deliveryId inner join pickupLocation as lo on lo.id = de.pickupLocation";
+
+            SqlCommand cmd = new SqlCommand(sql, this.conn);
+
+            conn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            List<Order> ReadOrder = new List<Order>();
+
+
+
+
+            while (dr.Read())
+            {
+                //List<Delivery> AllDelivery = GetAllDeliveries();
+                //List<User> users = personDB.ReadUser();
+
+                if (ReadOrder.Exists(x => x.Id == Convert.ToInt32(dr[0])))
+                {
+                    ReadOrder.Find(x => x.Id == Convert.ToInt32(dr[0])).AddProduct(new Product(Convert.ToInt32(dr[8]), Convert.ToString(dr[9]), Convert.ToString(dr[10]), Convert.ToDecimal(dr[11]), Convert.ToDecimal(dr[12]), new Category(Convert.ToInt32(dr[13]), Convert.ToString(dr[21]))));
+                }
+                else
+                {
+                    User user = new User(Convert.ToInt32(dr[14]), Convert.ToString(dr[15]), Convert.ToString(dr[16]), Convert.ToString(dr[17]), Convert.ToString(dr[18]), (UserRole)Convert.ToInt32(dr[19]));
+                    Product product = new Product(Convert.ToInt32(dr[8]), Convert.ToString(dr[9]), Convert.ToString(dr[10]), Convert.ToDecimal(dr[11]), Convert.ToDecimal(dr[12]), new Category(Convert.ToInt32(dr[13]), Convert.ToString(dr[21])));
+                   
+                    if(Convert.ToString(dr[23]) == "pickupLocation")
+                    {
+                        Location location = new Location(Convert.ToInt32(dr[29]), Convert.ToString(dr[30]), Convert.ToString(dr[31]));
+                        PickupDelivery pickupDelivery = new PickupDelivery(Convert.ToInt32(dr[22]), (Convert.ToDateTime(dr[24])), Convert.ToInt32(dr[25]), Convert.ToString(dr[26]), location);
+                        ReadOrder.Add(new Order(Convert.ToInt32(dr[0]), user, new List<Product> { product }, Convert.ToDecimal(dr[2]), Convert.ToDateTime(dr[3]), pickupDelivery));
+
+                    }
+
+;
+                }
+
+
+            }
+            conn.Close();
+            return ReadOrder;
+        }
 
         public void CreateOrder(Order order)
         {
-            string sql = "insert into Order (userId,totalPrice,date,deliveryId) values (@userId,@totalPrice,@date,@deliveryId);";
+            createHomeDelivery((HomeDelivery)order.Delivery);
+           int id1 =  findLastHomeDeliveryId();
+            order.Delivery.Id = id1;
+            string sql = "insert into [dbi499087].[dbo].[Order] (userId,totalPrice,date,deliveryId) values (@userId,@totalPrice,@date,@deliveryId);";
             SqlCommand cmd = new SqlCommand(sql, this.conn);
-
             cmd.Parameters.AddWithValue("@userId", order.User.Id);
             cmd.Parameters.AddWithValue("@totalPrice", order.TotalPrice);
             cmd.Parameters.AddWithValue("@date", order.DateOfOrder);
@@ -61,15 +133,33 @@ namespace DBlayer
             cmd.ExecuteNonQuery();
             conn.Close();
             int id = findLastId();
+            
             createOrderProducts(id, order);
 
-
-
         }
+        //public int CreateOrder(Order order)
+        //{
+
+
+        //    string sql = "begin declare @orderID int insert into [dbi499087].[dbo].[Order] (userId,totalPrice,date,deliveryId) values(@userId,@totalPrice,@date,@deliveryId) select @orderID = @@identity SELECT CAST(@orderID AS int)" + (char)10 + " end " + (char)10 + " go ";
+        //    SqlCommand cmd = new SqlCommand(sql, this.conn);
+
+
+
+        //    cmd.Parameters.AddWithValue("@userId", order.User.Id);
+        //    cmd.Parameters.AddWithValue("@totalPrice", order.TotalPrice);
+        //    cmd.Parameters.AddWithValue("@date", order.DateOfOrder);
+        //    cmd.Parameters.AddWithValue("@deliveryId", order.Delivery.Id);
+        //    conn.Open();
+        //    int resul = (int)cmd.ExecuteScalar();
+        //    conn.Close();
+        //    return resul;
+        //}
+
 
         private int findLastId()
         {
-            string sql = "SELECT id FROM  Order ORDER BY id DESC LIMIT 1 ;";
+            string sql = "SELECT TOP 1 * FROM [dbi499087].[dbo].[Order] ORDER BY id DESC ;";
             SqlCommand cmd = new SqlCommand(sql, this.conn);
 
 
@@ -83,7 +173,7 @@ namespace DBlayer
        
         public void DeleteOrder(Order order)
         {
-            string sql = "DELETE FROM Order WHERE OrderId = @id;";
+            string sql = "DELETE FROM [dbi499087].[dbo].[Order]  WHERE OrderId = @id;";
 
             SqlCommand cmd = new SqlCommand(sql, this.conn);
             cmd.Parameters.AddWithValue("@id", order.Id );
@@ -93,7 +183,7 @@ namespace DBlayer
         }
         public void UpdateOrder(Order order)
         {
-            string sql = "UPDATE Order SET Myproducts = @Myproducts  WHERE OrderId = @id;";
+            string sql = "UPDATE [dbi499087].[dbo].[Order]  SET Myproducts = @Myproducts  WHERE OrderId = @id;";
 
             SqlCommand cmd = new SqlCommand(sql, this.conn);
             cmd.Parameters.AddWithValue("@id", order.Id);
@@ -165,10 +255,10 @@ namespace DBlayer
         //}
         public void createHomeDelivery(HomeDelivery homeDelivery)
         {
-            string sql = "insert into Delivery (Id,type,date,hour,minutes,address) values (@Id,@type,@date,@hour,@minutes,@address);";
+            string sql = "insert into Delivery (type,date,hour,minutes,address) values (@type,@date,@hour,@minutes,@address);";
             SqlCommand cmd = new SqlCommand(sql, this.conn);
 
-            cmd.Parameters.AddWithValue("@Id", homeDelivery.Id);
+            //cmd.Parameters.AddWithValue("@Id", homeDelivery.Id);
             cmd.Parameters.AddWithValue("@type", "homeDelivery");
 
             cmd.Parameters.AddWithValue("@date", homeDelivery.DateOfDelivery);
@@ -180,12 +270,24 @@ namespace DBlayer
             cmd.ExecuteNonQuery();
             conn.Close();
         }
-        public void createLocationDelivery(PickupDelivery pickup)
+        private int findLastHomeDeliveryId()
         {
-            string sql = "insert into Delivery (Id,type,date,hour,minutes,pickupLocation) values (@Id,@type,@date,@hour,@minutes,@pickupLocation);";
+            string sql = "SELECT TOP 1 * FROM Delivery ORDER BY id DESC ;";
             SqlCommand cmd = new SqlCommand(sql, this.conn);
 
-            cmd.Parameters.AddWithValue("@Id", pickup.Id);
+
+
+            conn.Open();
+            int id = (int)cmd.ExecuteScalar();
+            conn.Close();
+            return id;
+        }
+        public void createLocationDelivery(PickupDelivery pickup)
+        {
+            string sql = "insert into Delivery (type,date,hour,minutes,pickupLocation) values (@type,@date,@hour,@minutes,@pickupLocation);";
+            SqlCommand cmd = new SqlCommand(sql, this.conn);
+
+            //cmd.Parameters.AddWithValue("@Id", pickup.Id);
             cmd.Parameters.AddWithValue("@type", "pickupLocation");
 
             cmd.Parameters.AddWithValue("@date", pickup.DateOfDelivery);
@@ -223,11 +325,10 @@ namespace DBlayer
 
             while (dr.Read())
             {
-                DateTime now = DateTime.Now;
-                DateOnly dateOnly = DateOnly.FromDateTime(now);
+               
 
 
-                pickupDeliveries.Add(new PickupDelivery(Convert.ToInt32(dr[0]), dateOnly, Convert.ToInt32(dr[2]), Convert.ToString(dr[3]), locations.Find(x => x.Id == Convert.ToInt32(dr[4]))));   
+                pickupDeliveries.Add(new PickupDelivery(Convert.ToInt32(dr[0]), Convert.ToDateTime(dr[1]), Convert.ToInt32(dr[2]), Convert.ToString(dr[3]), locations.Find(x => x.Id == Convert.ToInt32(dr[4]))));   
 
             }
             conn.Close();
@@ -250,11 +351,10 @@ namespace DBlayer
 
             while (dr.Read())
             {
-                DateTime now = DateTime.Now;
-                DateOnly dateOnly = DateOnly.FromDateTime(now);
+               
 
 
-                HomeDeliveries.Add(new HomeDelivery(Convert.ToInt32(dr[0]), dateOnly, Convert.ToInt32(dr[2]), Convert.ToString(dr[3]),  Convert.ToString(dr[4])));
+                HomeDeliveries.Add(new HomeDelivery(Convert.ToInt32(dr[0]), Convert.ToDateTime(dr[1]), Convert.ToInt32(dr[2]), Convert.ToString(dr[3]),  Convert.ToString(dr[4])));
 
             }
             conn.Close();

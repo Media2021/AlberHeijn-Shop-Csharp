@@ -25,6 +25,15 @@ namespace LogicLayer
             this.dateOfOrder = dateOfOrder;
             this.delivery = delivery;
         }
+        public Order( User user, List<Product> products, decimal totalPrice, DateTime dateOfOrder, Delivery delivery)
+        {
+           
+            this.user = user;
+            this.products = products;
+            this.totalPrice = totalPrice;
+            this.dateOfOrder = dateOfOrder;
+            this.delivery = delivery;
+        }
         public Order( User user, decimal totalPrice, Delivery delivery)
         {
            
