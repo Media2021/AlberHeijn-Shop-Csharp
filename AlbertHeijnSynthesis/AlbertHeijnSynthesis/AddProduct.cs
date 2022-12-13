@@ -17,21 +17,24 @@ namespace PresentationLayer
 {
     public partial class AddProduct : Form
     {
-        ProductManager productManager = new ProductManager();
-        
-        List<Product> lisOProduct = new List<Product>();
+        ProductManager productManager = new ProductManager();      
         CategoryManager categoryManager = new CategoryManager();
         LocationManager locationManager = new LocationManager();
+        OrderManager orderManager = new OrderManager(); 
+        List<Product> lisOProduct = new List<Product>();
         List<Location> locationList = new List<Location>();
+        List<Order> ordersList= new List<Order>();
 
         public AddProduct()
         {
             InitializeComponent();
+            AddLocationToDGV();
+            AddOrdersToDGV();
             AddToDGV();
             updatecats();
+            updateOrders();
             updateProduct();
             updateLocation();
-            AddLocationToDGV();
 
 
         }
@@ -248,11 +251,11 @@ namespace PresentationLayer
             Product a = new Product(2, "apple", "kilo", 2, 3, b);
             Product d= new Product(4, "apple", "kilo", 2, 3, b);
             Product c = new Product(5, "apple", "kilo", 2, 3, b);
-            User user = new User(3,"media","hannan","mido","123",UserRole.Customer);
-            Order order = new Order(user,new List<Product>{ a, d, c },20,DateTime.Now,new HomeDelivery(DateTime.Now, 5,"15","rotterdam location1"));
+            User user = new User(3,"media","hannan","mido","123",UserRole.Customer,"");
+            Order order = new Order(user,new List<Product>{ a, d, c },20,DateTime.Now,new HomeDelivery(DateTime.Now, 5,"15","rotterdam location1"), "Delivered");
             OrderDB orderDB = new OrderDB();    
            orderDB.CreateOrder(order);
-            //MessageBox.Show(i.ToString());
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -261,6 +264,46 @@ namespace PresentationLayer
             List<Order> orders = orderDB.ReadOrders();
            
 
+        }
+
+        private void dgv_ShowOrders_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int index = dgv_ShowOrders.CurrentCell.RowIndex;
+            var order = ordersList[index];
+
+            tb_status.Text = order.Status;
+
+            MessageBox.Show(" now you should  click on one of the radios button then  edit button to change the status");
+          
+        }  
+        public void AddOrdersToDGV()
+        {
+            dgv_ShowOrders.Rows.Clear();
+            foreach (var item in orderManager.GetOrders())
+            {
+                dgv_ShowOrders.Rows.Add(item.Id, item.User.Username,item.TotalPrice,item.DateOfOrder,item.Delivery.Id,item.Status);
+            }
+        }
+        private void updateOrders()
+        {
+            ordersList.Clear();
+            foreach (var order  in orderManager.GetOrders())    
+            {
+                ordersList.Add(order);
+
+            }
+        }
+
+        private void btn_editStatus_Click(object sender, EventArgs e)
+        {
+            int index = dgv_ShowOrders.CurrentCell.RowIndex;
+            var order = ordersList[index];
+
+            order.Status = tb_status.Text;
+            orderManager.UpdateOrderStatus(order);
+            updateOrders(); 
+           AddOrdersToDGV();
+           
         }
     }
 }

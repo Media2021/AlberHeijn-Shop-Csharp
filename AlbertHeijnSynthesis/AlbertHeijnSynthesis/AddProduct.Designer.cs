@@ -30,7 +30,6 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabAddProduct = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tb_Pamount = new System.Windows.Forms.TextBox();
             this.btn_addProduct = new System.Windows.Forms.Button();
@@ -70,13 +69,13 @@
             this.rb_delivered = new System.Windows.Forms.RadioButton();
             this.btn_editStatus = new System.Windows.Forms.Button();
             this.tb_status = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgv_ShowOrders = new System.Windows.Forms.DataGridView();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button2 = new System.Windows.Forms.Button();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabAddProduct.SuspendLayout();
             this.tabAddLocation.SuspendLayout();
@@ -84,7 +83,7 @@
             this.tabViewAllProducts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.tab_status.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ShowOrders)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -102,8 +101,6 @@
             // 
             // tabAddProduct
             // 
-            this.tabAddProduct.Controls.Add(this.button2);
-            this.tabAddProduct.Controls.Add(this.button1);
             this.tabAddProduct.Controls.Add(this.comboBox1);
             this.tabAddProduct.Controls.Add(this.tb_Pamount);
             this.tabAddProduct.Controls.Add(this.btn_addProduct);
@@ -118,16 +115,6 @@
             this.tabAddProduct.Text = "Add Product";
             this.tabAddProduct.UseVisualStyleBackColor = true;
             this.tabAddProduct.Click += new System.EventHandler(this.tabAddProduct_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(1904, 205);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(225, 69);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // comboBox1
             // 
@@ -198,7 +185,7 @@
             this.tabAddLocation.Padding = new System.Windows.Forms.Padding(3);
             this.tabAddLocation.Size = new System.Drawing.Size(2650, 928);
             this.tabAddLocation.TabIndex = 1;
-            this.tabAddLocation.Text = "Add Locations";
+            this.tabAddLocation.Text = "Location manager";
             this.tabAddLocation.UseVisualStyleBackColor = true;
             // 
             // btn_deletLocation
@@ -443,7 +430,7 @@
             this.tab_status.Controls.Add(this.rb_delivered);
             this.tab_status.Controls.Add(this.btn_editStatus);
             this.tab_status.Controls.Add(this.tb_status);
-            this.tab_status.Controls.Add(this.dataGridView1);
+            this.tab_status.Controls.Add(this.dgv_ShowOrders);
             this.tab_status.Location = new System.Drawing.Point(12, 69);
             this.tab_status.Name = "tab_status";
             this.tab_status.Padding = new System.Windows.Forms.Padding(3);
@@ -456,7 +443,7 @@
             // rb_readyPickup
             // 
             this.rb_readyPickup.AutoSize = true;
-            this.rb_readyPickup.Location = new System.Drawing.Point(2271, 218);
+            this.rb_readyPickup.Location = new System.Drawing.Point(2154, 584);
             this.rb_readyPickup.Name = "rb_readyPickup";
             this.rb_readyPickup.Size = new System.Drawing.Size(319, 52);
             this.rb_readyPickup.TabIndex = 6;
@@ -468,7 +455,7 @@
             // rb_onway
             // 
             this.rb_onway.AutoSize = true;
-            this.rb_onway.Location = new System.Drawing.Point(2271, 471);
+            this.rb_onway.Location = new System.Drawing.Point(2154, 837);
             this.rb_onway.Name = "rb_onway";
             this.rb_onway.Size = new System.Drawing.Size(189, 52);
             this.rb_onway.TabIndex = 5;
@@ -480,7 +467,7 @@
             // rb_progress
             // 
             this.rb_progress.AutoSize = true;
-            this.rb_progress.Location = new System.Drawing.Point(2271, 302);
+            this.rb_progress.Location = new System.Drawing.Point(2154, 668);
             this.rb_progress.Name = "rb_progress";
             this.rb_progress.Size = new System.Drawing.Size(241, 52);
             this.rb_progress.TabIndex = 4;
@@ -492,7 +479,7 @@
             // rb_delivered
             // 
             this.rb_delivered.AutoSize = true;
-            this.rb_delivered.Location = new System.Drawing.Point(2271, 384);
+            this.rb_delivered.Location = new System.Drawing.Point(2154, 750);
             this.rb_delivered.Name = "rb_delivered";
             this.rb_delivered.Size = new System.Drawing.Size(215, 52);
             this.rb_delivered.TabIndex = 3;
@@ -503,37 +490,40 @@
             // 
             // btn_editStatus
             // 
-            this.btn_editStatus.Location = new System.Drawing.Point(1907, 414);
+            this.btn_editStatus.Location = new System.Drawing.Point(1790, 780);
             this.btn_editStatus.Name = "btn_editStatus";
             this.btn_editStatus.Size = new System.Drawing.Size(225, 69);
             this.btn_editStatus.TabIndex = 2;
             this.btn_editStatus.Text = "Edit status";
             this.btn_editStatus.UseVisualStyleBackColor = true;
+            this.btn_editStatus.Click += new System.EventHandler(this.btn_editStatus_Click);
             // 
             // tb_status
             // 
-            this.tb_status.Location = new System.Drawing.Point(1874, 182);
+            this.tb_status.Location = new System.Drawing.Point(1757, 548);
             this.tb_status.Name = "tb_status";
             this.tb_status.PlaceholderText = "status";
             this.tb_status.Size = new System.Drawing.Size(300, 55);
             this.tb_status.TabIndex = 1;
             this.tb_status.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // dataGridView1
+            // dgv_ShowOrders
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgv_ShowOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_ShowOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column9,
             this.Column10,
-            this.Column11,
             this.Column12,
-            this.Column13});
-            this.dataGridView1.Location = new System.Drawing.Point(25, 33);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 123;
-            this.dataGridView1.RowTemplate.Height = 57;
-            this.dataGridView1.Size = new System.Drawing.Size(1626, 450);
-            this.dataGridView1.TabIndex = 0;
+            this.Column13,
+            this.Column14,
+            this.Column15});
+            this.dgv_ShowOrders.Location = new System.Drawing.Point(25, 33);
+            this.dgv_ShowOrders.Name = "dgv_ShowOrders";
+            this.dgv_ShowOrders.RowHeadersWidth = 123;
+            this.dgv_ShowOrders.RowTemplate.Height = 57;
+            this.dgv_ShowOrders.Size = new System.Drawing.Size(1922, 450);
+            this.dgv_ShowOrders.TabIndex = 0;
+            this.dgv_ShowOrders.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_ShowOrders_CellMouseClick);
             // 
             // Column9
             // 
@@ -549,36 +539,33 @@
             this.Column10.Name = "Column10";
             this.Column10.Width = 300;
             // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "date";
-            this.Column11.MinimumWidth = 15;
-            this.Column11.Name = "Column11";
-            this.Column11.Width = 300;
-            // 
             // Column12
             // 
-            this.Column12.HeaderText = "deliveryType";
+            this.Column12.HeaderText = "total price";
             this.Column12.MinimumWidth = 15;
             this.Column12.Name = "Column12";
             this.Column12.Width = 300;
             // 
             // Column13
             // 
-            this.Column13.HeaderText = "status";
+            this.Column13.HeaderText = "date";
             this.Column13.MinimumWidth = 15;
             this.Column13.Name = "Column13";
             this.Column13.Width = 300;
             // 
-            // button2
+            // Column14
             // 
-            this.button2.Location = new System.Drawing.Point(1770, 447);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(225, 69);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.Column14.HeaderText = "delivery type";
+            this.Column14.MinimumWidth = 15;
+            this.Column14.Name = "Column14";
+            this.Column14.Width = 300;
+            // 
+            // Column15
+            // 
+            this.Column15.HeaderText = "status";
+            this.Column15.MinimumWidth = 15;
+            this.Column15.Name = "Column15";
+            this.Column15.Width = 300;
             // 
             // AddProduct
             // 
@@ -599,7 +586,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
             this.tab_status.ResumeLayout(false);
             this.tab_status.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ShowOrders)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -645,15 +632,14 @@
         private RadioButton rb_delivered;
         private Button btn_editStatus;
         private TextBox tb_status;
-        private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn Column9;
-        private DataGridViewTextBoxColumn Column10;
-        private DataGridViewTextBoxColumn Column11;
-        private DataGridViewTextBoxColumn Column12;
-        private DataGridViewTextBoxColumn Column13;
+        private DataGridView dgv_ShowOrders;
         private RadioButton rb_onway;
         private RadioButton rb_readyPickup;
-        private Button button1;
-        private Button button2;
+        private DataGridViewTextBoxColumn Column9;
+        private DataGridViewTextBoxColumn Column10;
+        private DataGridViewTextBoxColumn Column12;
+        private DataGridViewTextBoxColumn Column13;
+        private DataGridViewTextBoxColumn Column14;
+        private DataGridViewTextBoxColumn Column15;
     }
 }

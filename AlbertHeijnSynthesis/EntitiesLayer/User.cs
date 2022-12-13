@@ -15,8 +15,9 @@ namespace LogicLayer
         private string username;
         private string password;
         private UserRole userRole;
+        private string salt = "";
 
-        public User(int id, string name, string surname, string username, string password, UserRole userRole)
+        public User(int id, string name, string surname, string username, string password, UserRole userRole, string salt)
         {
             this.id = id;
             this.name = name;
@@ -24,8 +25,9 @@ namespace LogicLayer
             this.username = username;
             this.password = password;
             this.userRole = userRole;
+            this.salt = salt;
         }
-        public User( string name, string surname, string username, string password, UserRole userRole)
+        public User( string name, string surname, string username, string password, UserRole userRole, string salt )
         {
 
             this.name = name;
@@ -33,6 +35,7 @@ namespace LogicLayer
             this.username = username;
             this.password = password;
             this.userRole = userRole;
+            this.salt = salt;
         }
 
         public User()
@@ -45,6 +48,7 @@ namespace LogicLayer
         public string Username { get => username; set => username = value; }
         public string Password { get => password; set => password = value; }
         public UserRole UserRole { get => userRole; set => userRole= value; } 
+        public string Salt { get => salt; set => salt = value; }
         public bool Login(string password)
         {
             if (this.Password == password)

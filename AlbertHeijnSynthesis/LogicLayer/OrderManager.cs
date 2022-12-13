@@ -15,8 +15,8 @@ namespace BusinessLayer
 
 
         public OrderManager() 
-        { 
-
+        {
+            UpdateOrderList();
         }
 
         public List<Order> GetOrders()
@@ -26,8 +26,8 @@ namespace BusinessLayer
 
         public void UpdateOrderList()
         {
-            //orders.Clear();
-            //orders.AddRange(orderDB.ReadOrders());
+            orders.Clear();
+            orders.AddRange(orderDB.ReadOrders());
 
         }
 
@@ -45,10 +45,10 @@ namespace BusinessLayer
 
 
         }
-        public void UpdateOrder(Order order)
+        public void UpdateOrderStatus(Order order)
         {
             orders.Clear();
-            orderDB.UpdateOrder(order);
+            orderDB.UpdateOrderStatus(order);
 
 
         }

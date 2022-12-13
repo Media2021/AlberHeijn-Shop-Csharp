@@ -25,7 +25,7 @@ namespace WebAppSynthesis.Pages
 
             if (ModelState.IsValid == true)
             {
-                User  savedUser = new User(userDTO.Name, userDTO.Surname, userDTO.Username, userDTO.Password,EntitiesLayer.UserRole.Customer);
+                User  savedUser = new User(userDTO.Name, userDTO.Surname, userDTO.Username, userDTO.Password,EntitiesLayer.UserRole.Customer,"");
 
                 peopleManager.AddUser(savedUser);
 

@@ -30,9 +30,11 @@ namespace WebAppSynthesis.Pages
             if (result)
             {
                 user = peopleManager.GetLoggedInUser(userDTO.Username);
-                List<Claim> claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.Name, userDTO.Username));
-                claims.Add(new Claim("id", "" + user.Id));
+                List<Claim> claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, userDTO.Username),
+                    new Claim("id", "" + user.Id)
+                };
 
 
 
@@ -53,10 +55,10 @@ namespace WebAppSynthesis.Pages
             }
             else
             {
+                return new RedirectToPageResult("/OnlyAdmin");
 
 
 
-                return new RedirectToPageResult($"/OnlyAdmin");
 
             }
             return Page();

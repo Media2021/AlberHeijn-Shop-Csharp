@@ -15,8 +15,9 @@ namespace LogicLayer
         private decimal totalPrice;
         private DateTime dateOfOrder;
         private Delivery delivery;
+        private string status;
 
-        public Order(int id, User user, List<Product> products, decimal totalPrice, DateTime dateOfOrder, Delivery delivery)
+        public Order(int id, User user, List<Product> products, decimal totalPrice, DateTime dateOfOrder, Delivery delivery, string status)
         {
             this.id = id;
             this.user = user;
@@ -24,8 +25,9 @@ namespace LogicLayer
             this.totalPrice = totalPrice;
             this.dateOfOrder = dateOfOrder;
             this.delivery = delivery;
+            this.status = status;
         }
-        public Order( User user, List<Product> products, decimal totalPrice, DateTime dateOfOrder, Delivery delivery)
+        public Order( User user, List<Product> products, decimal totalPrice, DateTime dateOfOrder, Delivery delivery, string status)
         {
            
             this.user = user;
@@ -33,8 +35,9 @@ namespace LogicLayer
             this.totalPrice = totalPrice;
             this.dateOfOrder = dateOfOrder;
             this.delivery = delivery;
+            this.status = status;   
         }
-        public Order( User user, decimal totalPrice, Delivery delivery)
+        public Order( User user, decimal totalPrice, Delivery delivery, string status)
         {
            
             this.user = user;
@@ -42,6 +45,7 @@ namespace LogicLayer
             this.totalPrice = totalPrice;
             this.dateOfOrder = DateTime.Now;
             this.delivery = delivery;
+            this.status = status;   
         }
 
         public int Id { get => id; }
@@ -50,6 +54,7 @@ namespace LogicLayer
         public decimal TotalPrice { get => totalPrice;  }
         public DateTime DateOfOrder { get => dateOfOrder;  }
         public Delivery Delivery { get => delivery;  }
+        public string Status { get => status; set => status = value; }
 
         public void AddProduct(Product product)
         {

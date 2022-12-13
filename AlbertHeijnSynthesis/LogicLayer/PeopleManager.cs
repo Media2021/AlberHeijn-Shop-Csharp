@@ -23,21 +23,21 @@ namespace BusinessLayer
         }
 
 
-        private static string HashPassword(string password)
-        {
+        //private static string HashPassword()
+        //{
 
-            using var sha = SHA256.Create();
-            var asByte = Encoding.Default.GetBytes(password);
-            var hashed = sha.ComputeHash(asByte);
-            return Convert.ToBase64String(hashed);
-        }
-        private static int GenerateSalt(string password)
-        {
+        //    using var sha = SHA256.Create();
+        //    var asByte = Encoding.Default.GetBytes(password);
+        //    var hashed = sha.ComputeHash(asByte);
+        //    return Convert.ToBase64String(hashed);
+        //}
+        //private static int GenerateSalt(string password)
+        //{
 
-            Random random = new();
-            int salt = random.Next(100000, 1000000);
-            return salt;
-        }
+        //    Random random = new();
+        //    int salt = random.Next(100000, 1000000);
+        //    return salt;
+        //}
 
 
         public bool LoginUser(string username, string password)
@@ -46,10 +46,11 @@ namespace BusinessLayer
 
             if (isTrue)
             {
-               User LoggedUser = users.Find(x => x.Username == username);
+               User loggedUser = users.Find(x => x.Username == username);
 
-
-                return LoggedUser.Login(password);
+                string HashedPassword = Security.HashPassword(password, loggedUser.Salt);
+                bool v = loggedUser.Password == HashedPassword;
+                return loggedUser.Login(password);
 
 
 
@@ -62,12 +63,18 @@ namespace BusinessLayer
         public User GetLoggedInUser(string username)
         {
             User  loggedUser = users.Find(x => x.Username== username);
+
             return loggedUser;
         }
 
      
         public void AddUser(User user )
         {
+            string salt = Security.GenerateSalt();
+            string HashedPassword = Security.HashPassword(user.Password,salt);
+            
+            user.Password= HashedPassword;
+            user.Salt= salt;    
             users.Add(user);
             personDB.CreateUser(user);
         }
@@ -78,7 +85,10 @@ namespace BusinessLayer
         }
 
     
-
+        public List<User> ReadUser()
+        {
+            return users;
+        }
         public void UpdateUserList()
         {
             users.Clear();
@@ -89,10 +99,13 @@ namespace BusinessLayer
                 users.Add(person);
             }
         }
-
-        public List<User> ReadUser()
+        public void UpdateUser(User user )
         {
-            return users;
+            personDB.UpdateUser(user);
+
+
         }
+
+
     }
 }
