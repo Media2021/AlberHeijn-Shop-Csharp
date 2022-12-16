@@ -10,7 +10,9 @@ namespace WebAppSynthesis.Pages
         public async Task<IActionResult> OnGetAsync()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            HttpContext.Session.SetString("cart", "");
             return RedirectToPage("/Index");
+
         }
     }
 }

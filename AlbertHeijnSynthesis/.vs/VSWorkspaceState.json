@@ -4,8 +4,10 @@
     "\\AlbertHeijnSynthesis",
     "\\DBlayer",
     "\\EntitiesLayer",
-    "\\LogicLayer"
+    "\\LogicLayer",
+    "\\WebApp",
+    "\\WebApp\\Pages"
   ],
-  "SelectedNode": "\\EntitiesLayer\\PickupDelivery.cs",
+  "SelectedNode": "\\WebApp\\Pages\\MyOrders.cshtml.cs",
   "PreviewInSolutionExplorer": false
 }

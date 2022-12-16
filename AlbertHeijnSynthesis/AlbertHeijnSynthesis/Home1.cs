@@ -38,7 +38,7 @@ namespace AlbertHeijnSynthesis
                 if (user != null)
                 {
 
-                    if (user.UserRole.ToString() == "Admin")
+                    if (user.UserRole.ToString() == "Employee")
                     {
                         this.Hide();
                         AddProduct addProduct = new AddProduct();
@@ -51,7 +51,7 @@ namespace AlbertHeijnSynthesis
             }
             else
                 {
-                    MessageBox.Show("you are not the admin");
+                    MessageBox.Show("you are not an employee");
                 }
             }
     }

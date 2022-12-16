@@ -20,6 +20,7 @@ namespace PresentationLayer
         ProductManager productManager = new ProductManager();      
         CategoryManager categoryManager = new CategoryManager();
         LocationManager locationManager = new LocationManager();
+        PeopleManager peopleManager = new PeopleManager(); 
         OrderManager orderManager = new OrderManager(); 
         List<Product> lisOProduct = new List<Product>();
         List<Location> locationList = new List<Location>();
@@ -251,7 +252,7 @@ namespace PresentationLayer
             Product a = new Product(2, "apple", "kilo", 2, 3, b);
             Product d= new Product(4, "apple", "kilo", 2, 3, b);
             Product c = new Product(5, "apple", "kilo", 2, 3, b);
-            User user = new User(3,"media","hannan","mido","123",UserRole.Customer,"");
+            User user = new User(4,"media","hannan","mido","44",UserRole.Customer,"");
             Order order = new Order(user,new List<Product>{ a, d, c },20,DateTime.Now,new HomeDelivery(DateTime.Now, 5,"15","rotterdam location1"), "Delivered");
             OrderDB orderDB = new OrderDB();    
            orderDB.CreateOrder(order);
@@ -304,6 +305,30 @@ namespace PresentationLayer
             updateOrders(); 
            AddOrdersToDGV();
            
+        }
+
+        private void btn_addEMP_Click(object sender, EventArgs e)
+        {
+            if (tb_empName.Text !="" && tb_empSurname.Text !="" && tb_empUsername.Text !="" && tb_empPassword.Text !="")
+            {
+
+                string name = tb_empName.Text;  
+                string surname = tb_empSurname.Text;
+                string username = tb_empUsername.Text;
+                string password = tb_empPassword.Text;
+
+                User user = new User(name, surname, username, password,UserRole.Employee,"");
+                peopleManager.AddUser(user);
+
+                MessageBox.Show(" a new employee has been added");
+
+
+                tb_empName.Clear();
+                tb_empSurname.Clear();
+                tb_empUsername.Clear();
+                tb_empPassword.Clear();
+
+            }
         }
     }
 }

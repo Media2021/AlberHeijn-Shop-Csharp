@@ -37,7 +37,7 @@ namespace LogicLayer
             this.delivery = delivery;
             this.status = status;   
         }
-        public Order( User user, decimal totalPrice, Delivery delivery, string status)
+        public Order(int id, User user, decimal totalPrice, Delivery delivery, string status)
         {
            
             this.user = user;

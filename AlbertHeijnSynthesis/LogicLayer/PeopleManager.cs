@@ -50,7 +50,8 @@ namespace BusinessLayer
 
                 string HashedPassword = Security.HashPassword(password, loggedUser.Salt);
                 bool v = loggedUser.Password == HashedPassword;
-                return loggedUser.Login(password);
+
+                return loggedUser.Login(HashedPassword);
 
 
 

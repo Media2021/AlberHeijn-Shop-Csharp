@@ -76,6 +76,12 @@
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabAddEMP = new System.Windows.Forms.TabPage();
+            this.tb_empPassword = new System.Windows.Forms.TextBox();
+            this.tb_empUsername = new System.Windows.Forms.TextBox();
+            this.tb_empSurname = new System.Windows.Forms.TextBox();
+            this.btn_addEMP = new System.Windows.Forms.Button();
+            this.tb_empName = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabAddProduct.SuspendLayout();
             this.tabAddLocation.SuspendLayout();
@@ -84,6 +90,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.tab_status.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ShowOrders)).BeginInit();
+            this.tabAddEMP.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -92,6 +99,7 @@
             this.tabControl1.Controls.Add(this.tabAddLocation);
             this.tabControl1.Controls.Add(this.tabViewAllProducts);
             this.tabControl1.Controls.Add(this.tab_status);
+            this.tabControl1.Controls.Add(this.tabAddEMP);
             this.tabControl1.Location = new System.Drawing.Point(12, 23);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -567,6 +575,68 @@
             this.Column15.Name = "Column15";
             this.Column15.Width = 300;
             // 
+            // tabAddEMP
+            // 
+            this.tabAddEMP.Controls.Add(this.tb_empPassword);
+            this.tabAddEMP.Controls.Add(this.tb_empUsername);
+            this.tabAddEMP.Controls.Add(this.tb_empSurname);
+            this.tabAddEMP.Controls.Add(this.btn_addEMP);
+            this.tabAddEMP.Controls.Add(this.tb_empName);
+            this.tabAddEMP.Location = new System.Drawing.Point(12, 69);
+            this.tabAddEMP.Name = "tabAddEMP";
+            this.tabAddEMP.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAddEMP.Size = new System.Drawing.Size(2650, 928);
+            this.tabAddEMP.TabIndex = 4;
+            this.tabAddEMP.Text = "Add employee";
+            this.tabAddEMP.UseVisualStyleBackColor = true;
+            // 
+            // tb_empPassword
+            // 
+            this.tb_empPassword.Location = new System.Drawing.Point(1193, 544);
+            this.tb_empPassword.Name = "tb_empPassword";
+            this.tb_empPassword.PasswordChar = '*';
+            this.tb_empPassword.PlaceholderText = "password";
+            this.tb_empPassword.Size = new System.Drawing.Size(300, 55);
+            this.tb_empPassword.TabIndex = 4;
+            this.tb_empPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tb_empUsername
+            // 
+            this.tb_empUsername.Location = new System.Drawing.Point(1193, 422);
+            this.tb_empUsername.Name = "tb_empUsername";
+            this.tb_empUsername.PlaceholderText = "username";
+            this.tb_empUsername.Size = new System.Drawing.Size(300, 55);
+            this.tb_empUsername.TabIndex = 3;
+            this.tb_empUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tb_empSurname
+            // 
+            this.tb_empSurname.Location = new System.Drawing.Point(1193, 288);
+            this.tb_empSurname.Name = "tb_empSurname";
+            this.tb_empSurname.PlaceholderText = "surname";
+            this.tb_empSurname.Size = new System.Drawing.Size(300, 55);
+            this.tb_empSurname.TabIndex = 2;
+            this.tb_empSurname.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btn_addEMP
+            // 
+            this.btn_addEMP.Location = new System.Drawing.Point(529, 398);
+            this.btn_addEMP.Name = "btn_addEMP";
+            this.btn_addEMP.Size = new System.Drawing.Size(225, 69);
+            this.btn_addEMP.TabIndex = 1;
+            this.btn_addEMP.Text = "Add EMP";
+            this.btn_addEMP.UseVisualStyleBackColor = true;
+            this.btn_addEMP.Click += new System.EventHandler(this.btn_addEMP_Click);
+            // 
+            // tb_empName
+            // 
+            this.tb_empName.Location = new System.Drawing.Point(1193, 157);
+            this.tb_empName.Name = "tb_empName";
+            this.tb_empName.PlaceholderText = "name";
+            this.tb_empName.Size = new System.Drawing.Size(300, 55);
+            this.tb_empName.TabIndex = 0;
+            this.tb_empName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // AddProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(20F, 48F);
@@ -587,6 +657,8 @@
             this.tab_status.ResumeLayout(false);
             this.tab_status.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ShowOrders)).EndInit();
+            this.tabAddEMP.ResumeLayout(false);
+            this.tabAddEMP.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -641,5 +713,11 @@
         private DataGridViewTextBoxColumn Column13;
         private DataGridViewTextBoxColumn Column14;
         private DataGridViewTextBoxColumn Column15;
+        private TabPage tabAddEMP;
+        private TextBox tb_empPassword;
+        private TextBox tb_empUsername;
+        private TextBox tb_empSurname;
+        private Button btn_addEMP;
+        private TextBox tb_empName;
     }
 }

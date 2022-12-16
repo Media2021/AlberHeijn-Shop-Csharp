@@ -1,5 +1,6 @@
 using BusinessLayer;
 using DBlayer;
+using EntitiesLayer;
 using LogicLayer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -21,11 +22,12 @@ namespace WebAppSynthesis.Pages
         }
         public IActionResult OnPost()
         {
-            //User user = new User();
+           
+
 
             if (ModelState.IsValid == true)
             {
-                User  savedUser = new User(userDTO.Name, userDTO.Surname, userDTO.Username, userDTO.Password,EntitiesLayer.UserRole.Customer,"");
+                User  savedUser = new User(userDTO.Name, userDTO.Surname, userDTO.Username, userDTO.Password,UserRole.Customer,"");
 
                 peopleManager.AddUser(savedUser);
 

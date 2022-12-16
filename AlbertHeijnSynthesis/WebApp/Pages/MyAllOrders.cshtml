@@ -1,0 +1,48 @@
+﻿@page
+@model WebApp.Pages.MyAllOrdersModel
+@{
+}
+
+
+<body>
+<h1>Your Orders</h1>
+<p> Your name is @User.Identity.Name</p>
+<form method="POST">
+    <div class="countainer">
+        <table method="POST" class="table">
+            <tr>
+                <th>Order id</th>
+                <th>User id</th>
+                <th>Product name</th>
+                <th>Total price </th>
+                <th>Date of order </th>
+                <th>Delivery type </th>
+                <th>Status </th>
+               
+
+
+
+
+
+
+
+            </tr>
+
+            @{
+                foreach (var item in @Model.OrderDTOs)
+                {
+
+                    <tr>
+                        <td> @item.Id  </td>                      
+                        <td> @item.User.Name  </td>                   
+                        <td> @item.Products </td>                    
+                        <td>@item.TotalPrice  </td>                    
+                        <td>@item.DateOfOrder </td>
+                        <td> @item.Delivery  </td>
+                        <td> @item.Status </td>                     
+                    </tr>
+}} 
+</table>
+</div>
+</form>
+</body>

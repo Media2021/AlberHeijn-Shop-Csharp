@@ -3,6 +3,13 @@ using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(option =>
+{
+    option.IdleTimeout = TimeSpan.FromMinutes(40);
+    option.Cookie.HttpOnly = true;
+    option.Cookie.IsEssential = true;
+});
 // Add services to the container.
 builder.Services.AddRazorPages();
 
@@ -34,6 +41,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseSession();
 
 app.UseRouting();
 app.UseAuthentication();

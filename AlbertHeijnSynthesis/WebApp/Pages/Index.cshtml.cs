@@ -14,6 +14,11 @@ namespace WebApp.Pages
 
         public void OnGet()
         {
+            if (HttpContext.Session.GetString("cart")==null)
+            {
+                HttpContext.Session.SetString("cart","");
+            }
+           
 
         }
     }
