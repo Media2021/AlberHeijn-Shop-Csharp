@@ -30,5 +30,21 @@ namespace LogicLayer
                 return Convert.ToBase64String(rfc2898DeriveBytes.GetBytes(64));
             }
         }
+
+        //private static string HashPassword()
+        //{
+
+        //    using var sha = SHA256.Create();
+        //    var asByte = Encoding.Default.GetBytes(password);
+        //    var hashed = sha.ComputeHash(asByte);
+        //    return Convert.ToBase64String(hashed);
+        //}
+        //private static int GenerateSalt(string password)
+        //{
+
+        //    Random random = new();
+        //    int salt = random.Next(100000, 1000000);
+        //    return salt;
+        //}
     }
 }

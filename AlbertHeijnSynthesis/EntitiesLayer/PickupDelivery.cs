@@ -8,7 +8,7 @@ namespace EntitiesLayer
 {
     public class PickupDelivery : Delivery
     {
-        Location location;
+        private  Location location;
         public PickupDelivery(int id, DateTime dateOfDelivery, int hour, string minutes, Location location) : base(id, dateOfDelivery, hour, minutes)
         {
             this.location = location;
@@ -17,6 +17,11 @@ namespace EntitiesLayer
         {
             this.location = location;
         }
+
+        //public PickupDelivery(DateTime dateOfDelivery, int hour, string minutes) : base(dateOfDelivery, hour, minutes)
+        //{
+        //}
+
         public Location Location { get => location; set => location = value; }
     }
 }

@@ -2,6 +2,7 @@
 using DBlayer;
 using EntitiesLayer;
 using LogicLayer;
+using LogicLayer.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,17 +16,20 @@ using System.Windows.Forms;
 
 namespace PresentationLayer
 {
+
     public partial class AddProduct : Form
     {
-        ProductManager productManager = new ProductManager();      
+        ProductManager productManager = new ProductManager();
         CategoryManager categoryManager = new CategoryManager();
         LocationManager locationManager = new LocationManager();
-        PeopleManager peopleManager = new PeopleManager(); 
-        OrderManager orderManager = new OrderManager(); 
+        PeopleManager peopleManager = new PeopleManager();
+        OrderManager orderManager = new OrderManager();
         List<Product> lisOProduct = new List<Product>();
         List<Location> locationList = new List<Location>();
-        List<Order> ordersList= new List<Order>();
+        List<Order> ordersList = new List<Order>();
 
+       
+     
         public AddProduct()
         {
             InitializeComponent();
@@ -36,7 +40,7 @@ namespace PresentationLayer
             updateOrders();
             updateProduct();
             updateLocation();
-
+         
 
         }
 
@@ -60,35 +64,75 @@ namespace PresentationLayer
             if (tb_iPname.Text != "" && tb_Punit.Text != "" && tb_Pamount.Text != "" && tb_Pprice.Text != "" && comboBox1.SelectedIndex != -1)
             {
 
+                Category cat = categoryManager.GetCategories().Find(x => x.Name == comboBox1.Text);
                 string name = tb_iPname.Text;
                 string unit = tb_Punit.Text;
-                decimal amount = Convert.ToDecimal(tb_Pamount.Text);
-                decimal price = Convert.ToDecimal(tb_Pprice.Text);
-                Category cat = categoryManager.GetCategories().Find(x => x.Name == comboBox1.Text);
+                //decimal amount = Convert.ToDecimal(tb_Pamount.Text);
+                //decimal price = Convert.ToDecimal(tb_Pprice.Text);
+                decimal amount = 0;
+                decimal price = 0;
+
+                //try
+                //{
+                //    // Add the product to the list
+                //    price = Convert.ToDecimal(tb_Pprice.Text);
+                //    amount = Convert.ToDecimal(tb_Pamount.Text);
 
 
-
-                Product newproduct = new Product(name, unit, amount, price, cat);
-                productManager.AddProduct(newproduct);
-
-                AddToDGV();
-
-
-                MessageBox.Show(" new product has been saved");
-
-                tb_iPname.Clear();
-                tb_Punit.Clear();
-                tb_Pprice.Clear();
+                //    Product newproduct = new Product(name, unit, amount, price, cat);
+                //    productManager.AddProduct(newproduct);
+                //}
+                //catch (DecimalPriceException ex)
+                //{
+                //    MessageBox.Show(ex.Message);
+                //}
 
 
+                try
+                {
+
+                    price = Convert.ToDecimal(tb_Pprice.Text);
+                    amount = Convert.ToDecimal(tb_Pamount.Text);
+
+
+                    Product newproduct = new Product(name, unit, amount, price, cat);
+                    productManager.AddProduct(newproduct);
+
+                    AddToDGV();
+
+
+                    MessageBox.Show(" new product has been saved");
+
+                    tb_iPname.Clear();
+                    tb_Punit.Clear();
+                    tb_Pprice.Clear();
+                    tb_Pamount.Clear();
+
+
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Please enter valid decimal numbers for both amount and price.");
+                }
+                //if (string.IsNullOrEmpty(tb_Pprice.Text))
+                //{
+                //    throw new PasswordIsNullEception();
+                //}
+
+
+                //catch (DecimalPriceException)
+                //{
+                //    MessageBox.Show(" Please enter valid decimal numbers for both amount and  price.");
+                //}
             }
+
         }
         public void AddToDGV()
         {
             dgvProducts.Rows.Clear();
             foreach (var item in productManager.GetProducts())
             {
-                dgvProducts.Rows.Add(item.Id,item.Item,item.Unit,item.Amount,item.Price,item.Category.Name);
+                dgvProducts.Rows.Add(item.Id, item.Item, item.Unit, item.Amount, item.Price, item.Category.Name);
             }
         }
         private void tabViewAllProducts_Click(object sender, EventArgs e)
@@ -140,19 +184,19 @@ namespace PresentationLayer
             var product = lisOProduct[index];
 
             textBox1.Text = product.Item;
-            textBox2.Text = product.Unit ;
-            textBox3.Text = product.Amount.ToString() ;
-            textBox4.Text= product.Price.ToString() ;
+            textBox2.Text = product.Unit;
+            textBox3.Text = product.Amount.ToString();
+            textBox4.Text = product.Price.ToString();
         }
 
         private void btn_AddLocation_Click(object sender, EventArgs e)
         {
-            if (cb_CityName.Text != " " && tb_address.Text !="")
+            if (cb_CityName.Text != " " && tb_address.Text != "")
             {
                 string city = cb_CityName.Text;
-                string address = tb_address.Text;   
+                string address = tb_address.Text;
 
-                Location newLocation = new Location( city, address);
+                Location newLocation = new Location(city, address);
 
                 locationManager.AddLocation(newLocation);
 
@@ -163,19 +207,19 @@ namespace PresentationLayer
 
                 MessageBox.Show(" new location has been saved");
 
-              tb_address.Clear();
+                tb_address.Clear();
 
             }
 
-            
+
         }
-                
+
         public void AddLocationToDGV()
         {
             dgv_location.Rows.Clear();
             foreach (var item in locationManager.GetLocations())
             {
-                dgv_location.Rows.Add(item.Id,item.Name,item.Address);
+                dgv_location.Rows.Add(item.Id, item.Name, item.Address);
             }
         }
 
@@ -204,8 +248,8 @@ namespace PresentationLayer
             int index = dgv_location.CurrentCell.RowIndex;
             var location = locationList[index];
 
-            location.Name= tb_EditCity.Text; 
-            location.Address = tb_editAddress.Text; 
+            location.Name = tb_EditCity.Text;
+            location.Address = tb_editAddress.Text;
             locationManager.UpdateLocation(location);
             updateLocation();
             AddLocationToDGV();
@@ -216,7 +260,7 @@ namespace PresentationLayer
 
             int index = dgv_location.CurrentCell.RowIndex;
             var location = locationList[index];
-             
+
             tb_EditCity.Text = location.Name;
             tb_editAddress.Text = location.Address;
         }
@@ -233,7 +277,7 @@ namespace PresentationLayer
 
         private void rb_progress_CheckedChanged(object sender, EventArgs e)
         {
-            tb_status.Text = rb_progress.Text.ToString();    
+            tb_status.Text = rb_progress.Text.ToString();
         }
 
         private void rb_onway_CheckedChanged(object sender, EventArgs e)
@@ -243,29 +287,29 @@ namespace PresentationLayer
 
         private void rb_readyPickup_CheckedChanged(object sender, EventArgs e)
         {
-            tb_status.Text = rb_readyPickup.Text.ToString();    
+            tb_status.Text = rb_readyPickup.Text.ToString();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Category b = new Category(2, "Meat");
-            Product a = new Product(2, "apple", "kilo", 2, 3, b);
-            Product d= new Product(4, "apple", "kilo", 2, 3, b);
-            Product c = new Product(5, "apple", "kilo", 2, 3, b);
-            User user = new User(4,"media","hannan","mido","44",UserRole.Customer,"");
-            Order order = new Order(user,new List<Product>{ a, d, c },20,DateTime.Now,new HomeDelivery(DateTime.Now, 5,"15","rotterdam location1"), "Delivered");
-            OrderDB orderDB = new OrderDB();    
-           orderDB.CreateOrder(order);
-            
-        }
+        //private void button1_Click(object sender, EventArgs e)
+        //{
+        //    Category b = new Category(2, "Meat");
+        //    Product a = new Product(2, "apple", "kilo", 2, 3, b);
+        //    Product d= new Product(4, "apple", "kilo", 2, 3, b);
+        //    Product c = new Product(5, "apple", "kilo", 2, 3, b);
+        //    User user = new User(4,"media","hannan","mido","44",UserRole.Customer,"");
+        //    Order order = new Order(user,new List<Product>{ a, d, c },20,DateTime.Now,new HomeDelivery(DateTime.Now, 5,"15","rotterdam location1"), "Delivered");
+        //    OrderDB orderDB = new OrderDB();    
+        //   orderDB.CreateOrder(order);
 
-        private void button2_Click(object sender, EventArgs e)
-        { 
-            OrderDB orderDB = new OrderDB();
-            List<Order> orders = orderDB.ReadOrders();
-           
+        //}
 
-        }
+        //private void button2_Click(object sender, EventArgs e)
+        //{ 
+        //    OrderDB orderDB = new OrderDB();
+        //    List<Order> orders = orderDB.ReadOrders();
+
+
+        //}
 
         private void dgv_ShowOrders_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -275,20 +319,34 @@ namespace PresentationLayer
             tb_status.Text = order.Status;
 
             MessageBox.Show(" now you should  click on one of the radios button then  edit button to change the status");
-          
-        }  
+
+        }
         public void AddOrdersToDGV()
         {
             dgv_ShowOrders.Rows.Clear();
+            var List = orderManager.GetOrders();
             foreach (var item in orderManager.GetOrders())
             {
-                dgv_ShowOrders.Rows.Add(item.Id, item.User.Username,item.TotalPrice,item.DateOfOrder,item.Delivery.Id,item.Status);
+                if (item.Delivery is HomeDelivery)
+                {
+                    var item1 = (HomeDelivery)item.Delivery;
+                    dgv_ShowOrders.Rows.Add(item.Id, item.User.Username, item.TotalPrice, item.DateOfOrder, item.Delivery.GetType().Name, item1.Address, "", item.Delivery.DateOfDelivery, item.Delivery.Hour, item.Delivery.Minutes, item.Status);
+
+                }
+                else
+                {
+                    var item2 = (PickupDelivery)item.Delivery;
+
+
+                    dgv_ShowOrders.Rows.Add(item.Id, item.User.Username, item.TotalPrice, item.DateOfOrder, item.Delivery.GetType().Name, item2.Location.Address, item2.Location.Name, item.Delivery.DateOfDelivery, item.Delivery.Hour, item.Delivery.Minutes, item.Status);
+
+                }
             }
         }
         private void updateOrders()
         {
             ordersList.Clear();
-            foreach (var order  in orderManager.GetOrders())    
+            foreach (var order in orderManager.GetOrders())
             {
                 ordersList.Add(order);
 
@@ -302,33 +360,75 @@ namespace PresentationLayer
 
             order.Status = tb_status.Text;
             orderManager.UpdateOrderStatus(order);
-            updateOrders(); 
-           AddOrdersToDGV();
-           
+            updateOrders();
+            AddOrdersToDGV();
+
         }
 
         private void btn_addEMP_Click(object sender, EventArgs e)
         {
-            if (tb_empName.Text !="" && tb_empSurname.Text !="" && tb_empUsername.Text !="" && tb_empPassword.Text !="")
+            if (!string.IsNullOrWhiteSpace(tb_empName.Text) && !string.IsNullOrWhiteSpace(tb_empSurname.Text) && !string.IsNullOrWhiteSpace(tb_empUsername.Text) && (!string.IsNullOrEmpty(tb_empPassword.Text)));
+                
+             
             {
 
-                string name = tb_empName.Text;  
+                string name = tb_empName.Text;
                 string surname = tb_empSurname.Text;
                 string username = tb_empUsername.Text;
                 string password = tb_empPassword.Text;
 
-                User user = new User(name, surname, username, password,UserRole.Employee,"");
-                peopleManager.AddUser(user);
+                User user = new User(name, surname, username, password, UserRole.Employee, "");
+                try
+                {
 
-                MessageBox.Show(" a new employee has been added");
+                    peopleManager.AddUser(user);
 
 
-                tb_empName.Clear();
-                tb_empSurname.Clear();
-                tb_empUsername.Clear();
-                tb_empPassword.Clear();
+                    MessageBox.Show(" a new employee has been added");
+
+                }
+                catch (UserNameIsExistException)
+                {
+
+                    MessageBox.Show(" username is taken try again");
+
+                }
+              
+               //catch (PasswordIsNullEception)
+               // {
+                   
+               //     throw new ArgumentNullException("password ", "password can not be empty");
+               // }
+
+
 
             }
+
+
+
+
+            tb_empName.Clear();
+            tb_empSurname.Clear();
+            tb_empUsername.Clear();
+            tb_empPassword.Clear();
+
+        }
+
+        private void tb_empPassword_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(tb_empPassword.Text))
+            {
+                // Display the error message in a message box
+                MessageBox.Show("please enter a password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                e.Cancel = true;
+            }
+            else
+            {
+                // Clear the error message
+                e.Cancel = false;
+            }
+
         }
     }
 }
+

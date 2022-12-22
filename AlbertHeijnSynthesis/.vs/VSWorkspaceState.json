@@ -5,9 +5,10 @@
     "\\DBlayer",
     "\\EntitiesLayer",
     "\\LogicLayer",
+    "\\UsersTest",
     "\\WebApp",
     "\\WebApp\\Pages"
   ],
-  "SelectedNode": "\\WebApp\\Pages\\MyOrders.cshtml.cs",
+  "SelectedNode": "\\UsersTest\\TestPeopleManager.cs",
   "PreviewInSolutionExplorer": false
 }

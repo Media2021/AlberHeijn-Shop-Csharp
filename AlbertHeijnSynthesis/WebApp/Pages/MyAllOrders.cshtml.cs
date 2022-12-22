@@ -10,23 +10,25 @@ namespace WebApp.Pages
     public class MyAllOrdersModel : PageModel
     {
         PeopleManager peopleManager = new PeopleManager();
-        ProductManager productManager = new ProductManager();   
+        ProductManager productManager = new ProductManager();
         OrderManager orderManager = new OrderManager();
 
+        public int OrderID { get; set; }
+        [BindProperty]
+        public List<OrderDTO> OrderDTOs { get; set; }
         [BindProperty]
 
-        
+        public List<Order> orders { get; set; }
 
-        public List<OrderDTO> OrderDTOs { get; set; }
-
-        public void OnGet()
+        public void OnGet( )
         {
-            List<Order> filterOrders = orderManager.GetOrders().FindAll(x => x.User.Name == User.Identity.Name);
+            List<Order> filterOrders = orderManager.GetOrders().FindAll(x => x.User.Username == User.Identity.Name);
 
-            OrderDTOs = new List<OrderDTO>();
-            foreach (Order  order  in filterOrders)
+            orders = new List<Order>();
+            foreach (Order order in filterOrders)
             {
-                OrderDTOs.Add(Mapper.mapToOrderDTO(order));
+                
+                orders.Add(order);
             }
 
         }

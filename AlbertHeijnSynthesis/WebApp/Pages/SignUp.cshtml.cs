@@ -28,10 +28,21 @@ namespace WebAppSynthesis.Pages
             if (ModelState.IsValid == true)
             {
                 User  savedUser = new User(userDTO.Name, userDTO.Surname, userDTO.Username, userDTO.Password,UserRole.Customer,"");
+                if (peopleManager.AddUser(savedUser))
+                {
+                    ViewData["Message"] = "Hello "   +   userDTO.Username   +  " Your account has been created ";
 
-                peopleManager.AddUser(savedUser);
 
-                ViewData["Message"] = "Hello" + userDTO.Name + " Your account has been created ";
+                }
+                else
+                {
+                ViewData["Message"] = "Hello "   +   userDTO.Name   +  " username is already taken try again ";
+
+                    return Page();
+                }
+               
+
+               
                 return new RedirectToPageResult("/Login");
             }
             return RedirectToPage("/Login");

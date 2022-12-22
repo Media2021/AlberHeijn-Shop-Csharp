@@ -75,6 +75,11 @@
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabAddEMP = new System.Windows.Forms.TabPage();
             this.tb_empPassword = new System.Windows.Forms.TextBox();
@@ -103,7 +108,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 23);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(2674, 1009);
+            this.tabControl1.Size = new System.Drawing.Size(2758, 1009);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -118,7 +123,7 @@
             this.tabAddProduct.Location = new System.Drawing.Point(12, 69);
             this.tabAddProduct.Name = "tabAddProduct";
             this.tabAddProduct.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAddProduct.Size = new System.Drawing.Size(2650, 928);
+            this.tabAddProduct.Size = new System.Drawing.Size(2734, 928);
             this.tabAddProduct.TabIndex = 0;
             this.tabAddProduct.Text = "Add Product";
             this.tabAddProduct.UseVisualStyleBackColor = true;
@@ -191,7 +196,7 @@
             this.tabAddLocation.Location = new System.Drawing.Point(12, 69);
             this.tabAddLocation.Name = "tabAddLocation";
             this.tabAddLocation.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAddLocation.Size = new System.Drawing.Size(2650, 928);
+            this.tabAddLocation.Size = new System.Drawing.Size(2734, 928);
             this.tabAddLocation.TabIndex = 1;
             this.tabAddLocation.Text = "Location manager";
             this.tabAddLocation.UseVisualStyleBackColor = true;
@@ -316,7 +321,7 @@
             this.tabViewAllProducts.Location = new System.Drawing.Point(12, 69);
             this.tabViewAllProducts.Name = "tabViewAllProducts";
             this.tabViewAllProducts.Padding = new System.Windows.Forms.Padding(3);
-            this.tabViewAllProducts.Size = new System.Drawing.Size(2650, 928);
+            this.tabViewAllProducts.Size = new System.Drawing.Size(2734, 928);
             this.tabViewAllProducts.TabIndex = 2;
             this.tabViewAllProducts.Text = "Products INFO";
             this.tabViewAllProducts.UseVisualStyleBackColor = true;
@@ -442,7 +447,7 @@
             this.tab_status.Location = new System.Drawing.Point(12, 69);
             this.tab_status.Name = "tab_status";
             this.tab_status.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_status.Size = new System.Drawing.Size(2650, 928);
+            this.tab_status.Size = new System.Drawing.Size(2734, 928);
             this.tab_status.TabIndex = 3;
             this.tab_status.Text = "Order status";
             this.tab_status.UseVisualStyleBackColor = true;
@@ -524,12 +529,17 @@
             this.Column12,
             this.Column13,
             this.Column14,
+            this.Column16,
+            this.Column19,
+            this.Column11,
+            this.Column17,
+            this.Column18,
             this.Column15});
             this.dgv_ShowOrders.Location = new System.Drawing.Point(25, 33);
             this.dgv_ShowOrders.Name = "dgv_ShowOrders";
             this.dgv_ShowOrders.RowHeadersWidth = 123;
             this.dgv_ShowOrders.RowTemplate.Height = 57;
-            this.dgv_ShowOrders.Size = new System.Drawing.Size(1922, 450);
+            this.dgv_ShowOrders.Size = new System.Drawing.Size(2709, 450);
             this.dgv_ShowOrders.TabIndex = 0;
             this.dgv_ShowOrders.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_ShowOrders_CellMouseClick);
             // 
@@ -568,6 +578,41 @@
             this.Column14.Name = "Column14";
             this.Column14.Width = 300;
             // 
+            // Column16
+            // 
+            this.Column16.HeaderText = "Address";
+            this.Column16.MinimumWidth = 15;
+            this.Column16.Name = "Column16";
+            this.Column16.Width = 300;
+            // 
+            // Column19
+            // 
+            this.Column19.HeaderText = "city name";
+            this.Column19.MinimumWidth = 15;
+            this.Column19.Name = "Column19";
+            this.Column19.Width = 300;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "date";
+            this.Column11.MinimumWidth = 15;
+            this.Column11.Name = "Column11";
+            this.Column11.Width = 300;
+            // 
+            // Column17
+            // 
+            this.Column17.HeaderText = "hour";
+            this.Column17.MinimumWidth = 15;
+            this.Column17.Name = "Column17";
+            this.Column17.Width = 300;
+            // 
+            // Column18
+            // 
+            this.Column18.HeaderText = "minutes";
+            this.Column18.MinimumWidth = 15;
+            this.Column18.Name = "Column18";
+            this.Column18.Width = 300;
+            // 
             // Column15
             // 
             this.Column15.HeaderText = "status";
@@ -585,7 +630,7 @@
             this.tabAddEMP.Location = new System.Drawing.Point(12, 69);
             this.tabAddEMP.Name = "tabAddEMP";
             this.tabAddEMP.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAddEMP.Size = new System.Drawing.Size(2650, 928);
+            this.tabAddEMP.Size = new System.Drawing.Size(2734, 928);
             this.tabAddEMP.TabIndex = 4;
             this.tabAddEMP.Text = "Add employee";
             this.tabAddEMP.UseVisualStyleBackColor = true;
@@ -599,6 +644,7 @@
             this.tb_empPassword.Size = new System.Drawing.Size(300, 55);
             this.tb_empPassword.TabIndex = 4;
             this.tb_empPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tb_empPassword.Validating += new System.ComponentModel.CancelEventHandler(this.tb_empPassword_Validating);
             // 
             // tb_empUsername
             // 
@@ -641,7 +687,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(20F, 48F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2716, 1044);
+            this.ClientSize = new System.Drawing.Size(2794, 1143);
             this.Controls.Add(this.tabControl1);
             this.Name = "AddProduct";
             this.Text = "Product";
@@ -707,17 +753,22 @@
         private DataGridView dgv_ShowOrders;
         private RadioButton rb_onway;
         private RadioButton rb_readyPickup;
-        private DataGridViewTextBoxColumn Column9;
-        private DataGridViewTextBoxColumn Column10;
-        private DataGridViewTextBoxColumn Column12;
-        private DataGridViewTextBoxColumn Column13;
-        private DataGridViewTextBoxColumn Column14;
-        private DataGridViewTextBoxColumn Column15;
         private TabPage tabAddEMP;
         private TextBox tb_empPassword;
         private TextBox tb_empUsername;
         private TextBox tb_empSurname;
         private Button btn_addEMP;
         private TextBox tb_empName;
+        private DataGridViewTextBoxColumn Column9;
+        private DataGridViewTextBoxColumn Column10;
+        private DataGridViewTextBoxColumn Column12;
+        private DataGridViewTextBoxColumn Column13;
+        private DataGridViewTextBoxColumn Column14;
+        private DataGridViewTextBoxColumn Column16;
+        private DataGridViewTextBoxColumn Column19;
+        private DataGridViewTextBoxColumn Column11;
+        private DataGridViewTextBoxColumn Column17;
+        private DataGridViewTextBoxColumn Column18;
+        private DataGridViewTextBoxColumn Column15;
     }
 }

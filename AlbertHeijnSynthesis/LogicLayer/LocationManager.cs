@@ -30,7 +30,11 @@ namespace LogicLayer
             locations.AddRange(locationDB.ReadLocations()); 
 
         }
-
+        public List<Location> ReadLocations()
+        {
+            locations.AddRange(locationDB.ReadLocations());
+            return locations;
+        }
         public void AddLocation(Location location)
         {
             locations.Add(location);

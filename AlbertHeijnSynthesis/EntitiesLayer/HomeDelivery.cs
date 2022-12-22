@@ -18,6 +18,9 @@ namespace EntitiesLayer
         {
             this.address = address;
         }
+
+      
+
         public string Address { get => address; set => address = value; }
     }
 }

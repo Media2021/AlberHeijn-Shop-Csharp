@@ -50,17 +50,16 @@ namespace WebAppSynthesis.Pages
 
                     return new RedirectToPageResult("/PersonalPage");
                 }
+                else if (user.UserRole.ToString() == "Employee")
+                {
+                    return new RedirectToPageResult("/OnlyAdmin");
+
+                }
+                
 
 
             }
-            else
-            {
-                return new RedirectToPageResult("/OnlyAdmin");
-
-
-
-
-            }
+        
             return Page();
 
         }

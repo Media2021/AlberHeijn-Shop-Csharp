@@ -1,4 +1,5 @@
-﻿using LogicLayer;
+﻿using DBlayer.Interfaces;
+using LogicLayer;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -9,7 +10,7 @@ using System.Xml;
 
 namespace DBlayer
 {
-    public class ProductDB
+    public class ProductDB : IProductDB
     {
         SqlConnection conn = new SqlConnection("server  = mssqlstud.fhict.local;database= dbi499087;User Id = dbi499087; Password=2018Ayham.; ");
 

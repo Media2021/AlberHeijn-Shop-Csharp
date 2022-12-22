@@ -11,9 +11,8 @@
     <div class="countainer">
         <table method="POST" class="table">
             <tr>
-                <th>Order id</th>
-                <th>User id</th>
-                <th>Product name</th>
+                    <th>user </th>
+                    <th>Product name</th>
                 <th>Total price </th>
                 <th>Date of order </th>
                 <th>Delivery type </th>
@@ -28,20 +27,36 @@
 
             </tr>
 
+@{
+                   
+                    foreach (var item in @Model.orders.OrderByDescending(x => x.DateOfOrder))
+{
+    string deliveryType = item.Delivery.GetType().Name;
+    deliveryType = deliveryType.Replace("EntitiesLayer.", "");
+    <tr>
+        <td>@item.User.Username</td>
+        <td>
             @{
-                foreach (var item in @Model.OrderDTOs)
+                int count = 0;
+                foreach (var product in item.Products)
                 {
-
-                    <tr>
-                        <td> @item.Id  </td>                      
-                        <td> @item.User.Name  </td>                   
-                        <td> @item.Products </td>                    
-                        <td>@item.TotalPrice  </td>                    
-                        <td>@item.DateOfOrder </td>
-                        <td> @item.Delivery  </td>
-                        <td> @item.Status </td>                     
-                    </tr>
-}} 
+                    count++;
+                    @product.Item
+                    if (count < item.Products.Count())
+                    {
+                        @Html.Raw(",")
+                    }
+                }
+            }
+        </td>
+        <td>@item.TotalPrice</td>
+        <td>@item.DateOfOrder</td>
+        <td>@deliveryType</td>
+        <td>@item.Status</td>
+    </tr>
+}
+}
+               
 </table>
 </div>
 </form>

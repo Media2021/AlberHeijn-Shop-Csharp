@@ -1,11 +1,12 @@
 ﻿
+using DBlayer.Interfaces;
 using EntitiesLayer;
 using LogicLayer;
 using System.Data.SqlClient;
 
 namespace DBlayer
 {
-    public class PersonDB
+    public class PersonDB : IPersonDB
     {
         SqlConnection conn = new SqlConnection("server  = mssqlstud.fhict.local;database= dbi499087;User Id = dbi499087; Password=2018Ayham.; ");
       
@@ -36,15 +37,6 @@ namespace DBlayer
             conn.Close();
 
         }
-        public void DeleteUser(User user )
-        {
-            string sql = "Delete FROM MyUsers1 WHERE id = @id;";
-            SqlCommand cmd = new SqlCommand(sql, this.conn);
-            cmd.Parameters.AddWithValue("@id", user.Id);
-            conn.Open();
-            cmd.ExecuteNonQuery();
-            conn.Close();
-        }
         public List<User> ReadUser()
         {
             string sql = " SELECT * FROM MyUsers1 ;";
@@ -52,7 +44,7 @@ namespace DBlayer
             conn.Open();
             SqlDataReader dr = cmd.ExecuteReader();
             List<User> ReadUsers = new List<User>();
-            //List<UserRole> userRoles = new List<UserRole>();
+           
            
 
             while (dr.Read())
@@ -63,7 +55,7 @@ namespace DBlayer
             return ReadUsers;
         }
 
-        public void UpdateUser(User user )
+        public void UpdateUser(User user)
         {
             string sql = "UPDATE MyUsers1 SET name =  @name  , surname = @surname, username = @username , password = @password , roleId = @roleId , salt =  @salt  WHERE Id = @id;";
 

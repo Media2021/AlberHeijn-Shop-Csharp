@@ -3,6 +3,7 @@ using LogicLayer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Collections.Generic;
 using System.Security.Claims;
 
 namespace WebAppSynthesis.Pages
@@ -13,20 +14,30 @@ namespace WebAppSynthesis.Pages
         ProductManager productManager = new ProductManager();
 
         [BindProperty]
-        public List<Product >? products { get; set; }
+        public List<Product > products { get; set; }
+        [BindProperty]
+        public string subCategory { get; set; } 
         [BindProperty]
 
-       public  List<Product> cartProducts  { get; set; }
-    public void OnGet()
+        public List<Product> cartProducts  { get; set; }
+        public void OnGet()
         {
-            products = productManager.GetProducts().ToList();
+            //products = productManager.GetProducts().ToList();
+
             cartProducts = new List<Product>();
+            if (products == null)
+            {
+
+                products = productManager.GetProducts().ToList();
+
+            }
+          
+
         }
          
         public void  OnPost(int idProduct) 
         {
-            // cartProducts.Add(products.Find(x=>x.Id == idProduct));
-            //string name =  User.FindFirst("cart").Value;
+            
            string listOfProducts =  HttpContext.Session.GetString("cart");
             if (listOfProducts=="")
             {
@@ -43,59 +54,49 @@ namespace WebAppSynthesis.Pages
             OnGet();
 
         }
-        
-        public IActionResult OnPostOrders()
+        public void OnPostMinus(int minus1)
         {
-            return RedirectToPage("/MyOrders");
+            string listProduct = HttpContext.Session.GetString("cart");
+            List<string> myArray = listProduct.Split(',').ToList();
+            myArray.Remove(minus1.ToString());
+            string a = "";
+            foreach (var item in myArray)
+            {
+                if (a == "")
+                {
+                    a = item;
+                }
+                else
+                {
+
+                    a += ","+item;
+                }
+
+            }
+            HttpContext.Session.Clear();
+            HttpContext.Session.SetString("cart", a);
+
+            
+
+
+            OnGet();
+
         }
-        //public IActionResult Search(string searchTerm, string searchTerm1 )
-        //{
+        public void  OnPostFilter(string searchTerm)
+        {
+            products = productManager.filterProduct(searchTerm).ToList();
 
-
-            //var products = productManager.GetProducts().ToList();
-
-            //var ProductFilterName = new List<Product>();
-
-
-
-            //if (searchTerm != "")
-            //    {
-            //        foreach (var  item in products)
-            //        {
-            //            if (item.Item.Contains(searchTerm)
-            //            )
-            //            {
-            //            ProductFilterName.Add(item);
-            //            }
-            //        }
-
-            //    }
-            //    else
-            //    {
-            //    ProductFilterName = products;
-            //    }
-            //    var list2 = new List<Product>();
-
-            //    if (searchTerm1 != "")
-            //    {
-            //        foreach (var item in ProductFilterName)
-            //        {
-            //            if (item.Category.Name.Contains(searchTerm1))
-            //            {
-            //                list2.Add(item);
-
-            //            }
-            //        }
-
-            //    }
-            //    else
-            //    {
-            //        list2 = ProductFilterName;
-            //    }
-
-
-            //return list2;
-
-        //}
+            OnGet();
+        }
+        public string getsubs(List<Category> list)
+        {
+            return string.Join(Environment.NewLine, list
+                );
+        }
     }
+
+    //public IActionResult OnPostOrders()
+    //{
+    //    return RedirectToPage("/MyOrder");
+    //}
 }

@@ -29,11 +29,20 @@ namespace BusinessLayer
         { 
             return deliveries;
         }
+        public List<Delivery> GetAllDeliveries()
+        {
+            List<Delivery> listODelivery = new List<Delivery>();
+            listODelivery.AddRange(orderDB.GetAllDeliveries());
 
+           
+            return listODelivery;
+        }
         public void UpdateOrderList()
         {
             orders.Clear();
             orders.AddRange(orderDB.ReadOrders());
+            orders.AddRange(orderDB.ReadPickupOrders());    
+
 
         }
 
@@ -72,29 +81,32 @@ namespace BusinessLayer
                 }
                 else
                 {
-                    orderDB.createLocationDelivery((PickupDelivery)delivery);
+                    orderDB.createPickupDelivery((PickupDelivery)delivery);
 
                 }
            
 
 
         }
+
         public void AddOrder(Order order)
         {
             orders.Add(order);
             orderDB.CreateOrder(order);
 
 
-        }
 
-      
-        public void DeleteOrder(Order order)
+        }
+     
+        public void AddOrderPickup(Order order)
         {
-            orders.Remove(order);
-            orderDB.DeleteOrder(order);
-
+            orders.Add(order);
+            orderDB.CreateOrderPickup(order);
 
         }
+      
+      
+      
         public void UpdateOrderStatus(Order order)
         {
             orders.Clear();
@@ -102,7 +114,7 @@ namespace BusinessLayer
 
 
         }
-
+      
       
     }
 }

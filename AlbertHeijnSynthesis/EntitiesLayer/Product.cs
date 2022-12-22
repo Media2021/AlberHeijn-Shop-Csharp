@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +10,17 @@ namespace LogicLayer
     public  class Product
     {
         private int id;
+        [Required(ErrorMessage = " please enter product name")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Name can only contain letters")]
         private string item;
+        [Required(ErrorMessage = " please enter product unit")]
+
         private string unit;
+        [Required(ErrorMessage = " please enter product amount")]
+
         private decimal amount;
+        //[Required(ErrorMessage = " please enter product price")]
+
         private decimal price;
         private  Category category;
 
@@ -36,6 +45,12 @@ namespace LogicLayer
             this.category = category;
 
         }
+
+        public Product(List<Product> products, int id)
+        {
+            this.id = id;
+        }
+
         public int Id { get => id; set => id = value; }
         public string Item { get => item; set => item = value; }
         public string Unit { get => unit; set => unit = value; }
