@@ -55,24 +55,24 @@ namespace DBlayer
             return ReadUsers;
         }
 
-        public void UpdateUser(User user)
-        {
-            string sql = "UPDATE MyUsers1 SET name =  @name  , surname = @surname, username = @username , password = @password , roleId = @roleId , salt =  @salt  WHERE Id = @id;";
+        //public void UpdateUser(User user)
+        //{
+        //    string sql = "UPDATE MyUsers1 SET name =  @name  , surname = @surname, username = @username , password = @password , roleId = @roleId , salt =  @salt  WHERE Id = @id;";
 
 
-            SqlCommand cmd = new SqlCommand(sql, this.conn);
-            cmd.Parameters.AddWithValue("@name", user.Name);
-            cmd.Parameters.AddWithValue("@surname", user.Surname);
-            cmd.Parameters.AddWithValue("@username", user.Username);
-            cmd.Parameters.AddWithValue("@password", user.Password);
-            cmd.Parameters.AddWithValue("@roleId", (int)user.UserRole);
-            cmd.Parameters.AddWithValue("@salt", user.Salt);
+        //    SqlCommand cmd = new SqlCommand(sql, this.conn);
+        //    cmd.Parameters.AddWithValue("@name", user.Name);
+        //    cmd.Parameters.AddWithValue("@surname", user.Surname);
+        //    cmd.Parameters.AddWithValue("@username", user.Username);
+        //    cmd.Parameters.AddWithValue("@password", user.Password);
+        //    cmd.Parameters.AddWithValue("@roleId", (int)user.UserRole);
+        //    cmd.Parameters.AddWithValue("@salt", user.Salt);
 
 
 
-            conn.Open();
-            cmd.ExecuteNonQuery();
-            conn.Close();
-        }
+        //    conn.Open();
+        //    cmd.ExecuteNonQuery();
+        //    conn.Close();
+        //}
     }
 }

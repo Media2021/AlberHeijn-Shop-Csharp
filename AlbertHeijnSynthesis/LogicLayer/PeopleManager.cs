@@ -15,16 +15,16 @@ namespace BusinessLayer
         List<User> users = new List<User>();
 
 
-        public PeopleManager(List<User> users, IPersonDB IpersonDB)
-        {
-            this.IpersonDB = IpersonDB;
-            users.Clear();
+        //public PeopleManager(List<User> users, IPersonDB IpersonDB)
+        //{
+        //    this.IpersonDB = IpersonDB;
+        //    users.Clear();
 
-            UpdateUserList();
+        //    UpdateUserList();
 
 
 
-        }
+        //}
 
         //public PeopleManager(List<User> users, MockPersonDB mockPersonDB)
         //{
