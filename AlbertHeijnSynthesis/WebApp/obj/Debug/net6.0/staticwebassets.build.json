@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "B2ySSV/6JQYDR5QGLhBIAEd0ayIuZ+ZAXQSvVHF4l+U=",
+  "Hash": "epmLckyp4JkxIJcHZvWvO0wGIRA2qEftIkPaC/sRMH8=",
   "Source": "WebApp",
   "BasePath": "_content/WebApp",
   "Mode": "Default",
@@ -51,12 +51,12 @@
       "OriginalItemSpec": "C:\\Users\\delsh\\albertheijnshop\\AlbertHeijnSynthesis\\WebApp\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\WebApp.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\delsh\\albertheijnshop\\AlbertHeijnSynthesis\\WebApp\\wwwroot\\css\\img\\٢٠٢٢١٢٠٤_١٧٥٦١٩.jpg",
+      "Identity": "C:\\Users\\delsh\\albertheijnshop\\AlbertHeijnSynthesis\\WebApp\\wwwroot\\css\\img\\img1.jpg",
       "SourceId": "WebApp",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\delsh\\albertheijnshop\\AlbertHeijnSynthesis\\WebApp\\wwwroot\\",
       "BasePath": "_content/WebApp",
-      "RelativePath": "css/img/٢٠٢٢١٢٠٤_١٧٥٦١٩.jpg",
+      "RelativePath": "css/img/img1.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -65,15 +65,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\img\\٢٠٢٢١٢٠٤_١٧٥٦١٩.jpg"
+      "OriginalItemSpec": "wwwroot\\css\\img\\img1.jpg"
     },
     {
-      "Identity": "C:\\Users\\delsh\\albertheijnshop\\AlbertHeijnSynthesis\\WebApp\\wwwroot\\css\\img\\٢٠٢٢١٢٠٤_١٧٥٧٣٠.jpg",
+      "Identity": "C:\\Users\\delsh\\albertheijnshop\\AlbertHeijnSynthesis\\WebApp\\wwwroot\\css\\img\\img2.jpg",
       "SourceId": "WebApp",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\delsh\\albertheijnshop\\AlbertHeijnSynthesis\\WebApp\\wwwroot\\",
       "BasePath": "_content/WebApp",
-      "RelativePath": "css/img/٢٠٢٢١٢٠٤_١٧٥٧٣٠.jpg",
+      "RelativePath": "css/img/img2.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -82,15 +82,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\img\\٢٠٢٢١٢٠٤_١٧٥٧٣٠.jpg"
+      "OriginalItemSpec": "wwwroot\\css\\img\\img2.jpg"
     },
     {
-      "Identity": "C:\\Users\\delsh\\albertheijnshop\\AlbertHeijnSynthesis\\WebApp\\wwwroot\\css\\img\\٢٠٢٢١٢٠٤_١٧٥٨٣٣.jpg",
+      "Identity": "C:\\Users\\delsh\\albertheijnshop\\AlbertHeijnSynthesis\\WebApp\\wwwroot\\css\\img\\img3.jpg",
       "SourceId": "WebApp",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\delsh\\albertheijnshop\\AlbertHeijnSynthesis\\WebApp\\wwwroot\\",
       "BasePath": "_content/WebApp",
-      "RelativePath": "css/img/٢٠٢٢١٢٠٤_١٧٥٨٣٣.jpg",
+      "RelativePath": "css/img/img3.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -99,7 +99,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\img\\٢٠٢٢١٢٠٤_١٧٥٨٣٣.jpg"
+      "OriginalItemSpec": "wwwroot\\css\\img\\img3.jpg"
     },
     {
       "Identity": "C:\\Users\\delsh\\albertheijnshop\\AlbertHeijnSynthesis\\WebApp\\wwwroot\\css\\site.css",

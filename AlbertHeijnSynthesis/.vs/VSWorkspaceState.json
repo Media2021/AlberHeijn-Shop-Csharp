@@ -1,14 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\AlbertHeijnSynthesis",
-    "\\DBlayer",
     "\\EntitiesLayer",
     "\\LogicLayer",
     "\\UsersTest",
     "\\WebApp",
-    "\\WebApp\\Pages"
+    "\\WebApp\\Pages",
+    "\\WebApp\\Pages\\Shared",
+    "\\WebApp\\wwwroot",
+    "\\WebApp\\wwwroot\\css",
+    "\\WebApp\\wwwroot\\css\\img"
   ],
-  "SelectedNode": "\\DBlayer\\OrderDB.cs",
+  "SelectedNode": "\\WebApp\\Pages\\SignUp.cshtml.cs",
   "PreviewInSolutionExplorer": false
 }
