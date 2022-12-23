@@ -1,7 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\EntitiesLayer",
+    "\\AlbertHeijnSynthesis",
     "\\LogicLayer",
     "\\UsersTest",
     "\\WebApp",
@@ -11,6 +11,6 @@
     "\\WebApp\\wwwroot\\css",
     "\\WebApp\\wwwroot\\css\\img"
   ],
-  "SelectedNode": "\\WebApp\\Pages\\SignUp.cshtml.cs",
+  "SelectedNode": "\\WebApp\\Pages\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }
