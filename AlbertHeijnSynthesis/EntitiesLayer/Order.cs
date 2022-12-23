@@ -27,15 +27,15 @@ namespace LogicLayer
             this.delivery = delivery;
             this.status = status;
         }
-        public Order( User user, List<Product> products, decimal totalPrice, DateTime dateOfOrder, Delivery delivery, string status)
+        public Order( User user,  DateTime dateOfOrder, Delivery delivery)
         {
            
             this.user = user;
-            this.products = products;
-            this.totalPrice = totalPrice;
+            this.products = new List<Product>();
+            this.totalPrice = 0;
             this.dateOfOrder = dateOfOrder;
             this.delivery = delivery;
-            this.status = status;   
+            this.status = "new";   
         }
         public Order(int id, User user, decimal totalPrice, Delivery delivery, string status)
         {
@@ -51,7 +51,7 @@ namespace LogicLayer
         public int Id { get => id; }
         public User User { get => user; }
         public List<Product> Products { get => products;  }
-        public decimal TotalPrice { get => totalPrice;  }
+        public decimal TotalPrice { get => totalPrice; set => totalPrice = value; }
         public DateTime DateOfOrder { get => dateOfOrder;  }
         public Delivery Delivery { get => delivery;  }
         public string Status { get => status; set => status = value; }
@@ -62,12 +62,6 @@ namespace LogicLayer
             totalPrice += product.Price;
 
         }
-        public void RemoveProduct(Product product)
-        {
-            products.Remove(product);
-            totalPrice -= product.Price;
-        }
-
       
     }
 }

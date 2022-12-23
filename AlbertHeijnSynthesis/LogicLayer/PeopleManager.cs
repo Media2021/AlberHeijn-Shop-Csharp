@@ -10,35 +10,26 @@ namespace BusinessLayer
     public class PeopleManager
     {
 
-        //PersonDB personDB = new PersonDB();
         private IPersonDB IpersonDB;
-        List<User> users = new List<User>();
+       private  List<User> users = new List<User>();
 
 
-        //public PeopleManager(List<User> users, IPersonDB IpersonDB)
-        //{
-        //    this.IpersonDB = IpersonDB;
-        //    users.Clear();
+      
 
-        //    UpdateUserList();
-
-
-
-        //}
-
-        //public PeopleManager(List<User> users, MockPersonDB mockPersonDB)
-        //{
-        //}
-
-        public PeopleManager()
+        public PeopleManager():this(new PersonDB())
         {
 
-            this.IpersonDB = new PersonDB();
-            users.Clear();
-
-            UpdateUserList();
         }
 
+        ///another way to do so that so I just commented it ./
+        //public PeopleManager() 
+        //{
+
+        //this.IpersonDB = new PersonDB();
+        //users.Clear();
+
+        //UpdateUserList();
+        //}
         public PeopleManager(IPersonDB IpersonDB)
         {
             this.IpersonDB = IpersonDB;
@@ -80,37 +71,29 @@ namespace BusinessLayer
             {
                 throw new UserNameIsExistException();
             }
-            else 
-                return false;   
+            else
+                return false;
         }
 
 
-        public bool AddUser(User user)
+        public void AddUser(User user)
         {
+            if (users.Exists(x => x.Username == user.Username))
+            {
+                throw new UserNameIsExistException();
+
+            }
             string salt = Security.GenerateSalt();
             string HashedPassword = Security.HashPassword(user.Password, salt);
 
             user.Password = HashedPassword;
             user.Salt = salt;
-            try
-            {
-                if (!IsUsernameTaken(user.Username))
-                {
-                    users.Add(user);
+         
+              
                     IpersonDB.CreateUser(user);
-                    return true;
-
-                }
-               
-            }
-            catch (UserNameIsExistException )
-            {
-
-                throw;
-            }
-
-            return false;
-        } 
+                    users.Add(user);
+            
+        }
 
 
 
@@ -129,13 +112,6 @@ namespace BusinessLayer
             }
             
         }
-        //public void UpdateUser(User user )
-        //{
-        //    personDB.UpdateUser(user);
-
-
-        //}
-
 
     }
 }

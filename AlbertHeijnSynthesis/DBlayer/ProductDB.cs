@@ -16,13 +16,13 @@ namespace DBlayer
 
         SqlConnection conn1 = new SqlConnection("server  = mssqlstud.fhict.local;database= dbi499087;User Id = dbi499087; Password=2018Ayham.; ");
 
-        public List<Product> GetAllProducts()
-        {
-            List<Product> products = new List<Product>();
+        //public List<Product> GetAllProducts()
+        //{
+        //    List<Product> products = new List<Product>();
 
 
-            return products;
-        }
+        //    return products;
+        //}
 
         public List<Product> ReadProduct()
         {

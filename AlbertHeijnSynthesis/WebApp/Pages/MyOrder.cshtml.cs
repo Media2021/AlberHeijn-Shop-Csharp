@@ -66,105 +66,126 @@ namespace WebApp.Pages
 
 
         }
-        public IActionResult OnPost( )
+        public void  OnPostDelivery( )
         {
-            productsInCart = new List<Product>();
-
-            products = productManager.GetProducts();
-            string listProduct = HttpContext.Session.GetString("cart");
-            string[] myArray = listProduct.Split(',');
-            foreach (var item in myArray)
+            if (!string.IsNullOrEmpty(homeDeliveryDTO.Hour.ToString()) & !string.IsNullOrEmpty(homeDeliveryDTO.Minutes) & !string.IsNullOrEmpty(homeDeliveryDTO.Address))
             {
-                productsInCart.Add(products.Find(x => x.Id == Convert.ToInt32(item)));
 
 
 
+                productsInCart = new List<Product>();
+
+                products = productManager.GetProducts();
+                string listProduct = HttpContext.Session.GetString("cart");
+                string[] myArray = listProduct.Split(',');
+                foreach (var item in myArray)
+                {
+                    productsInCart.Add(products.Find(x => x.Id == Convert.ToInt32(item)));
 
 
-            }
+                }
 
-            //if (ModelState.IsValid == true)
-            //{
 
                 User user = peopleManager.GetLoggedInUser(User.Identity.Name);
                 HomeDelivery homeDelivery = Mapper.MapToHomeDelivery(homeDeliveryDTO);
-                Decimal totalPric = 0;
+
+                Order neWorder = new Order(user, DateTime.Now, homeDelivery);
                 foreach (var item in productsInCart)
                 {
-                    totalPric += item.Price;
+                    neWorder.AddProduct(item);
+                }
+                orderManager.AddOrder(neWorder);
+
+
+
+
+
+
+
+                ViewData["Message"] = "Hello " + User.Identity.Name + " Your order successfully has been sent ";
+
+               
+            }
+           
+           
+        }
+        public void  OnPostPickup()
+        {
+            if (!string.IsNullOrEmpty(pickupDeliveryDTO.Hour.ToString()) & !string.IsNullOrEmpty(pickupDeliveryDTO.Minutes) & !string.IsNullOrEmpty(pickupDeliveryDTO.Location))
+            {
+
+                productsInCart = new List<Product>();
+
+                products = productManager.GetProducts();
+                string listProduct = HttpContext.Session.GetString("cart");
+                string[] myArray = listProduct.Split(',');
+                foreach (var item in myArray)
+                {
+                    productsInCart.Add(products.Find(x => x.Id == Convert.ToInt32(item)));
+
+
+
+
+
                 }
 
-
-
-
-                orderManager.AddDeliveryType(homeDelivery);
-                Order neWorder = new Order(user, productsInCart, totalPric, DateTime.Now, homeDelivery, "new");
-
-                orderManager.AddOrder(neWorder);
-            ViewData["Message"] = "Hello" + User.Identity.Name + " Your order successfully has been sent ";
-
-            return Page();
-            //}
-            //return RedirectToPage("/Index");
-        }
-        public IActionResult OnPostPickup()
-        {
-            productsInCart = new List<Product>();
-
-            products = productManager.GetProducts();
-            string listProduct = HttpContext.Session.GetString("cart");
-            string[] myArray = listProduct.Split(',');
-            foreach (var item in myArray)
-            {
-                productsInCart.Add(products.Find(x => x.Id == Convert.ToInt32(item)));
-
-
-
-
-
-            }
-
-            //if (ModelState.IsValid == true)
-            //{
 
                 User user = peopleManager.GetLoggedInUser(User.Identity.Name);
 
-                //Location location = locationManager.GetLocations().Find(x => x.Address == pickupDeliveryDTO.Location && x => x.Name == pickupDeliveryDTO.Location);
-            Location location = locationManager.GetLocations().Find(x => x.Address == pickupDeliveryDTO.Location);
 
-            PickupDelivery pickupDelivery = Mapper.MapToPickupDelivery(pickupDeliveryDTO, location);
-                Decimal totalPric = 0;
+                Location location = locationManager.GetLocations().Find(x => x.Address == pickupDeliveryDTO.Location);
+
+
+
+                PickupDelivery pickupDelivery = Mapper.MapToPickupDelivery(pickupDeliveryDTO, location);
+
+                Order neWorder = new Order(user, DateTime.Now, pickupDelivery);
                 foreach (var item in productsInCart)
                 {
-                    totalPric += item.Price;
+                    neWorder.AddProduct(item);
                 }
+                orderManager.AddOrder(neWorder);
 
 
 
 
-                orderManager.AddDeliveryType(pickupDelivery);
-                Order neWorder = new Order(user, productsInCart, totalPric, DateTime.Now, pickupDelivery, "new");
+            
 
-                orderManager.AddOrderPickup(neWorder);
-                ViewData["Message"] = "Hello " +User.Identity.Name+ " Your order successfully has been sent ";
-                return Page();
+                ViewData["Message"] = "Hello " + User.Identity.Name + " Your order successfully has been sent ";
+               
             }
-        //    return RedirectToPage("/Index");
-        //}
-        public IActionResult OnPostDeleteProduct( )
+         
+
+
+           
+
+        }
+        public void OnPostDeleteProduct( int minus1)
         {
             productsInCart = new List<Product>();
-            
-            products = productManager.GetProducts();
+
             string listProduct = HttpContext.Session.GetString("cart");
-            string[] myArray = listProduct.Split(',');
+            List<string> myArray = listProduct.Split(',').ToList();
+            myArray.Remove(minus1.ToString());
+            string a = "";
             foreach (var item in myArray)
             {
+                if (a == "")
+                {
+                    a = item;
+                }
+                else
+                {
 
-                productsInCart.Remove(products.Find(x => x.Id == Convert.ToInt32(item)));
+                    a += "," + item;
+                }
 
             }
-            return Page();  
+            HttpContext.Session.Clear();
+            HttpContext.Session.SetString("cart", a);
+
+            OnGet();
+
         }
 
     }

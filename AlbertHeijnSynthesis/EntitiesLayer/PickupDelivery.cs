@@ -18,9 +18,7 @@ namespace EntitiesLayer
             this.location = location;
         }
 
-        //public PickupDelivery(DateTime dateOfDelivery, int hour, string minutes) : base(dateOfDelivery, hour, minutes)
-        //{
-        //}
+       
 
         public Location Location { get => location; set => location = value; }
     }

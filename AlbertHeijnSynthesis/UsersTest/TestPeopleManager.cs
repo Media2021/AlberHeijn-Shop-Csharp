@@ -20,83 +20,47 @@ namespace UsersTest
         {
 
             mockPersonDB = new Mock<IPersonDB>();
-            var users = new List<User>
-        {
-            new User { Id = 1, Name = "User 1", Username = "user1" },
-            new User { Id = 2, Name = "User 2", Username = "user2" },
-            new User { Id = 3, Name = "User 3", Username = "user3" }
-        };
-            mockPersonDB.Setup(x => x.ReadUser()).Returns(users);
-
-
+            mockPersonDB.Setup(x => x.ReadUser()).Returns(new List<User>());
             peopleManager = new PeopleManager(mockPersonDB.Object);
         }
         [TestMethod]
         public void GetLoggedInUser_InputIsFound_ReturnsMatchingUser()
         {
+            //arrange/
+            var peopleManager = new PeopleManager(mockPersonDB.Object);
+            User user2 = new User
+            {
+                Name = "jane",
+                Surname = "doe",
+                Username = "jane123",
+                Password = "password456"
+            };
+            //act/
+            peopleManager.AddUser(user2);
 
-            var result = peopleManager.GetLoggedInUser("user3");
+            var result = peopleManager.GetLoggedInUser("jane123");
 
-
+            //assert/
             Assert.IsNotNull(result);
 
-
-            Assert.AreEqual(result.Id, 3);
-            Assert.AreEqual(result.Name, "User 3");
-            Assert.AreEqual(result.Username, "user3");
+            Assert.AreEqual(result.Name, "jane");
+            Assert.AreEqual(result.Username, "jane123");
         }
         [TestMethod]
         public void GetLoggedInUser_InputIsNotFound_ReturnsNull()
         {
-
             var result = peopleManager.GetLoggedInUser("user4");
-
-
             Assert.IsNull(result);
         }
-        [TestMethod]
-        public void AddUser_InputIsValid_AddsUserToList()
-        {
-           
-            var mockPersonDB = new Mock<IPersonDB>();
-            var users = new List<User>();
-            User user1 = new User
-            {
-                Name = "mido",
-                Surname = "ramie",
-                Username = "mido333",
-                Password = "password123"
-            };
-            users.Add(user1);
-            User user2 = new User
-            {
-                Name = "jane",
-                Surname = "doe",
-                Username = "jane123",
-                Password = "password456"
-            };
 
-            mockPersonDB.Setup(x => x.ReadUser()).Returns(users);
-          
-
-            
-            var peopleManager = new PeopleManager(mockPersonDB.Object);
-
-          
-              peopleManager.AddUser(user2);
-            var result  = peopleManager.ReadUser();
-
-          
-            Assert.AreEqual(result[1],user2);
-            
-        }
 
         [TestMethod]
         public void AddUser_InputIsValid_AddsUserToList_returnFalse()
         {
-          
-            var mockPersonDB = new Mock<IPersonDB>();
-            var users = new List<User>();
+            //arrange/
+
+            var peopleManager = new PeopleManager(mockPersonDB.Object);
+            
             User user1 = new User
             {
                 Name = "mido",
@@ -104,28 +68,17 @@ namespace UsersTest
                 Username = "mido333",
                 Password = "password123"
             };
-            users.Add(user1);
-            User user2 = new User
-            {
-                Name = "jane",
-                Surname = "doe",
-                Username = "jane123",
-                Password = "password456"
-            };
-
-            mockPersonDB.Setup(x => x.ReadUser()).Returns(users);
-           
-
-          
-            var peopleManager = new PeopleManager(mockPersonDB.Object);
-            bool expectedResult = true;
+            //act/
+            peopleManager.AddUser(user1);
+         
 
             try
             {
-                var result = peopleManager.AddUser(user1);
+                 peopleManager.AddUser(user1);
             }
             catch (UserNameIsExistException e)
             {
+                //assert/
                 Assert.AreEqual(e.Message, "the username is already taken");
             }
 
@@ -135,7 +88,7 @@ namespace UsersTest
         public void IsUserTaken()
         {
            
-            var mockPersonDB = new Mock<IPersonDB>();
+          
             var users = new List<User>();
             User user1 = new User
             {
@@ -146,19 +99,11 @@ namespace UsersTest
             };
             users.Add(user1);
             mockPersonDB.Setup(x => x.ReadUser()).Returns(users);
-
-         
             var peopleManager = new PeopleManager(mockPersonDB.Object);
-           
 
-           
-            string username = "mido333";
-            
-            bool expectedResult = true;
-          
-try
+            try
             {
-                var result = peopleManager.AddUser(user1);
+              peopleManager.AddUser(user1);
             }
             catch (UserNameIsExistException e)
             {
@@ -172,7 +117,7 @@ try
         public void IsUserTaken_returnFalseWhenUserNotExist()
         {
 
-            var mockPersonDB = new Mock<IPersonDB>();
+            
             var users = new List<User>();
             User user1 = new User
             {
@@ -182,18 +127,10 @@ try
                 Password = "password123"
             };
             users.Add(user1);
-            mockPersonDB.Setup(x => x.ReadUser()).Returns(users);
-
-
             var peopleManager = new PeopleManager(mockPersonDB.Object);
-
-
-
+            mockPersonDB.Setup(x => x.ReadUser()).Returns(users);
             string username = "sami454";
 
-           
-
-          
                 var result = peopleManager.IsUsernameTaken(username);
           
                 Assert.IsFalse(result);
@@ -205,7 +142,7 @@ try
         public void IsUsernameTaken_InputIsNotTaken_ReturnsFalse()
         {
            
-            var mockPersonDB = new Mock<IPersonDB>();
+         
             var users = new List<User>();
             User user1 = new User
             {
@@ -230,8 +167,8 @@ try
         [TestMethod]
         public void LoginUser_InputIsValid_ReturnsTrue()
         {
+
            
-            var mockPersonDB = new Mock<IPersonDB>();
             var users = new List<User>();
             User user1 = new User
             {
@@ -243,9 +180,9 @@ try
             };
             users.Add(user1);
             mockPersonDB.Setup(x => x.ReadUser()).Returns(users);
+            var peopleManager = new PeopleManager(mockPersonDB.Object);
 
            
-            var peopleManager = new PeopleManager(mockPersonDB.Object);
            
 
           
@@ -263,7 +200,7 @@ try
         public void LoginUser_InputIsValid_ReturnsFalse()
         {
            
-            var mockPersonDB = new Mock<IPersonDB>();
+           
             var users = new List<User>();
             User user1 = new User
             {
@@ -293,8 +230,7 @@ try
         [TestMethod]
         public void UpdateUserList()
         {
-            
-            var mockPersonDB = new Mock<IPersonDB>();
+           
             var users = new List<User>();
             User user1 = new User
             {
@@ -321,9 +257,33 @@ try
         }
 
 
+        [TestMethod]
+        public void AddUser_InputIsValid_AddsUserToList1()
+        {
+
+            var peopleManager = new PeopleManager(mockPersonDB.Object);
+            User user2 = new User
+            {
+                Name = "jane",
+                Surname = "doe",
+                Username = "jane123",
+                Password = "password456"
+            };
+
+
+            peopleManager.AddUser(user2);
+            var result = peopleManager.ReadUser();
+
+            Assert.AreEqual(result.Count,1);
+
+            Assert.AreEqual(result[0], user2);
 
 
         }
+
+
+
+    }
 }
 
 

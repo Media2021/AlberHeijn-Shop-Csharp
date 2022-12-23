@@ -12,7 +12,7 @@ namespace WebAppSynthesis.Pages
     public class SignUpModel : PageModel
     {
         PeopleManager peopleManager = new PeopleManager();
-        PersonDB personDB = new PersonDB();
+        
         [BindProperty]
 
         public UserDTO userDTO { get; set; }
@@ -28,8 +28,8 @@ namespace WebAppSynthesis.Pages
             if (ModelState.IsValid == true)
             {
                 User  savedUser = new User(userDTO.Name, userDTO.Surname, userDTO.Username, userDTO.Password,UserRole.Customer,"");
-                if (peopleManager.AddUser(savedUser))
-                {
+                peopleManager.AddUser(savedUser);
+                
                     ViewData["Message"] = "Hello "   +   userDTO.Username   +  " Your account has been created ";
 
 
@@ -44,8 +44,8 @@ namespace WebAppSynthesis.Pages
 
                
                 return new RedirectToPageResult("/Login");
-            }
-            return RedirectToPage("/Login");
+            
+            
 
         }
     }

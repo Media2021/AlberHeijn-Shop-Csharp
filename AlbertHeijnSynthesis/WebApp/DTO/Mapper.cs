@@ -14,19 +14,13 @@ namespace WebApp.DTO
             orderDTO.Status = order.Status;
             return orderDTO;
         }
-        //public static Order mapToOrder(OrderDTO orderDTO, User user)
-        //{
-        //    Order order = new Order(/*orderDTO.Id, orderDTO.User, orderDTO.Products, orderDTO.TotalPrice,*/ orderDTO.DateOfOrder , orderDTO.Delivery, orderDTO.Status);
-
-        //    return order;
-        //}
         public static HomeDelivery MapToHomeDelivery(HomeDeliveryDTO homeDeliveryDTO)
         {
-            return new HomeDelivery(homeDeliveryDTO.DateOfDelivery, homeDeliveryDTO.Hour, homeDeliveryDTO.Minutes, homeDeliveryDTO.Address);
+            return new HomeDelivery(DateTime.Now.AddDays(3), homeDeliveryDTO.Hour, homeDeliveryDTO.Minutes, homeDeliveryDTO.Address);
         }
         public static PickupDelivery MapToPickupDelivery(PickupDeliveryDTO pickupDeliveryDTO,Location location)
         {
-            return new PickupDelivery(pickupDeliveryDTO.DateOfDelivery, pickupDeliveryDTO.Hour,pickupDeliveryDTO.Minutes,location );
+            return new PickupDelivery(DateTime.Now.AddDays(2), pickupDeliveryDTO.Hour,pickupDeliveryDTO.Minutes,location );
         }
 
     }

@@ -22,12 +22,6 @@
                 <th>Operation </th>
                 
 
-
-
-
-
-
-
             </tr>
 
                 @{
@@ -93,78 +87,6 @@
 
 
 @*
-    <form method="post">
-    
-    
-        
-       
-               
-                
-
-                            
-<div>
-
-   
-                     
-                        <label>Hour</label><br>
-            <select asp-for="  homeDeliveryDTO.Hour " >
-                          
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
-                                <option value="13">13</option>
-                                <option value="14">14</option>
-                                <option value="15">15</option>
-                                <option value="16">16</option>
-                                <option value="17">17</option>
-                                <option value="18">18</option>
-                                <option value="19">19</option>
-                                <option value="20">20</option>
-                                <option value="21">21</option>
-
-                           
-                        </select><br>
-                        <label>Minutes</label><br>
-            <select asp-for=" homeDeliveryDTO .Minutes" >
-
-                <option value="between 00 and 15 minutes ">between 00 and 15 minutes</option>
-                <option value="between 15 minutes and 30 minutes">between 15 minutes and 30 minutes</option>
-                <option value="between 30 minutes and 45 inutes">between 30 minutes and 45 inutes</option>
-                <option value="between 45 minutes  and 00 minutes">between 45 minutes  and 00 minutes</option>
-
-                            
-                        </select>
-                        <label>Date</label><br>
-        
-            
-                        <label>Address</label><br>
-
-            <input asp-for=" homeDeliveryDTO.Address" type="text"  placeholder=" type your full address"><br>
-      
-
-       
-    
-    </div>
-
-    
-    <div class="col-sm-offset-2 col-sm-10">
-        <button  type="submit" class="btn btn-default">Submit</button>
-    </div>
-
-    </form>*@
-
-@*   <label>Location</label><br>
-
-
-                //<select asp-for="orderDTO.Delivery" name="Location">
-                        //    @foreach (var location in Model.Locations)
-                        //    {
-                        //        <option value="@location">@location.Name</option>
-                        //        <option value="@location">@location.Address</option>
-
-                        //    }
-                //</select>*@
            @*  /////////////////////////////////////////////////  *@
             <select id="state" name="state">
                 <option value="">--- Please Select ---</option>
@@ -172,10 +94,11 @@
                 <option value="qld">Pick up delivery</option>
             </select>
 
-   <form method="post" id="form-nsw" class="state-form" style="display:none;">                        
+    <form asp-page-handler="Delivery" method="post" id="form-nsw" class="state-form" style="display:none;">
         <div>                       
             <label>select an hour</label><br>
             <select asp-for="  homeDeliveryDTO.Hour " >                          
+            <span asp-validation-for=" homeDeliveryDTO.Hour"></span>
                     <option value="9">9</option>
                     <option value="10">10</option>
                     <option value="11">11</option>
@@ -189,17 +112,23 @@
                     <option value="19">19</option>
                     <option value="20">20</option>
                     <option value="21">21</option>                           
-            </select><br>
+            </select>
+            <br>
             <label>between which period</label><br>
-            <select asp-for=" homeDeliveryDTO .Minutes" >
+            <select asp-for=" homeDeliveryDTO.Minutes" >
+            <span asp-validation-for=" homeDeliveryDTO.Minutes"></span>
                     <option value="between 00 and 15 minutes ">between 00 and 15 minutes</option>
                     <option value="between 15 minutes and 30 minutes">between 15 minutes and 30 minutes</option>
                     <option value="between 30 minutes and 45 inutes">between 30 minutes and 45 inutes</option>
-                    <option value="between 45 minutes  and 00 minutes">between 45 minutes  and 00 minutes</option>                          
-            </select><br>
+                    <option value="between 45 minutes  and 00 minutes">between 45 minutes  and 00 minutes</option>
+              
+            </select>
+            <br>
                 
             <label>your address</label><br>
             <input asp-for=" homeDeliveryDTO.Address" type="text"  placeholder=" type your full address"><br>
+            <span asp-validation-for=" homeDeliveryDTO.Address"></span>
+
         </div>
     
         <div class="col-sm-offset-2 col-sm-10">
@@ -207,12 +136,13 @@
         </div>
 
     </form>
-
+  
 
     <form asp-page-handler="Pickup" method="post" id="form-qld" class="state-form" style="display:none;">
         <div>                       
             <label>select an hour</label><br>
             <select asp-for="  pickupDeliveryDTO.Hour " >                          
+            <span asp-validation-for=" pickupDeliveryDTO.Hour"></span>
                     <option value="8">8</option>                  
                     <option value="9">9</option>
                     <option value="10">10</option>
@@ -228,25 +158,29 @@
                     <option value="20">20</option>
                     <option value="21">21</option>
                     <option value="22">22</option>
-            </select><br>
+            </select>
+            <br>
             <label>between which period</label><br>
             <select asp-for=" pickupDeliveryDTO.Minutes" >
+            <span asp-validation-for=" pickupDeliveryDTO.Minutes"></span>
                     <option value="between 00 and 30 minutes ">between 00 and 30 minutes</option>
                     <option value="between 30 minutes and 00 minutes">between 30 minutes and 00 minutes</option>
                                             
-            </select><br>
+            </select>
+
+            <br>
             <label>select a location</label><br>
             <select asp-for="pickupDeliveryDTO.Location" >
+            <span asp-validation-for=" pickupDeliveryDTO.Location"></span>
                        @foreach (var location in Model.Locations)
                            {
                                <optgroup label="City name">
-                        <option value="@location.Name">@location.Name</option>
+                        <option value="@location.Address">@location.Name ->@location.Address</option>
                              </optgroup>
-                             <optgroup label="It's location address'">
-                            <option value="@location.Address">@location.Address</option>
-                            </optgroup>
-                           }
+                        
+                         }
             </select>
+
         </div>
 
         <div class="col-sm-offset-2 col-sm-10">
@@ -257,7 +191,9 @@
     <div>
         @ViewData["Message"]
     </div>
-
+    @section Scripts {
+            <partial name="_ValidationScriptsPartial" />
+    }
         <script type="text/javascript">
     $("#state").change(function () {
         let state = this.value; //get state

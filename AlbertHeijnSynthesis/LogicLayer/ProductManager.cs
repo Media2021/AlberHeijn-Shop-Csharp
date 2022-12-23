@@ -15,13 +15,12 @@ namespace BusinessLayer
     public  class ProductManager 
     {
         private IProductDB productDB1 ;    
-        //ProductDB productDB = new ProductDB();
+       
         List<Product> products= new List<Product>();
 
-        public ProductManager()
+        public ProductManager() : this(new ProductDB())
         {
-            this.productDB1 = new ProductDB();
-            UpdateProductList();
+           
         }
         public ProductManager(IProductDB productDB2)
         {
@@ -43,19 +42,6 @@ namespace BusinessLayer
         {
             products.Add(product);
             productDB1.CreateProduct(product);
-
-            //decimal price = 0;
-            //string priceString = product.Price.ToString();
-
-            //if (!decimal.Con(priceString, out price))
-            //    {
-            //    throw new DecimalPriceException();
-
-            //}
-            //products.Add(product);
-            //productDB1.CreateProduct(product);
-            ////return true;    
-
 
         }
         public void DeleteProduct(Product product)
@@ -81,18 +67,5 @@ namespace BusinessLayer
             filtered.AddRange(products.FindAll(x=> x.Item.ToUpper().Contains(name.ToUpper())));
             return filtered;    
         }
-        //public bool IsInputDecimal(string price , out decimal result)
-        //{
-        //    try
-        //    {
-        //        result = Convert.ToDecimal(price);
-        //        return true;
-        //    }
-        //    catch (DecimalPriceException)
-        //    {
-        //        result = 0;
-        //        return false;
-        //    }
-        //}
     }
 }

@@ -1,4 +1,5 @@
-﻿using EntitiesLayer;
+﻿using DBlayer.Interfaces;
+using EntitiesLayer;
 using LogicLayer;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DBlayer
 {
-    public  class LocationDB
+    public  class LocationDB : ILocationDB
     {
         SqlConnection conn = new SqlConnection("server  = mssqlstud.fhict.local;database= dbi499087;User Id = dbi499087; Password=2018Ayham.; ");
 

@@ -15,8 +15,7 @@ namespace WebAppSynthesis.Pages
 
         [BindProperty]
         public List<Product > products { get; set; }
-        [BindProperty]
-        public string subCategory { get; set; } 
+     
         [BindProperty]
 
         public List<Product> cartProducts  { get; set; }
@@ -37,21 +36,22 @@ namespace WebAppSynthesis.Pages
          
         public void  OnPost(int idProduct) 
         {
-            
-           string listOfProducts =  HttpContext.Session.GetString("cart");
-            if (listOfProducts=="")
-            {
-                listOfProducts += idProduct;
-                HttpContext.Session.SetString("cart", listOfProducts);
-            }
-            else
-            {
+              string listOfProducts = HttpContext.Session.GetString("cart");
+                if (listOfProducts == "")
+                {
+                    listOfProducts += idProduct;
+                    HttpContext.Session.SetString("cart", listOfProducts);
+                }
+                else
+                {
 
-                listOfProducts += "," + idProduct;
-                HttpContext.Session.SetString("cart", listOfProducts);
-            }
-
-            OnGet();
+                    listOfProducts += "," + idProduct;
+                    HttpContext.Session.SetString("cart", listOfProducts);
+                }
+                products = productManager.GetProducts().ToList();
+                OnGet();
+           
+         
 
         }
         public void OnPostMinus(int minus1)
@@ -95,8 +95,4 @@ namespace WebAppSynthesis.Pages
         }
     }
 
-    //public IActionResult OnPostOrders()
-    //{
-    //    return RedirectToPage("/MyOrder");
-    //}
 }

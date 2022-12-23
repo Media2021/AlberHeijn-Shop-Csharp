@@ -25,10 +25,7 @@ namespace BusinessLayer
         { 
             return orders;
         }
-        public List<Delivery> GetDeliveries() 
-        { 
-            return deliveries;
-        }
+     
         public List<Delivery> GetAllDeliveries()
         {
             List<Delivery> listODelivery = new List<Delivery>();
@@ -46,65 +43,23 @@ namespace BusinessLayer
 
         }
 
-        public void UpdateDeliveryList()
-
-        {
-            deliveries.Clear();
-            List<Delivery> deliveryList = new List<Delivery>();
-
-            deliveryList.AddRange(orderDB.GetAllDeliveries());
-
-            foreach (Delivery delivery in deliveryList)
-            {
-                if (delivery is HomeDelivery)
-                {
-                    deliveries.Add((HomeDelivery)delivery);
-
-                }
-                else
-                {
-                    deliveries.Add((PickupDelivery)delivery);
-
-                }
-            }
-        }
-
-        public  void AddDeliveryType(Delivery delivery)
-        {
-            deliveries.Add(delivery);
-           
-           
-                if (delivery is HomeDelivery)
-                {
-                    orderDB.createHomeDelivery((HomeDelivery)delivery);
-
-                }
-                else
-                {
-                    orderDB.createPickupDelivery((PickupDelivery)delivery);
-
-                }
-           
-
-
-        }
-
         public void AddOrder(Order order)
         {
             orders.Add(order);
+            if (order.Delivery is HomeDelivery)
+            {
             orderDB.CreateOrder(order);
 
+            }
+           else if(order.Delivery is PickupDelivery) 
+            {
+                orderDB.CreateOrderPickup(order);
+
+            }
+
 
 
         }
-     
-        public void AddOrderPickup(Order order)
-        {
-            orders.Add(order);
-            orderDB.CreateOrderPickup(order);
-
-        }
-      
       
       
         public void UpdateOrderStatus(Order order)

@@ -9,7 +9,7 @@ namespace DBlayer.Interfaces
 {
    public  interface ICategoryDB
     {
-        public List<Category> ReadAllCategory();
+       
        
 
     }

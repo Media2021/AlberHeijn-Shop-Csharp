@@ -40,7 +40,9 @@ namespace PresentationLayer
             updateOrders();
             updateProduct();
             updateLocation();
-         
+
+
+
 
         }
 
@@ -67,25 +69,11 @@ namespace PresentationLayer
                 Category cat = categoryManager.GetCategories().Find(x => x.Name == comboBox1.Text);
                 string name = tb_iPname.Text;
                 string unit = tb_Punit.Text;
-                //decimal amount = Convert.ToDecimal(tb_Pamount.Text);
-                //decimal price = Convert.ToDecimal(tb_Pprice.Text);
+             
                 decimal amount = 0;
                 decimal price = 0;
 
-                //try
-                //{
-                //    // Add the product to the list
-                //    price = Convert.ToDecimal(tb_Pprice.Text);
-                //    amount = Convert.ToDecimal(tb_Pamount.Text);
-
-
-                //    Product newproduct = new Product(name, unit, amount, price, cat);
-                //    productManager.AddProduct(newproduct);
-                //}
-                //catch (DecimalPriceException ex)
-                //{
-                //    MessageBox.Show(ex.Message);
-                //}
+             
 
 
                 try
@@ -114,16 +102,6 @@ namespace PresentationLayer
                 {
                     MessageBox.Show("Please enter valid decimal numbers for both amount and price.");
                 }
-                //if (string.IsNullOrEmpty(tb_Pprice.Text))
-                //{
-                //    throw new PasswordIsNullEception();
-                //}
-
-
-                //catch (DecimalPriceException)
-                //{
-                //    MessageBox.Show(" Please enter valid decimal numbers for both amount and  price.");
-                //}
             }
 
         }
@@ -151,6 +129,7 @@ namespace PresentationLayer
         private void updateProduct()
         {
             lisOProduct.Clear();
+           
             foreach (var product in productManager.GetProducts())
             {
                 lisOProduct.Add(product);
@@ -205,7 +184,7 @@ namespace PresentationLayer
                 AddLocationToDGV();
 
 
-                MessageBox.Show(" new location has been saved");
+                MessageBox.Show(" a new location has been saved");
 
                 tb_address.Clear();
 
@@ -290,26 +269,7 @@ namespace PresentationLayer
             tb_status.Text = rb_readyPickup.Text.ToString();
         }
 
-        //private void button1_Click(object sender, EventArgs e)
-        //{
-        //    Category b = new Category(2, "Meat");
-        //    Product a = new Product(2, "apple", "kilo", 2, 3, b);
-        //    Product d= new Product(4, "apple", "kilo", 2, 3, b);
-        //    Product c = new Product(5, "apple", "kilo", 2, 3, b);
-        //    User user = new User(4,"media","hannan","mido","44",UserRole.Customer,"");
-        //    Order order = new Order(user,new List<Product>{ a, d, c },20,DateTime.Now,new HomeDelivery(DateTime.Now, 5,"15","rotterdam location1"), "Delivered");
-        //    OrderDB orderDB = new OrderDB();    
-        //   orderDB.CreateOrder(order);
-
-        //}
-
-        //private void button2_Click(object sender, EventArgs e)
-        //{ 
-        //    OrderDB orderDB = new OrderDB();
-        //    List<Order> orders = orderDB.ReadOrders();
-
-
-        //}
+    
 
         private void dgv_ShowOrders_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -346,6 +306,7 @@ namespace PresentationLayer
         private void updateOrders()
         {
             ordersList.Clear();
+            orderManager.UpdateOrderList();
             foreach (var order in orderManager.GetOrders())
             {
                 ordersList.Add(order);
@@ -367,7 +328,7 @@ namespace PresentationLayer
 
         private void btn_addEMP_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(tb_empName.Text) && !string.IsNullOrWhiteSpace(tb_empSurname.Text) && !string.IsNullOrWhiteSpace(tb_empUsername.Text) && (!string.IsNullOrEmpty(tb_empPassword.Text)));
+            if (tb_empName.Text !="" && tb_empSurname.Text !="" && tb_empUsername.Text !=""&& tb_empPassword.Text !="")
                 
              
             {
@@ -387,20 +348,19 @@ namespace PresentationLayer
                     MessageBox.Show(" a new employee has been added");
 
                 }
+             
+                 
                 catch (UserNameIsExistException)
                 {
 
                     MessageBox.Show(" username is taken try again");
 
                 }
+                catch(Exception )
+                {
+                    MessageBox.Show("fields can not be empty");
+                }
               
-               //catch (PasswordIsNullEception)
-               // {
-                   
-               //     throw new ArgumentNullException("password ", "password can not be empty");
-               // }
-
-
 
             }
 

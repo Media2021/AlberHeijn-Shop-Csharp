@@ -11,6 +11,8 @@
     <div class="countainer">
         <table method="POST" class="table">
             <tr>
+                    <th>order id </th>
+
                     <th>user </th>
                     <th>Product name</th>
                 <th>Total price </th>
@@ -34,6 +36,8 @@
     string deliveryType = item.Delivery.GetType().Name;
     deliveryType = deliveryType.Replace("EntitiesLayer.", "");
     <tr>
+                            <td>@item.Id</td>
+
         <td>@item.User.Username</td>
         <td>
             @{
@@ -60,4 +64,13 @@
 </table>
 </div>
 </form>
+
+    <div>
+        @ViewData["Message"]
+    </div>
+
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
 </body>

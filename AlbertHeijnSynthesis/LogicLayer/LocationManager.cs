@@ -1,4 +1,5 @@
 ﻿using DBlayer;
+using DBlayer.Interfaces;
 using EntitiesLayer;
 using System;
 using System.Collections.Generic;
@@ -10,16 +11,21 @@ namespace LogicLayer
 {
    public  class LocationManager
     {
-          LocationDB locationDB = new LocationDB();
+        private ILocationDB IlocationDB;
+         
         List<Location> locations = new List<Location>();
-        public LocationManager() 
+        public LocationManager(ILocationDB IlocationDB1) 
         {
+            this.IlocationDB = IlocationDB1;
 
             UpdateLocationList();
 
 
         }
+        public LocationManager() : this(new LocationDB())
+        {
 
+        }
         public List<Location> GetLocations()
         {
             return locations;
@@ -27,31 +33,31 @@ namespace LogicLayer
         public void UpdateLocationList()
         {
             locations.Clear();
-            locations.AddRange(locationDB.ReadLocations()); 
+            locations.AddRange(IlocationDB.ReadLocations()); 
 
         }
         public List<Location> ReadLocations()
         {
-            locations.AddRange(locationDB.ReadLocations());
+            locations.AddRange(IlocationDB.ReadLocations());
             return locations;
         }
         public void AddLocation(Location location)
         {
             locations.Add(location);
-            locationDB.CreateLocation(location);
+            IlocationDB.CreateLocation(location);
 
 
         }
         public void DeleteLocation(Location location)
         {
             locations.Remove(location);
-            locationDB.DeleteLocation(location);    
+            IlocationDB.DeleteLocation(location);    
 
 
         }
         public void UpdateLocation(Location location)
         {
-            locationDB.UpdateLocation(location);    
+            IlocationDB.UpdateLocation(location);    
 
 
         }

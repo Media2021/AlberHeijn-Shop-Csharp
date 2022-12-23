@@ -14,9 +14,7 @@ namespace DBlayer
     public class OrderDB
     {
         SqlConnection conn = new SqlConnection("server  = mssqlstud.fhict.local;database= dbi499087;User Id = dbi499087; Password=2018Ayham.; ");
-        LocationDB locationDB = new LocationDB();   
-        ProductDB productDB = new ProductDB(); 
-        PersonDB personDB = new PersonDB(); 
+     
         public List<Order> GetOrders()
         {
             List<Order> orders = new List<Order>();
@@ -34,9 +32,6 @@ namespace DBlayer
 
             List<Order> ReadOrder = new List<Order>();
 
-
-
-
             while (dr.Read())
             {
             
@@ -44,6 +39,7 @@ namespace DBlayer
                 if (ReadOrder.Exists(x=>x.Id== Convert.ToInt32(dr[0])))
                 {
                     ReadOrder.Find(x => x.Id == Convert.ToInt32(dr[0])).AddProduct(new Product(Convert.ToInt32(dr[9]), Convert.ToString(dr[10]), Convert.ToString(dr[11]), Convert.ToDecimal(dr[12]), Convert.ToDecimal(dr[13]),new Category( Convert.ToInt32(dr[14]), Convert.ToString(dr[23]))));
+                    ReadOrder.Find(x => x.Id == Convert.ToInt32(dr[0])).TotalPrice = Convert.ToDecimal(dr[2]);
                 }
                 else
                 {
@@ -202,22 +198,6 @@ namespace DBlayer
             }
 
         }
-        //private void DeleteOrderProducts(int id, Order order)
-        //{
-        //    foreach (var item in order.Products)
-        //    {
-        //        string sql = "DELETE FROM OrderProducts  WHERE id = @id;";
-        //        SqlCommand cmd = new SqlCommand(sql, this.conn);
-        //        cmd.Parameters.AddWithValue("@id", item.Id);
-               
-
-        //        conn.Open();
-        //        cmd.ExecuteNonQuery();
-        //        conn.Close();
-
-        //    }
-
-        //}
         public void createHomeDelivery(HomeDelivery homeDelivery)
         {
             string sql = "insert into Delivery (type,date,hour,minutes,address) values (@type,@date,@hour,@minutes,@address);";

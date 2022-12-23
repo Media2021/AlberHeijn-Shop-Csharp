@@ -10,16 +10,15 @@ namespace LogicLayer
     public  class Product
     {
         private int id;
-        [Required(ErrorMessage = " please enter product name")]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Name can only contain letters")]
+      
         private string item;
-        [Required(ErrorMessage = " please enter product unit")]
+       
 
         private string unit;
-        [Required(ErrorMessage = " please enter product amount")]
+        
 
         private decimal amount;
-        //[Required(ErrorMessage = " please enter product price")]
+        
 
         private decimal price;
         private  Category category;

@@ -13,12 +13,7 @@ namespace DBlayer.Interfaces
         public List<User> ReadUser();
         public void CreateUser(User user);
 
-        //public void UpdateUser(User user);
-        //public void DeleteUser(User user);
-        //public bool IsUsernameTaken(string username);
-        //public bool LoginUser(string username, string password);
-        //public void UpdateUserList();
-        //public User GetLoggedInUser(string username);
+     
 
 
 

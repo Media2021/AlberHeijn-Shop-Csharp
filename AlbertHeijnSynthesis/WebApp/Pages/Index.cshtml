@@ -3,7 +3,12 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
+<div>
+    @ViewData["Message"]
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    }
 <div class="container">
     <h2>For this week ! for every week </h2>
     <div id="myCarousel" class="carousel slide" data-ride="carousel">

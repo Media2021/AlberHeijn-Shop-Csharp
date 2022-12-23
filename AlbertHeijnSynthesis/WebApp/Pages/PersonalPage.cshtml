@@ -27,7 +27,8 @@
             <th>Product name</th>
             <th>Product unit</th>
             <th>Product price</th>
-            <th>Category name </th>
+            <th>Category  </th>
+            <th> Sub Category  </th>
           
 
           
@@ -84,46 +85,6 @@
     </table>
 </div>
 
-@*
-@{
-    string searchTerm = "";
-    List<LogicLayer.Product> products = Model.products;
-
-    if (IsPost)
-    {
-        searchTerm = Request.Form["searchTerm"];
-        products = products.Where(p => p.Item.Contains(searchTerm)).ToList();
-    }
-}
-
-<form method="post">
-    <input type="text" name="searchTerm" value="@searchTerm" />
-    <button type="submit">Search</button>
-</form>
-
-<div class="container">
-    <table method="GET" class="table" id="tblProducts">
-        <tr>
-            <th>Product id</th>
-            <th>Product name</th>
-            <th>Product unit</th>
-            <th>Product price</th>
-            <th>Category name</th>
-        </tr>
-        @foreach (var item in products)
-        {
-            <tr>
-                <td value="@item.Id">@item.Id</td>
-                <td>@item.Item</td>
-                <td>@item.Unit</td>
-                <td>@item.Price</td>
-                <td>@item.Category.Name</td>
-            </tr>
-        }
-    </table>
-</div>
-*@
- 
 
 
 

@@ -10,12 +10,7 @@ namespace DBlayer
     {
         SqlConnection conn = new SqlConnection("server  = mssqlstud.fhict.local;database= dbi499087;User Id = dbi499087; Password=2018Ayham.; ");
       
-        public List<User> GetAllUser()
-        {
-            List<User> users = new List<User>();
-            return users;
-
-        }
+     
       
     
         public void CreateUser(User user )

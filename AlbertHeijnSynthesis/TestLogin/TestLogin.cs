@@ -9,14 +9,14 @@ namespace TestLogin
         [TestMethod]
         public void TestCorrectPassword()
         {
-
+            //arrange/
             string password = "correct_password";
             User user = new User(1, "nina", "sara", "saranina", password, UserRole.Admin, "salt");
 
-
+           // Act/
             bool result = user.Login(password);
 
-
+            //assert/
             Assert.IsTrue(result);
         }
         [TestMethod]
