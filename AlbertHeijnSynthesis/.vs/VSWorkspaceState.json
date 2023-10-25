@@ -1,7 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\AlbertHeijnSynthesis",
+    "\\DBlayer",
     "\\LogicLayer",
     "\\UsersTest",
     "\\WebApp",
@@ -11,6 +11,6 @@
     "\\WebApp\\wwwroot\\css",
     "\\WebApp\\wwwroot\\css\\img"
   ],
-  "SelectedNode": "\\WebApp\\Pages\\Index.cshtml",
+  "SelectedNode": "\\DBlayer\\PersonDB.cs",
   "PreviewInSolutionExplorer": false
 }
